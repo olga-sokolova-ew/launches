@@ -1,14 +1,15 @@
-import { makeStyles } from "@material-ui/core/styles";
+/*import { makeStyles } from '@mui/styles';
+
 
 const useStyles = makeStyles({
     visuallyHidden: {
-        position: absolute,
+        position: "absolute",
         width: '1px',
         height: '1px',
         margin: '-1px',
         padding: 0,
-        overflow: hidden,
-        whiteSpace: nowrap,
+        overflow: "hidden",
+        whiteSpace: "nowrap",
         border: 0,
         clip: 'rect(0 0 0 0)',
         },
@@ -21,7 +22,11 @@ const useStyles = makeStyles({
         height: 48,
         padding: "0 30px",
         margin: 10
-    }
+    },
+    header: {
+        backgroundColor: "rgba(0, 0, 0, 0.2)",
+        minHeight: "100px",
+    },
 });
 
-export default useStyles;
+export default useStyles;*/

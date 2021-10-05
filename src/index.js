@@ -9,11 +9,98 @@ import {Provider} from 'react-redux';
 import {reducer} from './store/reducer';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import { fetchLaunchesList} from './store/api-actions';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 //import reportWebVitals from './reportWebVitals';
 
-const api = createAPI();
+const theme = createTheme({
+  typography: {
+    roboto: {
+       fontFamily: "Roboto",
+    },
+    montserrat: {
+       fontFamily: "Montserrat",
+    },
+    color: "#F1EBFF",
+		h1: {
+			fontFamily: "Montserrat, sans-serif",
+			fontSize: 76,
+			fontWeight: 800,
+			lineHeight: "92px",
+		},
+		h2: {
+			fontFamily: "Montserrat, sans-serif",
+			fontSize: 54,
+			fontWeight: 800,
+			lineHeight: "64px",
+		},
+		h3: {
+			fontFamily: "Montserrat, sans-serif",
+			fontSize: 26,
+			fontWeight: 700,
+			lineHeight: "38px",
+		},
+		h4: {
+			fontFamily: "Montserrat, sans-serif",
+			fontSize: 22,
+			fontWeight: 700,
+			lineHeight: "28px",
+			letterSpacing: "0.0038em",
+		},
+		h5: {
+			fontFamily: "Roboto, sans-serif",
+			fontSize: 17,
+			fontWeight: 400,
+			lineHeight: "28px",
+		},
+		body1: {
+			fontFamily: "Roboto, sans-serif",
+			fontSize: 17,
+			fontWeight: 400,
+			lineHeight: "28px",
+		},
+		/*body2: {
+			fontFamily: "Nunito, sans-serif",
+			fontSize: 13,
+			lineHeight: "28px",
+			letterSpacing: "0.02em",
+		},
+		caption: {
+			fontFamily: "Nunito, sans-serif",
+			fontSize: 11,
+			lineHeight: "18px",
+			letterSpacing: "-0.00615385em",
+		},*/
 
-//const store = createStore(reducer, applyMiddleware(thunk))
+
+  },
+  palette: {
+		primary: {
+			main: "#F1EBFF",
+		},
+		secondary: {
+			main: "#FFFFFF",
+		},
+		background: {
+			default: "#181B48",
+		},
+		common: {
+			white: "#fff",
+			black: "#111",
+		},
+	},
+
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 900,
+      lg: 1440,
+      xl: 1536,
+    },
+  },
+});
+
+const api = createAPI();
 
 const store = createStore(
   reducer,
@@ -27,7 +114,10 @@ store.dispatch(fetchLaunchesList(api));
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider >  
+      
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

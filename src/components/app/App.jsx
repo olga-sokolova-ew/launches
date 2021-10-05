@@ -3,13 +3,15 @@ import NotFound from '../pages/not-found/not-found';
 import Main from '../pages/main/main';
 import {AppRoute} from '../../const';
 import { connect } from 'react-redux';
-//import './App.css';
+import CssBaseline from '@mui/material/CssBaseline';
+import './App.css';
 
 function App({isLaunchesLoaded}) {
   
   
   return (
     <BrowserRouter>
+    <CssBaseline />
       <Switch>
         <Route exact path={AppRoute.ROOT}>
           <Main />
