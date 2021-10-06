@@ -1,8 +1,10 @@
 import {ActionType} from './action';
 
 const initialState = {
-  launches: [],
-  isLaunchesLoaded: false,
+    events: [],
+    launches: [],
+    isLaunchesLoaded: false,
+    isEventsLoaded: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -13,6 +15,12 @@ const reducer = (state = initialState, action) => {
         launches: action.payload,
         isLaunchesLoaded: true,
       };
+    case ActionType.LOAD_EVENTS:
+    return {
+        ...state,
+        events: action.payload,
+        isEventsLoaded: true,
+    };  
 
     default:
       return state;

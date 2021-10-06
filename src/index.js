@@ -26,18 +26,21 @@ const theme = createTheme({
 			fontSize: 76,
 			fontWeight: 800,
 			lineHeight: "92px",
+			letterSpacing: 0,
 		},
 		h2: {
 			fontFamily: "Montserrat, sans-serif",
 			fontSize: 54,
 			fontWeight: 800,
 			lineHeight: "64px",
+			color: "#F1EBFF",
 		},
 		h3: {
 			fontFamily: "Montserrat, sans-serif",
 			fontSize: 26,
 			fontWeight: 700,
-			lineHeight: "38px",
+			lineHeight: "28px",
+			color: "#F1EBFF",
 		},
 		h4: {
 			fontFamily: "Montserrat, sans-serif",
@@ -58,18 +61,21 @@ const theme = createTheme({
 			fontWeight: 400,
 			lineHeight: "28px",
 		},
+		caption: {
+			fontFamily: "Montserrat, sans-serif",
+			fontSize: 18,
+			fontWeight: 500,
+			fontStyle: 'italic',
+			lineHeight: "18px",
+			color: "#F1EBFF",
+		},
 		/*body2: {
 			fontFamily: "Nunito, sans-serif",
 			fontSize: 13,
 			lineHeight: "28px",
 			letterSpacing: "0.02em",
 		},
-		caption: {
-			fontFamily: "Nunito, sans-serif",
-			fontSize: 11,
-			lineHeight: "18px",
-			letterSpacing: "-0.00615385em",
-		},*/
+		*/
 
 
   },

@@ -1,47 +1,68 @@
 
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
+import {connect} from 'react-redux';
 import CssBaseline from '@mui/material/CssBaseline';
+import { makeStyles } from '@mui/styles';
 import { Container } from '@mui/material';
 import Header from '../../header/header';
 import Footer from '../../footer/footer';
-
+import Loader from '../../loader/loader';
 import MainHero from '../../mainHero/mainHero';
+import EventsSwiper from '../../eventsSwiper/eventsSwiper'
+import { fetchEventsList } from '../../../store/api-actions';
 
+const useStyles = makeStyles({
+    page_content: {
+        padding: '118px 130px 100px',
+        marginTop: '-170px',
+        maxWidth: '1440px',
+        minHeight: '100px', // delete
+        display: 'flex',
+        justifyContent: 'center',
+        backgroundColor: '#1C2056',
+    }
+});
 
-function Main() {
+function Main({events, isEventsLoaded, isLaunchesLoaded, onLoadEvents}) {
+    const classes = useStyles();
 
+    useEffect(() => {
+        onLoadEvents();
+      }, [  onLoadEvents ]);
+    
+     
+    
   return (
     <>
         <Header />
         <MainHero />
 
-        <Container maxWidth="lg">
-
-        <section >
-            
-
-            <h1 className="visually-hidden">Spaceflight Launches</h1>
-            
-
-
-            <header className="page-header">
-            <div>qwqwqwqwqwqwqqwqw</div>
-            </header>
+        <Container maxWidth="lg"> 
 
         
-        </section>
+        {(isEventsLoaded && isLaunchesLoaded) && <section  className={classes.page_content} >
 
-        <div className="page-content">
-            <section >
-            <div>ewrweerwertyryye</div>
-            </section>
+         <EventsSwiper events={events}/>
+        </section>}
 
-            
-        </div>
+       
         </Container>
         <Footer />
     </>
   );
 }
 
-export default Main;
+const mapStateToProps = (state) => ({
+    events: state.events,
+    isEventsLoaded: state.isEventsLoaded,
+    isLaunchesLoaded: state.isLaunchesLoaded,
+  });
+  
+  const mapDispatchToProps = (dispatch) => ({
+    onLoadEvents() {
+      dispatch(fetchEventsList());
+    },
+  });
+  
+  export {Main};
+  export default connect(mapStateToProps, mapDispatchToProps)(Main);

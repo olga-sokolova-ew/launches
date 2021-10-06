@@ -6,4 +6,15 @@ export const launchAdapter = (incomingLaunch) =>  {
     };
     return adaptedLaunch;
   
-  };
+};
+
+export const eventAdapter = (incomingEvent) =>  {
+    const  adaptedEvent = {
+      id: incomingEvent.id,
+      eventName: incomingEvent.name,
+      eventImg: incomingEvent.feature_image,
+      eventDate: incomingEvent.date,
+    };
+    return adaptedEvent;
+  
+};
