@@ -32,16 +32,17 @@ export const rocketAdapter = (incomingRocket) =>  {
 };
 
 export const currentLaunchAdapter = (incomingCurrentLaunch) =>  {
+  console.log(incomingCurrentLaunch)
   const  adaptedLaunch = {
     id: incomingCurrentLaunch.id,
     launchName: incomingCurrentLaunch.name,
     launchImg: incomingCurrentLaunch.image_url,
-    video: incomingCurrentLaunch.vidURLs, 
+    /*video: incomingCurrentLaunch.vidURLs, 
     launchDescription: incomingCurrentLaunch.launcher_stage.launcher.details,
 
     roketName: incomingCurrentLaunch.rocket.name,
     destination: incomingCurrentLaunch.rocket.spacecraft_stage.destination,
-    mission: incomingCurrentLaunch.rocket.mission,
+    mission: incomingCurrentLaunch.rocket.mission,*/
 
     launchDate: incomingCurrentLaunch.net,
   };

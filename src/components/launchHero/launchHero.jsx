@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import { makeStyles } from '@mui/styles';
 import { Container, Typography } from '@mui/material';
 import { useTheme } from '@material-ui/core/styles';
+import  {getTimeFormate} from '../../utils';
 import BgImage from '../../img/bg_hero.png';
 
 
@@ -41,8 +42,11 @@ const useStyles =  makeStyles((theme) => ({
     color: theme.palette.primary.main,
   },
   hero__text_wrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
     fontFamily: 'Montserrat',
-    //maxWidth: '900px',
+    maxWidth: '900px',
     paddingTop: '29%', //'23.6%',
     //paddingLeft: '108px',
     paddingBottom: '24.4vw',
@@ -55,39 +59,26 @@ const useStyles =  makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       paddingLeft: 0,
     },
+    
   },
-  page__link: {
-    display: 'inline-block',
-    padding: '27px 80px',
-    fontFamily: 'Montserrat',
-    fontWeight: '700',
-    fontSize: '20px',
-    color: theme.palette.common.white,
-    textDecoration: 'none',
-    textTransform: 'capitalize',
-    background: 'linear-gradient(93.72deg, #8E2DE2 9.41%, #4A00E0 86.1%)',
-    borderRadius:'50px',
-    transition: '0.3s ease',
-
-    '&:hover': {
-      opacity: "0.8",
-    },
-    [theme.breakpoints.down('md')]: {
-      fontSize: '20px',
-      padding: '20px 40px',
-    },
-    [theme.breakpoints.down('sm')]: {
-      fontSize: '18px',
-      padding: '10px 30px',
-    },
-  }
+  timer__wrapper: {
+    backgroundColor: '#4A00E0',
+    padding: '50px 70px',
+    minHeight: '190px',
+    minWidth: '300px',
+  },
+  timer: { 
+    color: theme.palette.primary.main,
+  },
 }));
   
 
 function LaunchHero({launch}) {
   const theme = useTheme();
   const classes = useStyles();
-    
+  const timerStr = getTimeFormate(launch.launchDate)
+  console.log('timerStr' + timerStr)
+  console.log(launch.launchDate)  
   const url = '#';
 
   return (
@@ -95,13 +86,19 @@ function LaunchHero({launch}) {
     <Box component='div' className={classes.hero__wrapper}>
         <Container maxWidth="lg">
           <Box component='div' className={classes.hero__text_wrapper}>
-            <Typography variant="h1" mb='30px' color='primary'>
-              2323232
+            <Typography variant="h1" mb='30px' color='primary' textAlign='center'>
+              {launch.launchName}
             </Typography>
 
-            <Typography variant="h5" mb='50px' className={classes.hero__about}>
-              View all launches available - including launches from the past and utilize powerful search filters.
+            <Typography variant="h3" mb='40px' className={classes.hero__about} textAlign='center'>
+              Go for Launch
             </Typography>
+
+            <Box className={classes.timer__wrapper}>
+              <Typography variant="h1"  className={classes.timer} textAlign='center'>
+                {timerStr}
+              </Typography>
+            </Box>
             
             
           </Box>

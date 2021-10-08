@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {connect} from 'react-redux';
 import { makeStyles } from '@mui/styles';
 import { Container } from '@mui/material';
@@ -10,6 +10,7 @@ import MainHero from '../../mainHero/mainHero';
 import EventsSwiper from '../../eventsSwiper/eventsSwiper';
 import LaunchesBlock from '../../launchesBlock/launchesBlock';
 import { fetchEventsList, fetchLaunchesList } from '../../../store/api-actions';
+import { launchQnt } from '../../../const';
 
 const useStyles =  makeStyles(theme => ({
   page_wrapper: {
@@ -41,17 +42,23 @@ const useStyles =  makeStyles(theme => ({
 
 function Main({events, launches, isEventsLoaded, isLaunchesLoaded, onLoadEvents, eventError }) {
     const classes = useStyles();
+    const [showenLaunchesQnt, setShowenLaunchesQnt] = useState(launchQnt);
 
     useEffect(() => {
         onLoadEvents();
       }, [  onLoadEvents ]);
     
-     
+    const onShowAllClick = () => {
+      setShowenLaunchesQnt(isLaunchesLoaded ? launches.lenght : 0);
+    };
+    const onShowMoreClick = () => {
+      setShowenLaunchesQnt(showenLaunchesQnt + launchQnt);
+    }
     
   return (
     <div className={classes.page_wrapper}>
         <Header isMain={true} />
-        <MainHero />
+        <MainHero onShowAllClick={onShowAllClick} />
 
         <Container maxWidth="lg"> 
 
@@ -61,7 +68,7 @@ function Main({events, launches, isEventsLoaded, isLaunchesLoaded, onLoadEvents,
 
             <EventsSwiper events={events}/>
 
-            {isLaunchesLoaded && <LaunchesBlock launches={launches} /> }
+            {isLaunchesLoaded && <LaunchesBlock launches={launches} onShowMore={onShowMoreClick} showenLaunchesQnt={showenLaunchesQnt} /> }
           
           </section>
           :

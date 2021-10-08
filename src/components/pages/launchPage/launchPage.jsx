@@ -22,7 +22,7 @@ function LaunchPage({currentLaunch, isCurrentLaunch, onLoadLaunch}) {
 
     useEffect(() => {
       console.log(launchParam)
-        onLoadLaunch(launchParam.id);
+      onLoadLaunch(launchParam.id);
       }, [ launchParam.id, onLoadLaunch ]);
     
      
@@ -41,7 +41,7 @@ function LaunchPage({currentLaunch, isCurrentLaunch, onLoadLaunch}) {
           </Container>
           </>
         }
-              
+
         <Footer />
     </div>
   );

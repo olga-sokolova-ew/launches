@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
         objectFit: 'cover',
         height: '13.75vw',
         marginBottom: '20px',
-        overflow: 'hidden'
+        overflow: 'hidden',
     },
     swiper__time_block: {
         padding: '10px 30px',

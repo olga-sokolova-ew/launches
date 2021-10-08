@@ -12,6 +12,9 @@ const APIRoute = {
   };  
 
 const launchQnt = 6;  
+const MINUTE = 60;
+const HOURS = 24;
+const SECONDS = 60;
 
 
 
@@ -35,4 +38,4 @@ const launchQnt = 6;
   },
 });  */
 
-export {APIRoute, AppRoute, launchQnt};
+export {APIRoute, AppRoute, HOURS, launchQnt, MINUTE, SECONDS};

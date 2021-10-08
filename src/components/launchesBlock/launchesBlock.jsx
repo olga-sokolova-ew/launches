@@ -4,7 +4,7 @@ import { Box, Grid, Typography } from '@mui/material';
 import LaunchCard from '../launchCard/launchCard';
 import Loader from '../loader/loader';
 import TextButton from '../button/textBotton';
-import { launchQnt } from '../../const';
+
 
 
 const useStyles = makeStyles({
@@ -13,21 +13,19 @@ const useStyles = makeStyles({
    },
    launches__title: {
      textAlign: 'center',
+   },
+   loader__wrapper: {
+     width: '100%',
+     display: 'flex',
+     flexDirection: 'column',
+     alignItems: 'center',
    }
   });
   
 
-function LaunchesBlock({launches, isShowAll=false}) {
-    const classes = useStyles();
-    let startShowenLaunchesQnt = (isShowAll) ? launches.lenght : launchQnt;
-    const [showenLaunchesQnt, setShowenLaunchesQnt] = useState(startShowenLaunchesQnt);
-    console.log('showenLaunchesQnt' + showenLaunchesQnt)
-    const url = '#';
-
-    const showMoreHandler = () => {
-      setShowenLaunchesQnt(showenLaunchesQnt + launchQnt);
-    };
-
+function LaunchesBlock({launches, onShowMore, showenLaunchesQnt}) {
+  const classes = useStyles();
+  
   return (
     
     <div className={classes.launches__wrapper}>
@@ -40,10 +38,10 @@ function LaunchesBlock({launches, isShowAll=false}) {
           {launches.slice(0, showenLaunchesQnt).map(launch => 
             <LaunchCard launch={launch} key={launch.id} /> 
           )}
-          {(showenLaunchesQnt !== launches.lenght) && 
-          <Box  className={classes.launches__title}>
+          {(showenLaunchesQnt < launches.length) && 
+          <Box  className={classes.loader__wrapper}>
             <Loader/>
-            <TextButton btnText={'Load More'} onBtnClick={showMoreHandler}/>
+            <TextButton btnText={'Load More'} onBtnClick={onShowMore}/>
           </Box >}
         </Grid>
     </div>

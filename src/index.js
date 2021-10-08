@@ -142,7 +142,21 @@ const theme = createTheme({
 			white: "#fff",
 			black: "#111",
 		},
-	},
+	}, 
+	components: {
+		MuiButton: {
+			root: {
+				padding: '27px 80px',
+				fontWeight: '700',
+				fontSize: '20px',
+				textDecoration: 'none',
+				textTransform: 'capitalize',
+				background: 'linear-gradient(93.72deg, #8E2DE2 9.41%, #4A00E0 86.1%)',
+				borderRadius:'50px',
+			}
+		}
+	}
+	  
 
   
 });
