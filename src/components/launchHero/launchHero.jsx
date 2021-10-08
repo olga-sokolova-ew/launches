@@ -24,8 +24,8 @@ const useStyles =  makeStyles((theme) => ({
     //height: '58.94vw',
     marginTop: '-100px',
     display: 'flex',
-    backgroundColor: theme.palette.background.default,
-    backgroundImage: `url('${BgImage}')`,
+    //backgroundColor: theme.palette.background.default,
+    //backgroundImage: `url('${BgImage}')`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: '100%',
     backgroundPosition: 'top center',
@@ -83,7 +83,7 @@ function LaunchHero({launch}) {
 
   return (
     
-    <Box component='div' className={classes.hero__wrapper}>
+    <Box component='div' className={classes.hero__wrapper} style={{backgroundImage: `url(${launch.launchImg})`}}>
         <Container maxWidth="lg">
           <Box component='div' className={classes.hero__text_wrapper}>
             <Typography variant="h1" mb='30px' color='primary' textAlign='center'>
