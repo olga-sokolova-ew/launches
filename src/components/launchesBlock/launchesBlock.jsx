@@ -1,10 +1,10 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import {AppRoute} from '../../const';
-import Box from '@mui/material/Box';
+import React, { useState } from 'react';
 import { makeStyles } from '@mui/styles';
-import { Container, Typography } from '@mui/material';
-import BgImage from '../../img/bg_hero.jpg';
+import { Box, Grid, Typography } from '@mui/material';
+import LaunchCard from '../launchCard/launchCard';
+import Loader from '../loader/loader';
+import TextButton from '../button/textBotton';
+import { launchQnt } from '../../const';
 
 
 const useStyles = makeStyles({
@@ -17,9 +17,16 @@ const useStyles = makeStyles({
   });
   
 
-function LaunchesBlock({lauchesList}) {
+function LaunchesBlock({launches, isShowAll=false}) {
     const classes = useStyles();
+    let startShowenLaunchesQnt = (isShowAll) ? launches.lenght : launchQnt;
+    const [showenLaunchesQnt, setShowenLaunchesQnt] = useState(startShowenLaunchesQnt);
+    console.log('showenLaunchesQnt' + showenLaunchesQnt)
     const url = '#';
+
+    const showMoreHandler = () => {
+      setShowenLaunchesQnt(showenLaunchesQnt + launchQnt);
+    };
 
   return (
     
@@ -27,11 +34,19 @@ function LaunchesBlock({lauchesList}) {
         <Typography variant="h2" mb='30px' className={classes.launches__title}>
            Spaceflight Launches
         </Typography>
-    </div>
-    
-   
-    
 
+        <Grid container spacing={2}>
+
+          {launches.slice(0, showenLaunchesQnt).map(launch => 
+            <LaunchCard launch={launch} key={launch.id} /> 
+          )}
+          {(showenLaunchesQnt !== launches.lenght) && 
+          <Box  className={classes.launches__title}>
+            <Loader/>
+            <TextButton btnText={'Load More'} onBtnClick={showMoreHandler}/>
+          </Box >}
+        </Grid>
+    </div>
   );
 }
 

@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 import {AppRoute} from '../../const';
 import Box from '@mui/material/Box';
 import { makeStyles } from '@mui/styles';
-import { Container, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
+import { useTheme } from '@material-ui/core/styles';
 import { ReactComponent as LogoSvg } from '../../img/logo.svg';
 
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     footer: {
         position: 'relative',
         display: 'flex',
@@ -17,6 +18,9 @@ const useStyles = makeStyles({
         minHeight: 100,
         padding: '0 80px',
         background: '#181B48',
+        [theme.breakpoints.down('sm')]: {
+            padding: '15px',
+          }, 
     },
 
     footer__wrapper: {
@@ -26,6 +30,9 @@ const useStyles = makeStyles({
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
+        [theme.breakpoints.down('sm')]: {
+            flexDirection: 'column'
+          },
     },
 
     footer__link: {
@@ -39,12 +46,16 @@ const useStyles = makeStyles({
         '& svg': {
             width: '49px',
             height: '55px',
-        } 
+        },
+        [theme.breakpoints.down('sm')]: {
+            marginBottom: '30px',
+          }, 
     },
     footer__copyright: {
-        color: '#C0C0C0'
+        color: '#C0C0C0',
+        
     }
-  });
+  }));
   
 
 function Footer() {

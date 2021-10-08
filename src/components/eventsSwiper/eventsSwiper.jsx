@@ -5,13 +5,13 @@ import 'swiper/swiper.min.css'
 
 import Box from '@mui/material/Box';
 import { makeStyles } from '@mui/styles';
-import { Container, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import {format} from 'date-fns';
 import { ReactComponent as RocketSvg } from '../../img/rocketLogo.svg';
 import arrowImage from '../../img/swiper_arrow.svg';
 
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     swiper__emptyimg: {
         width: '380px',
         height: '264px',
@@ -28,7 +28,12 @@ const useStyles = makeStyles({
          },
     },
     swiper__img: {
+        width: '100%',
+        maxWidth: '100%',
+        objectFit: 'cover',
+        height: '13.75vw',
         marginBottom: '20px',
+        overflow: 'hidden'
     },
     swiper__time_block: {
         padding: '10px 30px',
@@ -36,7 +41,7 @@ const useStyles = makeStyles({
         display: 'inline-flex',
         justifyContent: 'center',
         backgroundColor: '#4A00E0',
-        borderRadius: '59px',
+        borderRadius: '50px',
     },
     swiper__wrapper: {
         width: '100%',
@@ -57,7 +62,12 @@ const useStyles = makeStyles({
 
             '&::after': {
                 display: 'none',
-            }
+            },
+            [theme.breakpoints.down('md')]: {
+                display: 'none',
+                width: 0,
+                height: 0,
+              }, 
         },
         '& .swiper-button-prev': {
             width: '56px',
@@ -73,15 +83,19 @@ const useStyles = makeStyles({
 
             '&::after': {
                 display: 'none',
-            }
+            },
+            [theme.breakpoints.down('md')]: {
+                display: 'none',
+                width: 0,
+                height: 0,
+              }, 
         },
     }
-  });
+  }));
   
 
 function EventsSwiper({events}) {
     const classes = useStyles();
-    const url = '#';
 
   return (
     <div className={classes.swiper__wrapper}>
@@ -91,12 +105,20 @@ function EventsSwiper({events}) {
     
         <Box component='div' className={classes.swiper__wrapper}>
             <Swiper
-                
                 spaceBetween={20}
                 slidesPerView={3}
                 navigation={{ clickable: true }}
                 onSlideChange={() => console.log('slide change')}
                 onSwiper={(swiper) => console.log(swiper)}
+                
+                breakpoints={{ 
+                    900: {
+                      slidesPerView: 2,
+                    },
+                    0: {
+                      slidesPerView: 1,
+                    },
+                  }}
              >
                 {events.map((event) => 
                     <SwiperSlide  key={event.id}>
@@ -113,7 +135,7 @@ function EventsSwiper({events}) {
                             <time className="review__date" dateTime={format(new Date(event.eventDate), 'yyyy-MM-dd')}>{format(new Date(event.eventDate), 'MMM. d, yyyy, h:mm aaa')}</time>
                             </Typography>
                         </div>    
-                        <Typography variant="h3" mb='50px'>
+                        <Typography variant="h3" mb='50px' style={{ wordWrap: 'break-word' }}>
                         {event.eventName}
                         </Typography>
                 </SwiperSlide>

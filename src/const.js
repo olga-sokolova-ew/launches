@@ -3,12 +3,17 @@ const AppRoute = {
     ROCKET: '/rocket/:id',
     EVENT: '/event/:id',
     ROOT: '/',
+    PAGE_NOT_FOUND: '/page-not-found',
   };
 
 const APIRoute = {
     LAUNCHES: 'launch/upcoming?mode=detailed',
     EVENTS: 'event/upcoming/',
   };  
+
+const launchQnt = 6;  
+
+
 
 /*const theme = createTheme({
   typography: {
@@ -30,4 +35,4 @@ const APIRoute = {
   },
 });  */
 
-  export {APIRoute, AppRoute};
+export {APIRoute, AppRoute, launchQnt};

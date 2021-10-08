@@ -11,22 +11,51 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 import { fetchLaunchesList} from './store/api-actions';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 //import reportWebVitals from './reportWebVitals';
+//import { breakpoints } from './const';
+
+const breakpoints = {
+	values: {
+	  xs: 0,
+	  sm: 600, // Phone
+	  md: 900, // Tablet/Laptop
+	  lg: 1200, // Desktop
+	  xl: 1536
+	}
+  };
 
 const theme = createTheme({
-  typography: {
-    roboto: {
-       fontFamily: "Roboto",
-    },
-    montserrat: {
-       fontFamily: "Montserrat",
-    },
-    color: "#F1EBFF",
+	
+	breakpoints: {
+		values: {
+		xs: 0,
+		sm: 600, 
+		md: 900, 
+		lg: 1200, 
+		xl: 1536
+		},
+	},
+	typography: {
+		roboto: {
+			fontFamily: "Roboto",
+		},
+		montserrat: {
+			fontFamily: "Montserrat",
+		},
+	color: "#F1EBFF",
 		h1: {
 			fontFamily: "Montserrat, sans-serif",
 			fontSize: 76,
 			fontWeight: 800,
 			lineHeight: "92px",
 			letterSpacing: 0,
+			[`@media screen and (max-width: ${breakpoints.values.lg}px)`]: {
+				fontSize: 60,
+				lineHeight: "56px",
+				},
+			[`@media screen and (max-width: ${breakpoints.values.sm}px)`]: {
+				fontSize: 48,
+				lineHeight: "52px",
+				},
 		},
 		h2: {
 			fontFamily: "Montserrat, sans-serif",
@@ -34,6 +63,14 @@ const theme = createTheme({
 			fontWeight: 800,
 			lineHeight: "64px",
 			color: "#F1EBFF",
+			[`@media screen and (max-width: ${breakpoints.values.lg}px)`]: {
+				fontSize: 48,
+				lineHeight: "50px",
+				},
+			[`@media screen and (max-width: ${breakpoints.values.sm}px)`]: {
+				fontSize: 38,
+				lineHeight: "42px",
+				},
 		},
 		h3: {
 			fontFamily: "Montserrat, sans-serif",
@@ -41,6 +78,14 @@ const theme = createTheme({
 			fontWeight: 700,
 			lineHeight: "28px",
 			color: "#F1EBFF",
+			[`@media screen and (max-width: ${breakpoints.values.lg}px)`]: {
+				fontSize: 22,
+				lineHeight: "24px",
+				},
+			[`@media screen and (max-width: ${breakpoints.values.sm}px)`]: {
+				fontSize: 18,
+				lineHeight: "22px",
+				},
 		},
 		h4: {
 			fontFamily: "Montserrat, sans-serif",
@@ -78,13 +123,17 @@ const theme = createTheme({
 		*/
 
 
-  },
-  palette: {
+	},
+	palette: {
 		primary: {
 			main: "#F1EBFF",
+			text: "#C0C0C0",
 		},
 		secondary: {
 			main: "#FFFFFF",
+		},
+		info: {
+			main: "#C0C0C0",
 		},
 		background: {
 			default: "#181B48",
@@ -95,15 +144,7 @@ const theme = createTheme({
 		},
 	},
 
-  breakpoints: {
-    values: {
-      xs: 0,
-      sm: 600,
-      md: 900,
-      lg: 1440,
-      xl: 1536,
-    },
-  },
+  
 });
 
 const api = createAPI();

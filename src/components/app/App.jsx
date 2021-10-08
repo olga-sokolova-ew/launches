@@ -1,12 +1,17 @@
 import {Switch, Route, BrowserRouter} from 'react-router-dom';
 import NotFound from '../pages/not-found/not-found';
 import Main from '../pages/main/main';
+import RockedPage from '../pages/rocketPage/rocketPage';
+import LaunchPage from '../pages/launchPage/launchPage';
 import {AppRoute} from '../../const';
 import { connect } from 'react-redux';
 import CssBaseline from '@mui/material/CssBaseline';
 import './App.css';
 
-function App({isLaunchesLoaded}) {
+function App() {
+
+  
+    
   
   
   return (
@@ -16,11 +21,15 @@ function App({isLaunchesLoaded}) {
         <Route exact path={AppRoute.ROOT}>
           <Main />
         </Route>
-        {/*<Route exact path={AppRoute.LAUNCH}>
-          <Launch />
+        <Route exact path={AppRoute.ROCKET}>
+          <RockedPage />
+        </Route>
+       
+        <Route exact path={AppRoute.LAUNCH}>
+          <LaunchPage />
         </Route>
       
-        <Route exact path={AppRoute.EVENT}>
+        {/*<Route exact path={AppRoute.EVENT}>
           <Event />
     </Route>*/}
         <Route>
