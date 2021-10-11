@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useRef, useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import { makeStyles } from '@mui/styles';
 import { Container, Typography } from '@mui/material';
 import { useTheme } from '@material-ui/core/styles';
 import  {getTimeFormate} from '../../utils';
-import BgImage from '../../img/bg_hero.png';
 
 
 const useStyles =  makeStyles((theme) => ({
@@ -19,19 +17,25 @@ const useStyles =  makeStyles((theme) => ({
     lineHeight: '165%',
   },
   hero__wrapper: {
+    position: 'relative',
     fontFamily: 'Montserrat',
     width: '100%',
     //height: '58.94vw',
     marginTop: '-100px',
     display: 'flex',
-    //backgroundColor: theme.palette.background.default,
-    //backgroundImage: `url('${BgImage}')`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: '100%',
     backgroundPosition: 'top center',
     [theme.breakpoints.down('md')]: {
       height: 'auto',
     },
+    '&::after': {
+      position: 'absolute',
+      content: '',
+      width: '100%',
+      height: '100%',
+      background: 'linear-gradient(1.22deg, #181B48 3.9%, rgba(24, 27, 72, 0) 98.66%)',
+    },  
   },
   hero__text: {
     fontFamily: 'Montserrat',
@@ -46,8 +50,8 @@ const useStyles =  makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
     fontFamily: 'Montserrat',
-    maxWidth: '900px',
-    paddingTop: '29%', //'23.6%',
+    //maxWidth: '900px',
+    paddingTop: '28%', //'23.6%',
     //paddingLeft: '108px',
     paddingBottom: '24.4vw',
     [theme.breakpoints.down('lg')]: {
@@ -65,7 +69,13 @@ const useStyles =  makeStyles((theme) => ({
     backgroundColor: '#4A00E0',
     padding: '50px 70px',
     minHeight: '190px',
-    minWidth: '300px',
+    minWidth: '780px',
+
+    '& h1': {
+      textAlign: 'start',
+      paddingLeft: '40px'
+    }
+
   },
   timer: { 
     color: theme.palette.primary.main,
@@ -76,10 +86,24 @@ const useStyles =  makeStyles((theme) => ({
 function LaunchHero({launch}) {
   const theme = useTheme();
   const classes = useStyles();
-  const timerStr = getTimeFormate(launch.launchDate)
-  console.log('timerStr' + timerStr)
-  console.log(launch.launchDate)  
-  const url = '#';
+  const [timerStr, setTimerStr] = useState(getTimeFormate(launch.launchDate))
+  const [done, setDone] = useState(false);
+  const timerRef = useRef(null);
+
+  useEffect(() => {
+    function tick() {
+      setTimerStr(getTimeFormate(launch.launchDate))
+    }
+    timerRef.current = setInterval(() => tick(), 1000)
+  }, [launch.launchDate]);
+
+  useEffect(() => {
+    if (timerStr === 0) {
+      clearInterval(timerRef.current);
+      setDone(true);
+    }
+  }, [timerStr]);
+
 
   return (
     
@@ -95,8 +119,8 @@ function LaunchHero({launch}) {
             </Typography>
 
             <Box className={classes.timer__wrapper}>
-              <Typography variant="h1"  className={classes.timer} textAlign='center'>
-                {timerStr}
+              <Typography variant="h1"  className={classes.timer}  ref={timerRef}>
+                {!done ? timerStr : 'DONE'}
               </Typography>
             </Box>
             

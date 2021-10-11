@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
         minHeight: 100,
         padding: '0 30px',
         background: 'rgba(0, 0, 0, 0.2)',
+        zIndex: 1,
 
     },
 
@@ -84,7 +85,6 @@ const useStyles = makeStyles((theme) => ({
 
 function Header({isMain=false}) {
     const classes = useStyles();
-    const additionalClass = (isMain) && `classes.header__link_inner`;
 
   return (
     <Box component='div' className={classes.header}>

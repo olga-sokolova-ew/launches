@@ -4,7 +4,6 @@ import {AppRoute} from '../../const';
 import Box from '@mui/material/Box';
 import { makeStyles } from '@mui/styles';
 import { Typography } from '@mui/material';
-import { useTheme } from '@material-ui/core/styles';
 import { ReactComponent as LogoSvg } from '../../img/logo.svg';
 
 
