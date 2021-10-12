@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 //import './index.css';
-import App from './components/app/App';
+import App from './App/App';
 import {createAPI} from './services/api';
 import {createStore,  applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import {Provider} from 'react-redux';
-import {reducer} from './store/reducer';
+import rootReducer from './redux/rootReducer';
 import {composeWithDevTools} from 'redux-devtools-extension';
-import { fetchLaunchesList} from './store/api-actions';
+import { fetchLaunchesList} from './redux/api-actions';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 //import reportWebVitals from './reportWebVitals';
 //import { breakpoints } from './const';
@@ -41,7 +41,7 @@ const theme = createTheme({
 		montserrat: {
 			fontFamily: "Montserrat",
 		},
-	color: "#F1EBFF",
+		color: "#F1EBFF",
 		h1: {
 			fontFamily: "Montserrat, sans-serif",
 			fontSize: 76,
@@ -97,14 +97,16 @@ const theme = createTheme({
 		h5: {
 			fontFamily: "Roboto, sans-serif",
 			fontSize: 17,
-			fontWeight: 400,
+			fontWeight: 700,
 			lineHeight: "28px",
+			color: "#F1EBFF",
 		},
-		body1: {
+		body: {
 			fontFamily: "Roboto, sans-serif",
 			fontSize: 17,
 			fontWeight: 400,
 			lineHeight: "28px",
+			color: "#F1EBFF",
 		},
 		caption: {
 			fontFamily: "Montserrat, sans-serif",
@@ -145,14 +147,27 @@ const theme = createTheme({
 	}, 
 	components: {
 		MuiButton: {
-			root: {
-				padding: '27px 80px',
-				fontWeight: '700',
-				fontSize: '20px',
-				textDecoration: 'none',
-				textTransform: 'capitalize',
-				background: 'linear-gradient(93.72deg, #8E2DE2 9.41%, #4A00E0 86.1%)',
-				borderRadius:'50px',
+			styleOverrides: {
+				root: {
+					padding: '29px 85px',
+					fontWeight: '700',
+					fontSize: '20px',
+					lineHeight: '20px',
+					textDecoration: 'none',
+					textTransform: 'capitalize',
+					color: "#F1EBFF",
+					
+					[`@media screen and (max-width: ${breakpoints.values.sm}px)`]: {
+						fontSize: 18,
+						lineHeight: "22px",
+						padding: '15px 30px',
+						},
+				},
+				contained: {
+					background: 'linear-gradient(93.72deg, #8E2DE2 9.41%, #4A00E0 86.1%)',
+					borderRadius: '50px',
+					color: "#F1EBFF",
+				}
 			}
 		}
 	}
@@ -164,7 +179,7 @@ const theme = createTheme({
 const api = createAPI();
 
 const store = createStore(
-  reducer,
+  rootReducer,
   composeWithDevTools(
     applyMiddleware(thunk.withExtraArgument(api)),
   ),
@@ -177,7 +192,7 @@ ReactDOM.render(
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <App />
-      </ThemeProvider >  
+      </ThemeProvider>  
       
     </Provider>
   </React.StrictMode>,

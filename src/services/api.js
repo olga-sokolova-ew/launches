@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const BACKEND_URL = 'https://spacelaunchnow.me/api/3.3.0/';
-const REQUEST_TIMEOUT = 5000;
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL
+const REQUEST_TIMEOUT = process.env.REACT_APP_REQUEST_TIMEOUT;
 
 
 export const createAPI = () => {
