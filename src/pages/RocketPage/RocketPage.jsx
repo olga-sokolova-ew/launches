@@ -1,24 +1,33 @@
 
 import React, { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import {connect} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import { makeStyles } from '@mui/styles';
 import { Container } from '@mui/material';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import Loader from '../../components/Loader/Loader';
 import MainHero from '../../components/MainHero/MainHero';
-import EventsSwiper from '../../components/EventsSwiper/EventsSwiper';
-import LaunchesBlock from '../../components/LaunchesBlock/LaunchesBlock';
-import { fetchCurrentRocket } from '.././../redux/api-actions';;
+import { fetchCurrentRocket } from '.././../redux/api-actions';
+import { getCurrentRocket, getCurrentRocketStatus } from '../../redux/rocketData/selectors';
+;
 
 const useStyles =  makeStyles(theme => ({
  
 }));
 
-function RockedPage({ onLoadRocket}) {
+function RockedPage() {
     const rocketParam = useParams();
     const classes = useStyles();
+
+    const currentRocket = useSelector(getCurrentRocket);
+    const isCurrentRocket = useSelector(getCurrentRocketStatus)
+
+    const dispatch = useDispatch();
+
+    const onLoadRocket = (id) => {
+      dispatch(fetchCurrentRocket(id));
+    };
 
     useEffect(() => {
         onLoadRocket(rocketParam.id);
@@ -36,21 +45,5 @@ function RockedPage({ onLoadRocket}) {
     </div>
   );
 }
-
-const mapStateToProps = (state) => ({
-    events: state.events,
-    launches: state.launches,
-    isEventsLoaded: state.isEventsLoaded,
-    isLaunchesLoaded: state.isLaunchesLoaded,
-    eventError: state.eventError,
-  });
   
-  const mapDispatchToProps = (dispatch) => ({
-    onLoadRocket(id) {
-      dispatch(fetchCurrentRocket(id));
-      
-    },
-  });
-  
-  export {RockedPage};
-  export default connect(mapStateToProps, mapDispatchToProps)(RockedPage);
+export default RockedPage;
