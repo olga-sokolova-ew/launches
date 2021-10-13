@@ -1,27 +1,37 @@
-import {Switch, Route, BrowserRouter} from 'react-router-dom';
-import NotFound from '../pages/NotFound/NotFound';
-import Main from '../pages/Main/Main';
-import RockedPage from '../pages/RocketPage/RocketPage';
-import LaunchPage from '../pages/LaunchPage/LaunchPage';
-import {AppRoute} from '../utils/const';
-import { connect } from 'react-redux';
+import { Provider } from "react-redux";
+import { BrowserRouter } from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
+import { PersistGate } from "redux-persist/integration/react";
+import theme from "../theme/index";
+import { ThemeProvider } from '@mui/material/styles';
 import Routes from '../routes';
 import './App.scss';
+import Loader from '../components/Loader/Loader';
+import { persistor, store, api } from '../redux/store/index';
+import { fetchLaunchesList } from '../redux/api-actions'
+
+store.dispatch(fetchLaunchesList(api));
 
 function App() {
   return (
-    <BrowserRouter>
-    <CssBaseline />
-      <Routes />
-     
-    </BrowserRouter>
+    <Provider store={store}>
+      
+      <PersistGate
+        loading={<Loader />}
+        persistor={persistor}
+      >
+
+        <BrowserRouter>
+          <ThemeProvider theme={theme}>
+        
+            <CssBaseline />
+            <Routes />
+          </ThemeProvider>
+          
+        </BrowserRouter>
+      </PersistGate>
+    </Provider>
   );
 }
 
-const mapStateToProps = (state) => ({
-  isLaunchesLoaded: state.isLaunchesLoaded,
-});
-
-export {App};
-export default connect(mapStateToProps, null)(App);
+export default App;

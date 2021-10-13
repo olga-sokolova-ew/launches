@@ -1,8 +1,10 @@
 import React from 'react';
-import { Swiper, SwiperSlide } from "swiper/react";
+//import Swiper from 'react-id-swiper';
+//import 'swiper/swiper.scss';
+//import { Swiper, SwiperSlide } from "swiper/react";
 //import 'swiper/swiper-bundle.min.css'
 
-import 'swiper/swiper.scss';
+//import 'swiper/swiper.scss';
 //import 'swiper/components/navigation/navigation.scss'
 import Box from '@mui/material/Box';
 import { makeStyles } from '@mui/styles';
@@ -109,6 +111,16 @@ const useStyles = makeStyles((theme) => ({
     }
   }));
   
+const params = {
+    //ContainerEl: 'section',
+    //WrapperEl: 'section',
+    navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev'
+    },
+    renderPrevButton: () => <div className="swiper-button-prev">Prev</div>,
+    renderNextButton: () => <div className="swiper-button-next">Next</div>,
+}  
 
 function EventsSwiper({events}) {
     const classes = useStyles();
@@ -123,7 +135,7 @@ function EventsSwiper({events}) {
         </Typography>
     
         <Box component='div' className={classes.swiper__wrapper}>
-            <Swiper
+            {/*<Swiper
                 spaceBetween={20}
                 slidesPerView={3}
                 navigation={{ clickable: true }}
@@ -159,7 +171,43 @@ function EventsSwiper({events}) {
                         </Typography>
                 </SwiperSlide>
                 )}
-    </Swiper>
+                        </Swiper>*/}
+
+            {/*<Swiper  {...params}>
+                {events.map((event) => 
+                    <div  key={event.id}>
+                        {(event.eventImg) ? 
+                        <img src={event.eventImg}
+                            alt={event.eventName}
+                            width="380"
+                            height="264"
+                            className={classes.swiper__img}
+                            />
+                        :
+                        <div className={classes.swiper__emptyimg}>
+                            <RocketSvg />
+                        </div>}
+                        
+
+                        <div className={classes.swiper__time_block}>
+                            <Typography variant="caption">
+                                <time
+                                    className="review__date"
+                                    dateTime={format(new Date(event.eventDate), 'yyyy-MM-dd')}
+                                >
+                                    {format(new Date(event.eventDate), 'MMM. d, yyyy, h:mm aaa')}
+                                </time>
+                            </Typography>
+                        </div>    
+                        <Typography
+                            variant="h3"
+                            mb='50px'
+                            style={{ wordWrap: 'break-word' }}>
+                            {event.eventName}
+                        </Typography>
+                    </div>
+                )}              
+                        </Swiper>  */  }     
     </Box>   
     </div>
   );

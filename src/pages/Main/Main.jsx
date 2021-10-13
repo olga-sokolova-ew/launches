@@ -13,8 +13,10 @@ import { fetchEventsList, fetchLaunchesList } from '../../redux/api-actions';
 import { launchQnt } from '../../utils/const';
 import {getEventError, getEvents, getEventsLoadedStatus} from '../../redux/eventData/selectors';
 import { getLaunches, getLaunchError, getLaunchesLoadedStatus } from '../../redux/launchData/selectors';
+import theme from '../../theme/index';
 
-const useStyles =  makeStyles(theme => ({
+
+const useStyles =  makeStyles((theme) => ({
   page_wrapper: {
     position: 'relative',
     padding: '0',
