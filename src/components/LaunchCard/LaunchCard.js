@@ -5,7 +5,7 @@ import {
 	Grid, Typography, Paper
 } from "@mui/material";
 import { format } from "date-fns";
-import { ReactComponent as RocketSvg } from "../../assets/common/rocketLogo.svg";
+import { ReactComponent as RocketSvg } from "assets/common/rocketLogo.svg";
 
 
 const useStyles = makeStyles((theme) => ({

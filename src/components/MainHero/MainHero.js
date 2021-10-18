@@ -4,7 +4,7 @@ import {
 	Button, Container, Typography
 } from "@mui/material";
 import { useTheme } from "@material-ui/core/styles";
-import BgImage from "../../assets/common/bg_hero.png";
+import BgImage from "assets/common/bg_hero.png";
 
 
 const useStyles = makeStyles((theme) => ({

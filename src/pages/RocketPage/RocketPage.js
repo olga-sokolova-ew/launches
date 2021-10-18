@@ -4,12 +4,12 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from "@mui/styles";
 import { Container } from "@mui/material";
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
-import Loader from "../../components/Loader/Loader";
-import MainHero from "../../components/MainHero/MainHero";
-import { fetchCurrentRocket } from "../../redux/api-actions";
-import { getCurrentRocket, getCurrentRocketStatus } from "../../redux/rocketData/selectors";
+import Header from "components/Header/Header";
+import Footer from "components/Footer/Footer";
+import Loader from "components/Loader/Loader";
+import MainHero from "components/MainHero/MainHero";
+import { fetchCurrentRocket } from "redux/api-actions";
+import { getCurrentRocket, getCurrentRocketStatus } from "redux/rocketData/selectors";
 
 
 const useStyles = makeStyles(theme => ({

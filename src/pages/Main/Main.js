@@ -3,20 +3,20 @@ import { useEffect, useState } from "react";
 import {useSelector, useDispatch} from "react-redux";
 import { makeStyles } from "@mui/styles";
 import { Container } from "@mui/material";
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
-import Loader from "../../components/Loader/Loader";
-import MainHero from "../../components/MainHero/MainHero";
-import EventsSwiper from "../../components/EventsSwiper/EventsSwiper";
-import LaunchesBlock from "../../components/LaunchesBlock/LaunchesBlock";
-import { fetchEventsList, fetchLaunchesList } from "../../redux/api-actions";
-import { launchQnt } from "../../utils/const";
+import Header from "components/Header/Header";
+import Footer from "components/Footer/Footer";
+import Loader from "components/Loader/Loader";
+import MainHero from "components/MainHero/MainHero";
+import EventsSwiper from "components/EventsSwiper/EventsSwiper";
+import LaunchesBlock from "components/LaunchesBlock/LaunchesBlock";
+import { fetchEventsList, fetchLaunchesList } from "redux/api-actions";
+import { launchQnt } from "utils/const";
 import {
 	getEventError, getEvents, getEventsLoadedStatus
-} from "../../redux/eventData/selectors";
+} from "redux/eventData/selectors";
 import {
 	getLaunches, getLaunchError, getLaunchesLoadedStatus 
-} from "../../redux/launchData/selectors";
+} from "redux/launchData/selectors";
 
 
 const useStyles = makeStyles((theme) => ({

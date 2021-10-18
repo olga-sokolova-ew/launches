@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { AppRoute } from "../../utils/const";
+import { AppRoute } from "utils/const";
 
 const NotFound = () => {
 	return (

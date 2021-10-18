@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { AppRoute } from "../../utils/const";
+import { AppRoute } from "utils/const";
 import { makeStyles } from "@mui/styles";
 //import { ClassNames } from "@emotion/react";  doesn't work
 import { Box, Typography } from "@mui/material";
-import { ReactComponent as LogoSvg } from "../../assets/common/logo.svg";
-import { ReactComponent as ArrowLeftSvg } from "../../assets/common/arrow_left.svg";
+import { ReactComponent as LogoSvg } from "assets/common/logo.svg";
+import { ReactComponent as ArrowLeftSvg } from "assets/common/arrow_left.svg";
 
 const useStyles = makeStyles((theme) => ({
 	header: {

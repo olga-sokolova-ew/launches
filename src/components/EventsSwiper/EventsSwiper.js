@@ -12,17 +12,17 @@ import { ReactComponent as ArrowImage } from "assets/common/swiper_arrow.svg";
 const useStyles = makeStyles((theme) => ({
 	swiper__emptyimg: {
 		width: "380px",
-		height: "264px",
+		height: "13.75vw",
 		marginBottom: "20px",
 		display: "flex",
 		alignItems: "center",
 		justifyContent: "center",
 		backgroundColor: "#3F3881",
-		[theme.breakpoints.down("md")]: {
+		[theme.breakpoints.down("lg")]: {
 			height: "40vw",
 		},
 		[theme.breakpoints.down("sm")]: {
-			height: "70vw",
+			height: "60vw",
 		},
 
 		"& svg": {
@@ -38,11 +38,11 @@ const useStyles = makeStyles((theme) => ({
 		height: "13.75vw",
 		marginBottom: "20px",
 		overflow: "hidden",
-		[theme.breakpoints.down("md")]: {
+		[theme.breakpoints.down("lg")]: {
 			height: "40vw",
 		},
 		[theme.breakpoints.down("sm")]: {
-			height: "70vw",
+			height: "60vw",
 		},
 	},
 	swiper__time_block: {
@@ -134,7 +134,7 @@ const EventsSwiper = ({ events }) => {
 			  nextEl: ".swiper-button-next",
 			  prevEl: ".swiper-button-prev"
 		  },
-		  slidesPerView: 3,
+		  //slidesPerView: 3,
 		renderPrevButton: () => <div className="swiper-button-prev"><ArrowImage /></div>,
 		renderNextButton: () => <div className="swiper-button-next"><ArrowImage /></div>,
 		  spaceBetween: 20,
