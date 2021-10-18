@@ -1,6 +1,6 @@
 
   
-import {NameSpace} from '../rootReducer';
+import {NameSpace} from "../rootReducer";
 
 export const getLaunches = (state) => state[NameSpace.LAUNCH].launches;
 export const getCurrentLaunch = (state) => state[NameSpace.LAUNCH].currentLaunch;

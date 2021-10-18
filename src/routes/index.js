@@ -7,14 +7,14 @@ import { commonRoutes } from "./commonRoutes";
 //import PrivateRoute from "hocs/PrivateRoute";
 
 const Routes = () => {
-  return (
+	return (
     <Suspense
-      fallback={
+	fallback={
         <Box
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          height={"100vh"}
+	display="flex"
+	justifyContent="center"
+	alignItems="center"
+	height={"100vh"}
         >
           <Loader />
         </Box>
@@ -23,16 +23,18 @@ const Routes = () => {
       <Switch>
         {[
           ...commonRoutes,
-        ]?.map((route, index) => {
+        ]?.map((
+route, index
+) => {
           
           return <Route
-            {...route}
-            key={`r_${index}_${route.path}`}
+	{...route}
+	key={`r_${index}_${route.path}`}
           />;
         })}
       </Switch>
     </Suspense>
-  );
+	);
 };
 
 export default Routes;

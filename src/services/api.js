@@ -1,24 +1,27 @@
-import axios from 'axios';
+import axios from "axios";
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const REQUEST_TIMEOUT = process.env.REACT_APP_REQUEST_TIMEOUT;
 
 
 export const createAPI = () => {
-  const api = axios.create({
-    baseURL: BACKEND_URL,
-    timeout: REQUEST_TIMEOUT,
-  });
+	const api = axios.create({
+		baseURL: BACKEND_URL,
+		timeout: REQUEST_TIMEOUT,
+	});
 
-  const onSuccess = (response) => response;
+	const onSuccess = (response) => response;
 
-  const onFail = (err) => {
-    const {response} = err;
+	const onFail = (err) => {
+		const {response} = err;
 
-    throw err;
-  };
+		throw err;
+	};
 
-  api.interceptors.response.use(onSuccess, onFail);
+	api.interceptors.response.use(
+		onSuccess,
+		onFail
+	);
 
-  return api;
+	return api;
 };

@@ -1,15 +1,15 @@
 const AppRoute = {
-    LAUNCH: '/launch/:id',
-    ROCKET: '/rocket/:id',
-    EVENT: '/event/:id',
-    ROOT: '/',
-    PAGE_NOT_FOUND: '/404',
-  };
+	LAUNCH: "/launch/:id",
+	ROCKET: "/rocket/:id",
+	EVENT: "/event/:id",
+	ROOT: "/",
+	PAGE_NOT_FOUND: "/404",
+};
 
 const APIRoute = {
-    LAUNCHES: 'launch/upcoming?mode=detailed',
-    EVENTS: 'event/upcoming/',
-  };  
+	LAUNCHES: "launch/upcoming?mode=detailed",
+	EVENTS: "event/upcoming/",
+};  
 
 const launchQnt = 6;  
 const MINUTE = 60;

@@ -1,6 +1,6 @@
 
   
-import {NameSpace} from '../rootReducer';
+import {NameSpace} from "../rootReducer";
 
 export const getEvents = (state) => state[NameSpace.EVENT].events;
 export const getEventError = (state) => state[NameSpace.EVENT].eventError;

@@ -4,26 +4,27 @@ import thunk from "redux-thunk";
 import { persistStore, persistReducer } from "redux-persist";
 import { composeWithDevTools } from "redux-devtools-extension";
 import storage from "redux-persist/lib/storage";
-import rootReducer from '../rootReducer';
-import {createAPI} from '../../services/api';
+import rootReducer from "../rootReducer";
+import {createAPI} from "../../services/api";
 
 const api = createAPI();
 
 const persistConfig = {
-    key: "primary",
-    storage: storage,
-    whitelist: ["auth", "user"],
+	key: "primary",
+	storage: storage,
+	whitelist: ["auth", "user"],
 };
-const pReducer = persistReducer( persistConfig, rootReducer );
-
-const middleware = composeWithDevTools( 
-    applyMiddleware(thunk.withExtraArgument(api)),
+const pReducer = persistReducer(
+	persistConfig,
+	rootReducer 
 );
+
+const middleware = composeWithDevTools(applyMiddleware(thunk.withExtraArgument(api)),);
 
 // Store with redux-persist (save stores in browser local storage )
 const store = createStore(
-    pReducer,
-    process.env.NODE_ENV === "development" ? middleware : applyMiddleware( thunk ),
+	pReducer,
+	process.env.NODE_ENV === "development" ? middleware : applyMiddleware( thunk ),
 );
 
 const persistor = persistStore( store );
