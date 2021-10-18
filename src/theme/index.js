@@ -135,18 +135,6 @@ theme.typography.caption =  {
 	color: "#F1EBFF",
 };
 
-theme.overrides = {
-	typography: {
-		h1: {
-			
-		},
-		h2: {
-			
-		},
-	},
-		
-};
-
 export default theme;
   
 

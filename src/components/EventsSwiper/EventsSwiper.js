@@ -137,7 +137,21 @@ const EventsSwiper = ({ events }) => {
 		  slidesPerView: 3,
 		renderPrevButton: () => <div className="swiper-button-prev"><ArrowImage /></div>,
 		renderNextButton: () => <div className="swiper-button-next"><ArrowImage /></div>,
-		  spaceBetween: 20
+		  spaceBetween: 20,
+		  breakpoints: {
+			600: {
+			  slidesPerView: 1,
+			  spaceBetween: 0,
+			},
+			900: {
+			  slidesPerView: 2,
+			  spaceBetween: 20,
+			},
+			1024: {
+			  slidesPerView: 3,
+			  spaceBetween: 20,
+			},
+		},
 	  };
 
 	return (
