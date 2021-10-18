@@ -1,5 +1,5 @@
-import React, {
-	useRef, useState, useEffect 
+import {
+	useRef, useState, useEffect
 } from "react";
 import Box from "@mui/material/Box";
 import { makeStyles } from "@mui/styles";
@@ -85,36 +85,36 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-function LaunchHero({ launch }) {
-		const classes = useStyles();
-		const [timerStr, setTimerStr] = useState(getTimeFormate(launch.launchDate));
-		const [done, setDone] = useState(false);
-		const timerRef = useRef(null);
+const LaunchHero = ({ launch }) => {
+	const classes = useStyles();
+	const [timerStr, setTimerStr] = useState(getTimeFormate(launch.launchDate));
+	const [done, setDone] = useState(false);
+	const timerRef = useRef(null);
 
-		useEffect(
-			() => {
-				function tick() {
-						setTimerStr(getTimeFormate(launch.launchDate));
-				}
-				timerRef.current = setInterval(
-					() => tick(),
-					1000
-				);
-			},
-			[launch.launchDate]
-		);
+	useEffect(
+		() => {
+			function tick() {
+					setTimerStr(getTimeFormate(launch.launchDate));
+			}
+			timerRef.current = setInterval(
+				() => tick(),
+				1000
+			);
+		},
+		[launch.launchDate]
+	);
 
-		useEffect(
-			() => {
-				if (timerStr === 0) {
-					clearInterval(timerRef.current);
-					setDone(true);
-				}
-			},
-			[timerStr]
-		);
+	useEffect(
+		() => {
+			if (timerStr === 0) {
+				clearInterval(timerRef.current);
+				setDone(true);
+			}
+		},
+		[timerStr]
+	);
 
-		return (
+	return (
 
 		<Box
 			component="div"
@@ -156,7 +156,7 @@ function LaunchHero({ launch }) {
 				</Box>
 			</Container>
 		</Box>
-		);
-}
+	);
+};
 
 export default LaunchHero;

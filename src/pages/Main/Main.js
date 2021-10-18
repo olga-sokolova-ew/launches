@@ -60,14 +60,10 @@ function Main() {
 
 		const [showenLaunchesQnt, setShowenLaunchesQnt] = useState(launchQnt);
 
-		const onLoadData = () => {
-			dispatch(fetchEventsList());
-			dispatch(fetchLaunchesList());
-		};
-
 		useEffect(
 			() => {
-				onLoadData();
+				dispatch(fetchEventsList());
+				dispatch(fetchLaunchesList());
 			},
 			[]
 		);

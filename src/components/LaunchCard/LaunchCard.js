@@ -1,12 +1,10 @@
-import React from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 import { styled } from "@mui/material/styles";
 import {
-	Grid, Typography, Paper 
+	Grid, Typography, Paper
 } from "@mui/material";
-//import { useTheme } from "@material-ui/core/styles";
-import {format} from "date-fns";
+import { format } from "date-fns";
 import { ReactComponent as RocketSvg } from "../../assets/common/rocketLogo.svg";
 
 
@@ -16,8 +14,6 @@ const useStyles = makeStyles((theme) => ({
 		width: "100%",
 		maxWidth: "580px",
 		height: "16.88vw",
-    //height: "324px",
-    //marginBottom: "20px",
 		display: "flex",
 		alignItems: "center",
 		justifyContent: "center",
@@ -61,78 +57,69 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Item = styled(Paper)(({ theme }) => ({
-    //...theme.typography.body2,
 	textAlign: "center",
 	padding: 0,
 	boxShadow: "none",
 	backgroundColor: "rgba(255,255,255,0)",
-   // color: theme.palette.text.secondary,
-    //height: 60,
-    //lineHeight: "60px",
-}));  
-  
+}));
 
-// eslint-disable-next-line react/prop-types
-function LaunchCard({launch}) {
-		const classes = useStyles();
-   
-		return (
-    <Grid
-	item
-	xs={12}
-	md={6}
-	className={classes.launch__item}
-    >  
-        <Item >
-            <Link to={`/rocket/${launch.rocketId}`} >
-                {(launch.eventImg) ? 
-                    <img
-	src={launch.launchImg}
-	alt={launch.launchName}
-	width="580"
-	height="324"
-	className={classes.launch__img}
-                    />
-                    :
-                    <div className={classes.launch__emptyimg}>
-                        <RocketSvg />
-                    </div>}
-            </Link>
 
-            <div className={classes.launch__time_block}>
-                <Typography variant="caption">
-                    <time
-	className="launch__date"
-	dateTime={format(
-new Date(launch.launchDate),
-"yyyy-MM-dd"
-)}
-                    >{format(
-new Date(launch.launchDate),
-"MMM. d, yyyy, h:mm aaa"
-)}
-                    </time>
-                </Typography>
-            </div> 
-            <Link
-	to={`/launch/${launch.id}`}
-	className={classes.launch__name}
-            >   
-                <Typography
-	variant="h3"
-	mb="50px"
-                >
-                    {launch.launchName}
-                </Typography>
-            </Link>
+const LaunchCard = ({ launch }) => {
+	const classes = useStyles();
 
-        </Item>
-    </Grid>  
-    
-   
-    
+	return (
+		<Grid
+			item
+			xs={12}
+			md={6}
+			className={classes.launch__item}
+		>
+			<Item >
+				<Link to={`/rocket/${launch.rocketId}`} >
+					{(launch.eventImg) ?
+						<img
+							src={launch.launchImg}
+							alt={launch.launchName}
+							width="580"
+							height="324"
+							className={classes.launch__img}
+						/>
+						:
+						<div className={classes.launch__emptyimg}>
+							<RocketSvg />
+						</div>}
+				</Link>
 
-		);
-}
+				<div className={classes.launch__time_block}>
+					<Typography variant="caption">
+						<time
+							className="launch__date"
+							dateTime={format(
+								new Date(launch.launchDate),
+								"yyyy-MM-dd"
+							)}
+						>{format(
+							new Date(launch.launchDate),
+							"MMM. d, yyyy, h:mm aaa"
+						)}
+						</time>
+					</Typography>
+				</div>
+				<Link
+					to={`/launch/${launch.id}`}
+					className={classes.launch__name}
+				>
+					<Typography
+						variant="h3"
+						mb="50px"
+					>
+						{launch.launchName}
+					</Typography>
+				</Link>
+
+			</Item>
+		</Grid>
+	);
+};
 
 export default LaunchCard;

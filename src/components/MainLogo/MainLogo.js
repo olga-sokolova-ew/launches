@@ -1,4 +1,3 @@
-import React from "react";
 import Box from "@mui/material/Box";
 import { makeStyles } from "@mui/styles";
 import { ReactComponent as LogoSvg } from "../../img/rocketLogo.svg";
@@ -6,13 +5,13 @@ import { ReactComponent as LogoSvg } from "../../img/rocketLogo.svg";
 const useStyles = makeStyles({
 	main_logo__wrapper: {
 		display: "flex",
-		position: "relative",       
+		position: "relative",
 		width: "100%",
 		height: "100%",
-       
+
 	},
 	main_logo__img: {
-		position: "relative", 
+		position: "relative",
 		margin: "0 auto",
 		alignSelf: "start",
 		justifyContent: "center",
@@ -31,30 +30,30 @@ const useStyles = makeStyles({
 		borderRadius: "50%",
 	}
 });
-  
 
-function MainLogo() {
-		const classes = useStyles();
 
-		return (
-    <Box
-	component="div"
-	className={classes.main_logo__wrapper}
-    >
-        <Box
-	component="div"
-	className={classes.main_logo__circle}
-        >
-        </Box>
-        <Box
-	component="div"
-	className={classes.main_logo__img}
-        >
-            <LogoSvg/>
-        </Box>
-        
-    </Box>
-		);
-}
+const MainLogo = () => {
+	const classes = useStyles();
+
+	return (
+		<Box
+			component="div"
+			className={classes.main_logo__wrapper}
+		>
+			<Box
+				component="div"
+				className={classes.main_logo__circle}
+			>
+			</Box>
+			<Box
+				component="div"
+				className={classes.main_logo__img}
+			>
+				<LogoSvg />
+			</Box>
+
+		</Box>
+	);
+};
 
 export default MainLogo;

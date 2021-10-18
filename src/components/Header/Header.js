@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { AppRoute } from "../../utils/const";
 import { makeStyles } from "@mui/styles";
-//import { ClassNames } from "@emotion/react";  не работает
+//import { ClassNames } from "@emotion/react";  doesn't work
 import { Box, Typography } from "@mui/material";
 import { ReactComponent as LogoSvg } from "../../assets/common/logo.svg";
 import { ReactComponent as ArrowLeftSvg } from "../../assets/common/arrow_left.svg";
@@ -24,11 +24,11 @@ const useStyles = makeStyles((theme) => ({
 		position: "relative",
 		width: "100%",
 		maxWidth: "1180px",
-    //padding: "0 130px",
+		//padding: "0 130px",
 		display: "flex",
 		justifyContent: "space-between",
 		[theme.breakpoints.down("md")]: {
-      //padding: 0,
+			//padding: 0,
 			maaxWidth: "100%",
 		},
 	},
@@ -79,38 +79,38 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-// eslint-disable-next-line react/prop-types
-function Header({ isMain = false }) {
-		const classes = useStyles();
 
-		return (
-    <Box
-	component="div"
-	className={classes.header}
-    >
-      {isMain ? (
-        <Box className={classes.header__wrapper_main}>
-          <LogoSvg />
-        </Box>
-      ) : (
-        <Box className={classes.header__wrapper}>
-          <Link
-	to={AppRoute.ROOT}
-	className={classes.header__back}
-          >
-            <ArrowLeftSvg />
-            <Typography variant="h3">Back To Home</Typography>
-          </Link>
-          <Link
-	to={AppRoute.ROOT}
-	className={classes.header__link}
-          >
-            <LogoSvg />
-          </Link>
-        </Box>
-      )}
-    </Box>
-		);
-}
+const Header = ({ isMain = false }) => {
+	const classes = useStyles();
+
+	return (
+		<Box
+			component="div"
+			className={classes.header}
+		>
+			{isMain ? (
+				<Box className={classes.header__wrapper_main}>
+					<LogoSvg />
+				</Box>
+			) : (
+				<Box className={classes.header__wrapper}>
+					<Link
+						to={AppRoute.ROOT}
+						className={classes.header__back}
+					>
+						<ArrowLeftSvg />
+						<Typography variant="h3">Back To Home</Typography>
+					</Link>
+					<Link
+						to={AppRoute.ROOT}
+						className={classes.header__link}
+					>
+						<LogoSvg />
+					</Link>
+				</Box>
+			)}
+		</Box>
+	);
+};
 
 export default Header;

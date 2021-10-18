@@ -1,5 +1,5 @@
 
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { makeStyles } from "@mui/styles";

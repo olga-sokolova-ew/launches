@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import {AppRoute} from "../../utils/const";
 import Box from "@mui/material/Box";
@@ -57,10 +56,10 @@ const useStyles = makeStyles((theme) => ({
 }));
   
 
-function Footer() {
-		const classes = useStyles();
+const Footer = () =>  {
+	const classes = useStyles();
 
-		return (
+	return (
         <Box
 	component="div"
 	className={classes.footer}
@@ -86,7 +85,7 @@ function Footer() {
               </Box>
         </Box>
 
-		);
-}
+	);
+};
 
 export default Footer;

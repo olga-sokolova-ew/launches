@@ -1,4 +1,3 @@
-import React from "react";
 import Box from "@mui/material/Box";
 import { makeStyles } from "@mui/styles";
 import { ReactComponent as LoaderSvg } from "../../assets/common/loader.svg";
@@ -14,9 +13,9 @@ const useStyles = makeStyles({
 
 		"& svg": {
 			width: "56px",
-			height: "56px",  
-			animation: `$lds-roller 1.5s cubic-bezier(0.5, 0, 0.5, 1) infinite`,    
-        
+			height: "56px",
+			animation: `$lds-roller 1.5s cubic-bezier(0.5, 0, 0.5, 1) infinite`,
+
 		}
 	},
 	"@keyframes lds-roller": {
@@ -28,19 +27,19 @@ const useStyles = makeStyles({
 		}
 	},
 });
-  
 
-function Loader() {
-		const classes = useStyles();
 
-		return (
-    <Box
-	component="div"
-	className={classes.loader}
-    >
-        <LoaderSvg/>
-    </Box>
-		);
-}
+const Loader = () => {
+	const classes = useStyles();
+
+	return (
+		<Box
+			component="div"
+			className={classes.loader}
+		>
+			<LoaderSvg />
+		</Box>
+	);
+};
 
 export default Loader;

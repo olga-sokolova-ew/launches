@@ -5,114 +5,14 @@ const breakpoints = {
 	  xs: 0,
 	  sm: 600, // Phone
 	  md: 900, // Tablet/Laptop
-	  lg: 1200, // Desktop
+	  lg: 1440, // Desktop
 	  xl: 1536
 	}
 };
 
+
 const theme = createTheme({
-
-	breakpoints: {
-		values: {
-			xs: 0,
-			sm: 600, 
-			md: 900, 
-			lg: 1440, 
-			xl: 1536
-		},
-	},
-	typography: {
-		roboto: {
-			fontFamily: "Roboto",
-		},
-		montserrat: {
-			fontFamily: "Montserrat",
-		},
-		color: "#F1EBFF",
-		h1: {
-			fontFamily: "Montserrat, sans-serif",
-			fontSize: 76,
-			fontWeight: 800,
-			lineHeight: "92px",
-			letterSpacing: 0,
-			[`@media screen and (max-width: ${breakpoints.values.lg}px)`]: {
-				fontSize: 60,
-				lineHeight: "56px",
-			},
-			[`@media screen and (max-width: ${breakpoints.values.sm}px)`]: {
-				fontSize: 48,
-				lineHeight: "52px",
-			},
-		},
-		h2: {
-			fontFamily: "Montserrat, sans-serif",
-			fontSize: 54,
-			fontWeight: 800,
-			lineHeight: "64px",
-			color: "#F1EBFF",
-			[`@media screen and (max-width: ${breakpoints.values.lg}px)`]: {
-				fontSize: 48,
-				lineHeight: "50px",
-			},
-			[`@media screen and (max-width: ${breakpoints.values.sm}px)`]: {
-				fontSize: 38,
-				lineHeight: "42px",
-			},
-		},
-		h3: {
-			fontFamily: "Montserrat, sans-serif",
-			fontSize: 26,
-			fontWeight: 700,
-			lineHeight: "28px",
-			color: "#F1EBFF",
-			[`@media screen and (max-width: ${breakpoints.values.lg}px)`]: {
-				fontSize: 22,
-				lineHeight: "24px",
-			},
-			[`@media screen and (max-width: ${breakpoints.values.sm}px)`]: {
-				fontSize: 18,
-				lineHeight: "22px",
-			},
-		},
-		h4: {
-			fontFamily: "Montserrat, sans-serif",
-			fontSize: 22,
-			fontWeight: 700,
-			lineHeight: "28px",
-			letterSpacing: "0.0038em",
-		},
-		h5: {
-			fontFamily: "Roboto, sans-serif",
-			fontSize: 17,
-			fontWeight: 700,
-			lineHeight: "28px",
-			color: "#F1EBFF",
-		},
-		body: {
-			fontFamily: "Roboto, sans-serif",
-			fontSize: 17,
-			fontWeight: 400,
-			lineHeight: "28px",
-			color: "#F1EBFF",
-		},
-		caption: {
-			fontFamily: "Montserrat, sans-serif",
-			fontSize: 18,
-			fontWeight: 500,
-			fontStyle: "italic",
-			lineHeight: "18px",
-			color: "#F1EBFF",
-		},
-    /*body2: {
-      fontFamily: "Nunito, sans-serif",
-      fontSize: 13,
-      lineHeight: "28px",
-      letterSpacing: "0.02em",
-    },
-    */
-
-
-	},
+	breakpoints,
 	palette: {
 		primary: {
 			main: "#F1EBFF",
@@ -159,6 +59,93 @@ const theme = createTheme({
 		}
 	}
 });
+	
+theme.typography.h1 = {
+	fontFamily: "Montserrat, sans-serif",
+	fontSize: 76,
+	fontWeight: 800,
+	lineHeight: "92px",
+	letterSpacing: 0,
+	[theme.breakpoints.down("lg")]: {
+		fontSize: 60,
+		lineHeight: "56px",
+	},
+	[theme.breakpoints.down("sm")]: {
+		fontSize: 48,
+		lineHeight: "52px",
+	},
+};
+theme.typography.h2 = {
+	fontFamily: "Montserrat, sans-serif",
+	fontSize: 54,
+	fontWeight: 800,
+	lineHeight: "64px",
+	color: "#F1EBFF",
+	[theme.breakpoints.down("lg")]: {
+		fontSize: 48,
+		lineHeight: "50px",
+	},
+	[theme.breakpoints.down("sm")]: {
+		fontSize: 38,
+		lineHeight: "42px",
+	},
+};
+theme.typography.h3 = {
+	fontFamily: "Montserrat, sans-serif",
+	fontSize: 26,
+	fontWeight: 700,
+	lineHeight: "28px",
+	color: "#F1EBFF",
+	[`@media screen and (max-width: ${breakpoints.values.lg}px)`]: {
+		fontSize: 22,
+		lineHeight: "24px",
+	},
+	[`@media screen and (max-width: ${breakpoints.values.sm}px)`]: {
+		fontSize: 18,
+		lineHeight: "22px",
+	},
+};
+theme.typography.h4 = {
+	fontFamily: "Montserrat, sans-serif",
+	fontSize: 22,
+	fontWeight: 700,
+	lineHeight: "28px",
+	letterSpacing: "0.0038em",
+};
+theme.typography.h5 = {
+	fontFamily: "Roboto, sans-serif",
+	fontSize: 17,
+	fontWeight: 700,
+	lineHeight: "28px",
+	color: "#F1EBFF",
+};
+theme.typography.body = {
+	fontFamily: "Roboto, sans-serif",
+	fontSize: 17,
+	fontWeight: 400,
+	lineHeight: "28px",
+	color: "#F1EBFF",
+};
+theme.typography.caption =  {
+	fontFamily: "Montserrat, sans-serif",
+	fontSize: 18,
+	fontWeight: 500,
+	fontStyle: "italic",
+	lineHeight: "18px",
+	color: "#F1EBFF",
+};
+
+theme.overrides = {
+	typography: {
+		h1: {
+			
+		},
+		h2: {
+			
+		},
+	},
+		
+};
 
 export default theme;
   

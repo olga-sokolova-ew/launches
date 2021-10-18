@@ -67,10 +67,19 @@ const useStyles = makeStyles((theme) => ({
 			height: "56px",
 			top: "10px",
 			right: "0",
+			display: "flex",
+			alignItems: "center",
+			justifyContent: "center",
 			//backgroundImage: `url("${arrowImage}")`,
 			//backgroundRepeat: "no-repeat",
 			//backgroundSize: "56px 28px",
 			//backgroundPosition: "center",
+			cursor: "pointer",
+			transition: "0.3s ease",
+
+			"&:hover": {
+				opacity: "0.7",
+			},
 
 			"&::after": {
 				display: "none",
@@ -91,12 +100,17 @@ const useStyles = makeStyles((theme) => ({
 			display: "flex",
 			alignItems: "center",
 			justifyContent: "center",
+			cursor: "pointer",
 			//backgroundImage: `url("${arrowImage}")`,
 			//backgroundRepeat: "no-repeat",
 			//backgroundSize: "56px 28px",
 			//backgroundPosition: "center",
 			//transform: "rotate(180deg)",
 			transform: "rotate(180deg)",
+			transition: "0.3s ease",
+			"&:hover": {
+				opacity: "0.7",
+			},
 
 			"&::after": {
 				display: "none",
@@ -120,9 +134,10 @@ const EventsSwiper = ({ events }) => {
 			  nextEl: ".swiper-button-next",
 			  prevEl: ".swiper-button-prev"
 		  },
+		  slidesPerView: 3,
 		renderPrevButton: () => <div className="swiper-button-prev"><ArrowImage /></div>,
 		renderNextButton: () => <div className="swiper-button-next"><ArrowImage /></div>,
-		  spaceBetween: 30
+		  spaceBetween: 20
 	  };
 
 	return (
