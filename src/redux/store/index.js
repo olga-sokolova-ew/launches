@@ -5,7 +5,7 @@ import { persistStore, persistReducer } from "redux-persist";
 import { composeWithDevTools } from "redux-devtools-extension";
 import storage from "redux-persist/lib/storage";
 import rootReducer from "../rootReducer";
-import {createAPI} from "../../services/api";
+import {createAPI} from "services/api";
 
 const api = createAPI();
 

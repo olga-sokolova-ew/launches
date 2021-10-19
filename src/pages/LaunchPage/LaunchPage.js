@@ -4,22 +4,22 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 import { Container } from "@mui/material";
-import Header from "components/Header/Header";
-import Footer from "components/Footer/Footer";
+import PageLayout from "layouts/PageLayout";
 import Loader from "components/Loader/Loader";
 import LaunchHero from "components/LaunchHero/LaunchHero";
 import LaunchPageContent from "components/LaunchPageContent/LaunchPageContent";
 import { fetchCurrentLaunch } from "redux/api-actions";
-import { getCurrentLaunch, getCurrentLaunchStatus } from "redux/launchData/selectors";
+//import { loadLaunches, launchError, loadCurrentLaunch } from "redux/launchData/launchData";
+//import { getCurrentLaunch, getCurrentLaunchStatus } from "redux/launchData/selectors";
 
 const useStyles = makeStyles(theme => ({
-	page_wrapper: {
+	/*page_wrapper: {
 		position: "relative",
 		padding: "0",
 		display: "flex",
 		flexDirection: "column",
 		minHeight: "100vh",
-	},
+	},*/
 	page_content: {
 		position: "relative",
 		padding: "100px 130px 100px",
@@ -46,8 +46,8 @@ const LaunchPage = () => {
 	const launchParam = useParams();
 	const classes = useStyles();
 
-	const currentLaunch = useSelector(getCurrentLaunch);
-	const isCurrentLaunch = useSelector(getCurrentLaunchStatus);
+	const currentLaunch = useSelector(state => state.launchSlice.currentLaunch);
+	const isCurrentLaunch = useSelector(state => state.launchSlice.isCurrentLaunch);
 
 	const dispatch = useDispatch();
 
@@ -65,8 +65,7 @@ const LaunchPage = () => {
 	);
 
 	return (
-		<div className={classes.page_wrapper}>
-			<Header />
+		<PageLayout>
 			{(!isCurrentLaunch) ?
 				<Loader />
 				:
@@ -80,8 +79,7 @@ const LaunchPage = () => {
 					</Container>
 				</>
 			}
-			<Footer />
-		</div>
+		</PageLayout>
 	);
 };
 

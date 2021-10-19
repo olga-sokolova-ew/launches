@@ -1,16 +1,10 @@
 import {combineReducers} from "redux";
-import {eventData} from "./eventData/eventData";
-import {launchData} from "./launchData/launchData";
-import {rocketData} from "./rocketData/rocketData";
-
-export const NameSpace = {
-	EVENT: "EVENT",
-	LAUNCH: "LAUNCH",
-	ROCKET: "ROCKET",
-};
+//import {eventData} from "./eventData/eventData";
+import launchSlice from "./launchData/launchData";
+//import {rocketData} from "./rocketData/rocketData";
 
 export default combineReducers({
-	[NameSpace.EVENT]: eventData,
-	[NameSpace.LAUNCH]: launchData,
-	[NameSpace.ROCKET]: rocketData,
+	//eventData,
+	launch: launchSlice,
+	//rocketData,
 });

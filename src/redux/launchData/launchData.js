@@ -1,7 +1,4 @@
-import {createReducer} from "@reduxjs/toolkit";
-import {
-	loadLaunches, launchError, loadCurrentLaunch
-} from "../action";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
 	currentLaunch: {},
@@ -11,38 +8,31 @@ const initialState = {
 	launchError: null,
 };
 
-const launchData = createReducer(
+const launchSlice = createSlice({
+	name: "launch",
 	initialState,
-	(builder) => {
-		builder
-			.addCase(
-				loadLaunches,
-				(
-					state, action
-				) => {
-					state.launches = action.payload;
-					state.isLaunchesLoaded = true;
-				}
-			)
-			.addCase(
-				launchError,
-				(
-					state, action
-				) => {
-					state.launchError = action.payload;
-				}
-			)
-			.addCase(
-				loadCurrentLaunch,
-				(
-					state, action
-				) => {
-					state.currentLaunch = action.payload;
-					state.isCurrentLaunch = true;
-				}
-			);
+	reducers: {
+		loadLaunches(
+			state, action
+		) {
+			state.launches = action.payload;
+			state.isLaunchesLoaded = true;
+		},
+		launchError(
+			state, action
+		) {
+			state.launchError = action.payload;
+		},
+		loadCurrentLaunch(
+			state, action
+		) {
+			state.currentLaunch = action.payload;
+			state.isCurrentLaunch = true;
+		},
 	}
-);
+});
 
-export {launchData};
+export default launchSlice.reducer;
+export const { loadLaunches, loadCurrentLaunch, launchError } = launchSlice.actions;
+
 

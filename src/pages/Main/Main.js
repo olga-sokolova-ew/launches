@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import {useSelector, useDispatch} from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { makeStyles } from "@mui/styles";
 import { Container } from "@mui/material";
 import Header from "components/Header/Header";
@@ -11,12 +11,13 @@ import EventsSwiper from "components/EventsSwiper/EventsSwiper";
 import LaunchesBlock from "components/LaunchesBlock/LaunchesBlock";
 import { fetchEventsList, fetchLaunchesList } from "redux/api-actions";
 import { launchQnt } from "utils/const";
-import {
+import { loadLaunches, loadCurrentLaunch } from "redux/launchData/launchData";
+/*import {
 	getEventError, getEvents, getEventsLoadedStatus
 } from "redux/eventData/selectors";
 import {
 	getLaunches, getLaunchError, getLaunchesLoadedStatus 
-} from "redux/launchData/selectors";
+} from "redux/launchData/selectors";*/
 
 
 const useStyles = makeStyles((theme) => ({
@@ -52,11 +53,15 @@ function Main() {
 
 		const dispatch = useDispatch();
 
-		const events = useSelector(getEvents);
-		const launches = useSelector(getLaunches);
-		const isEventsLoaded = useSelector(getEventsLoadedStatus);
-		const isLaunchesLoaded = useSelector(getLaunchesLoadedStatus);
-		const eventError = useSelector(getEventError);
+	//const events = useSelector(getEvents);
+		const launches = useSelector(state => state.launch.launches);
+	//const isEventsLoaded = useSelector(getEventsLoadedStatus);
+		const isLaunchesLoaded = useSelector(state => state.launch.isLaunchesLoaded);
+	
+	//const eventError = useSelector(getEventError);
+
+		//const currentLaunch = useSelector(state => state.launch.currentLaunch);
+		//const isCurrentLaunch = useSelector(state => state.launch.isCurrentLaunch);
 
 		const [showenLaunchesQnt, setShowenLaunchesQnt] = useState(launchQnt);
 
@@ -68,40 +73,41 @@ function Main() {
 			[]
 		);
 
-    
+
 		const onShowAllClick = () => {
 			setShowenLaunchesQnt(isLaunchesLoaded ? launches.lenght : 0);
 		};
 		const onShowMoreClick = () => {
 			setShowenLaunchesQnt(showenLaunchesQnt + launchQnt);
 		};
-    
+
 		return (
-    <div className={classes.page_wrapper}>
-        <Header isMain />
-        <MainHero onShowAllClick={onShowAllClick} />
+		<div className={classes.page_wrapper}>
+			<Header isMain />
+			<MainHero onShowAllClick={onShowAllClick} />
 
-        <Container maxWidth="lg"> 
-            {(isEventsLoaded && isLaunchesLoaded) ?
-                <section  className={classes.page_content}>
+			<Container maxWidth="lg">
+				{/* {(isEventsLoaded && isLaunchesLoaded) ?*/
+					isLaunchesLoaded ?
+						<section className={classes.page_content}>
 
-                    <EventsSwiper events={events}/>
+							{/*<EventsSwiper events={events} />*/}
 
-                      {isLaunchesLoaded && 
-                      <LaunchesBlock 
-	launches={launches} 
-	onShowMore={onShowMoreClick} 
-	showenLaunchesQnt={showenLaunchesQnt} 
-                      /> }
-                </section>
-                :
-                <Loader /> 
-            }
-        </Container>
-        <Footer />
-    </div>
+							{isLaunchesLoaded &&
+								<LaunchesBlock
+									launches={launches}
+									onShowMore={onShowMoreClick}
+									showenLaunchesQnt={showenLaunchesQnt}
+								/>}
+						</section>
+						:
+						<Loader />
+				}
+			</Container>
+			<Footer />
+		</div>
 		);
 }
-  
- 
+
+
 export default Main;

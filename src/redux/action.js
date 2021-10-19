@@ -11,13 +11,13 @@ export const ActionType = {
 	REDIRECT_TO_ROUTE: "application/redirectToRoute",
 };
 
-export const  loadLaunches = createAction(
+/*export const  loadLaunches = createAction(
 	ActionType.LOAD_LAUNCHES,
 	(launches) => ({
 		payload: launches,
 		type: ActionType.LOAD_LAUNCHES,
 	})
-);  
+);  */
 
 export const  loadEvents = createAction(
 	ActionType.LOAD_EVENTS,
@@ -41,7 +41,7 @@ export const  launchError = createAction(
 		payload: err,    
         
 	})
-);  
+);
 export const loadCurrentEvent = createAction(
 	ActionType.LOAD_EVENT,
 	(event) => ({
@@ -58,14 +58,14 @@ export const loadCurrentRocket = createAction(
         
 	})
 ); 
-export const loadCurrentLaunch = createAction(
+/*export const loadCurrentLaunch = createAction(
 	ActionType.LOAD_LAUNCH,
 	(launch) => ({
 		type: ActionType.LOAD_ROCKET,
 		payload: launch,    
         
 	})
-); 
+); */
 export const redirectToRoute = createAction(
 	ActionType.REDIRECT_TO_ROUTE,
 	(url) => ({

@@ -1,6 +1,9 @@
 import {
-	eventError,launchError, loadEvents, loadLaunches, loadCurrentLaunch, loadCurrentRocket, redirectToRoute
+	eventError, loadEvents, loadCurrentRocket, redirectToRoute
 } from "./action";
+import {
+	loadLaunches, loadCurrentLaunch, launchError 
+} from "redux/launchData/launchData";
 import {APIRoute, AppRoute} from "../utils/const";
 import {
 	eventAdapter, launchAdapter, rocketAdapter, currentLaunchAdapter

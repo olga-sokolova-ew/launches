@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import {AppRoute} from "../../utils/const";
+import {AppRoute} from "utils/const";
 import Box from "@mui/material/Box";
 import { makeStyles } from "@mui/styles";
 import { Typography } from "@mui/material";
-import { ReactComponent as LogoSvg } from "../../assets/common/logo.svg";
+import { ReactComponent as LogoSvg } from "assets/common/logo.svg";
 
 
 const useStyles = makeStyles((theme) => ({
