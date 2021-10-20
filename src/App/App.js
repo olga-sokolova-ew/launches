@@ -7,7 +7,7 @@ import theme from "../theme";
 import { ThemeProvider } from "@mui/material/styles";
 
 import Routes from "../routes";
-import Loader from "../components/Loader/Loader";
+import Loader from "../components/common/Loader/Loader";
 import {
 	persistor, store, api 
 } from "../redux/store";

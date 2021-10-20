@@ -3,21 +3,14 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { makeStyles } from "@mui/styles";
 import { Container } from "@mui/material";
-import Header from "components/Header/Header";
-import Footer from "components/Footer/Footer";
-import Loader from "components/Loader/Loader";
-import MainHero from "components/MainHero/MainHero";
-import EventsSwiper from "components/EventsSwiper/EventsSwiper";
-import LaunchesBlock from "components/LaunchesBlock/LaunchesBlock";
+import Header from "components/common/Header/Header";
+import Footer from "components/common/Footer/Footer";
+import Loader from "components/common/Loader/Loader";
+import MainHero from "components/main/MainHero/MainHero";
+import EventsSwiper from "components/main/EventsSwiper/EventsSwiper";
+import LaunchesBlock from "components/main/LaunchesBlock/LaunchesBlock";
 import { fetchEventsList, fetchLaunchesList } from "redux/api-actions";
 import { launchQnt } from "utils/const";
-import { loadLaunches, loadCurrentLaunch } from "redux/launchData/launchData";
-/*import {
-	getEventError, getEvents, getEventsLoadedStatus
-} from "redux/eventData/selectors";
-import {
-	getLaunches, getLaunchError, getLaunchesLoadedStatus 
-} from "redux/launchData/selectors";*/
 
 
 const useStyles = makeStyles((theme) => ({
@@ -53,12 +46,12 @@ function Main() {
 
 		const dispatch = useDispatch();
 
-	//const events = useSelector(getEvents);
+		const events = useSelector(state => state.event.events);
 		const launches = useSelector(state => state.launch.launches);
-	//const isEventsLoaded = useSelector(getEventsLoadedStatus);
+		const isEventsLoaded = useSelector(state => state.event.isEventsLoaded);
 		const isLaunchesLoaded = useSelector(state => state.launch.isLaunchesLoaded);
 	
-	//const eventError = useSelector(getEventError);
+	    const eventError = useSelector(state => state.event.eventError);
 
 		//const currentLaunch = useSelector(state => state.launch.currentLaunch);
 		//const isCurrentLaunch = useSelector(state => state.launch.isCurrentLaunch);
@@ -87,11 +80,10 @@ function Main() {
 			<MainHero onShowAllClick={onShowAllClick} />
 
 			<Container maxWidth="lg">
-				{/* {(isEventsLoaded && isLaunchesLoaded) ?*/
-					isLaunchesLoaded ?
+				{(isEventsLoaded && isLaunchesLoaded) ?
 						<section className={classes.page_content}>
 
-							{/*<EventsSwiper events={events} />*/}
+							<EventsSwiper events={events} />
 
 							{isLaunchesLoaded &&
 								<LaunchesBlock

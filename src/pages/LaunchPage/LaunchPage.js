@@ -5,9 +5,9 @@ import { useParams } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 import { Container } from "@mui/material";
 import PageLayout from "layouts/PageLayout";
-import Loader from "components/Loader/Loader";
-import LaunchHero from "components/LaunchHero/LaunchHero";
-import LaunchPageContent from "components/LaunchPageContent/LaunchPageContent";
+import Loader from "components/common/Loader/Loader";
+import LaunchHero from "components/launch/LaunchHero/LaunchHero";
+import LaunchPageContent from "components/launch/LaunchPageContent/LaunchPageContent";
 import { fetchCurrentLaunch } from "redux/api-actions";
 //import { loadLaunches, launchError, loadCurrentLaunch } from "redux/launchData/launchData";
 //import { getCurrentLaunch, getCurrentLaunchStatus } from "redux/launchData/selectors";
@@ -46,8 +46,8 @@ const LaunchPage = () => {
 	const launchParam = useParams();
 	const classes = useStyles();
 
-	const currentLaunch = useSelector(state => state.launchSlice.currentLaunch);
-	const isCurrentLaunch = useSelector(state => state.launchSlice.isCurrentLaunch);
+	const currentLaunch = useSelector(state => state.launch.currentLaunch);
+	const isCurrentLaunch = useSelector(state => state.launch.isCurrentLaunch);
 
 	const dispatch = useDispatch();
 
@@ -61,7 +61,7 @@ const LaunchPage = () => {
 		() => {
 			onLoadLaunch(launchParam?.id);
 		},
-		[launchParam.id]
+		[launchParam?.id]
 	);
 
 	return (

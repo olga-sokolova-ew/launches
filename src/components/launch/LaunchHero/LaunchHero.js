@@ -4,7 +4,6 @@ import {
 import Box from "@mui/material/Box";
 import { makeStyles } from "@mui/styles";
 import { Container, Typography } from "@mui/material";
-import { useTheme } from "@material-ui/core/styles";
 import { getTimeFormate } from "utils/helper";
 
 
@@ -100,6 +99,12 @@ const LaunchHero = ({ launch }) => {
 				() => tick(),
 				1000
 			);
+			return () => {
+				if (timerRef.current) {
+					timerRef.current = null;
+				}
+
+			};
 		},
 		[launch.launchDate]
 	);

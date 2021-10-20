@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import { Switch, Route } from "react-router-dom";
-import Loader from "../components/Loader/Loader";
+import Loader from "../components/common/Loader/Loader";
 import { Box } from "@material-ui/core";
 import { commonRoutes } from "./commonRoutes";
 //import { privateRoutes } from "./privateRoutes";

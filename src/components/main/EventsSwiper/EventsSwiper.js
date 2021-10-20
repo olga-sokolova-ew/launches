@@ -53,12 +53,13 @@ const useStyles = makeStyles((theme) => ({
 		backgroundColor: "#4A00E0",
 		borderRadius: "50px",
 	},
-	swiper__wrapper: {
+	swiper__wrapper1: {
 		width: "100%",
 
 		"& .swiper-container": {
 			paddingTop: "100px",
 			marginTop: "-100px",
+			color: "#4A00E0",
 		},
 
 		"& .swiper-button-next": {
@@ -121,6 +122,22 @@ const useStyles = makeStyles((theme) => ({
 				height: 0,
 			},
 		},
+		"& .swiper-button-prev.swiper-button-disabled": {
+			color: "#F1EBFF",
+			cursor: "inherit",
+			"&:hover": {
+				opacity: "1",
+			},
+			
+		},
+		"& .swiper-button-next.swiper-button-disabled": {
+			color: "#F1EBFF",
+			cursor: "inherit",
+			"&:hover": {
+				opacity: "1",
+			},
+			
+		},
 	}
 }));
 
@@ -165,7 +182,7 @@ const EventsSwiper = ({ events }) => {
 
 			<Box
 				component="div"
-				className={classes.swiper__wrapper}
+				className={classes.swiper__wrapper1}
 			>
 				<ReactIdSwiperCustom {...params}>
 					{events.map((event) =>

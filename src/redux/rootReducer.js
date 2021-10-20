@@ -1,10 +1,10 @@
 import {combineReducers} from "redux";
-//import {eventData} from "./eventData/eventData";
-import launchSlice from "./launchData/launchData";
-//import {rocketData} from "./rocketData/rocketData";
+import eventSlice from "./eventData";
+import launchSlice from "./launchData";
+import rocketSlice from "./rocketData";
 
 export default combineReducers({
-	//eventData,
+	event: eventSlice,
 	launch: launchSlice,
-	//rocketData,
+	rocket: rocketSlice,
 });

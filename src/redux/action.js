@@ -19,7 +19,7 @@ export const ActionType = {
 	})
 );  */
 
-export const  loadEvents = createAction(
+/*export const  loadEvents = createAction(
 	ActionType.LOAD_EVENTS,
 	(events) => ({
 		payload: events,
@@ -49,7 +49,7 @@ export const loadCurrentEvent = createAction(
 		payload: event,    
         
 	})
-); 
+); */
 export const loadCurrentRocket = createAction(
 	ActionType.LOAD_ROCKET,
 	(rocket) => ({

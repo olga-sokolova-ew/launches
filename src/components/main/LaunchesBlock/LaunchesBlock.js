@@ -3,8 +3,8 @@ import {
 	Box, Grid, Typography
 } from "@mui/material";
 import LaunchCard from "../LaunchCard/LaunchCard";
-import Loader from "../Loader/Loader";
-import TextButton from "../button/TextButton";
+import Loader from "../../common/Loader/Loader";
+import TextButton from "../../common/button/TextButton";
 
 
 

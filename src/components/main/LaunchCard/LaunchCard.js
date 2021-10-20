@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 import { styled } from "@mui/material/styles";
 import {
-	Grid, Typography, Paper
+	Grid, Typography, Paper, Link
 } from "@mui/material";
 import { format } from "date-fns";
 import { ReactComponent as RocketSvg } from "assets/common/rocketLogo.svg";
@@ -75,7 +75,10 @@ const LaunchCard = ({ launch }) => {
 			className={classes.launch__item}
 		>
 			<Item >
-				<Link to={`/rocket/${launch.rocketId}`} >
+				<Link
+					component={RouterLink}
+					to={`/rocket/${launch.rocketId}`}
+				>
 					{(launch.eventImg) ?
 						<img
 							src={launch.launchImg}
@@ -106,6 +109,8 @@ const LaunchCard = ({ launch }) => {
 					</Typography>
 				</div>
 				<Link
+					underline="hover"
+					component={RouterLink}
 					to={`/launch/${launch.id}`}
 					className={classes.launch__name}
 				>

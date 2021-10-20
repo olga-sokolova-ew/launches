@@ -32,7 +32,6 @@ export const rocketAdapter = (incomingRocket) =>  {
 };
 
 export const currentLaunchAdapter = (incomingCurrentLaunch) =>  {
-  //console.log("incomingCurrentLaunch" + incomingCurrentLaunch)
 	const  adaptedLaunch = {
 		id: incomingCurrentLaunch.id,
 		launchName: incomingCurrentLaunch.name,
