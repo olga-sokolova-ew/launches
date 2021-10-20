@@ -11,10 +11,10 @@ import Loader from "../components/common/Loader/Loader";
 import {
 	persistor, store, api 
 } from "../redux/store";
-import { fetchLaunchesList } from "../redux/api-actions";
+//import { fetchLaunchList } from "../redux/launchData";
 import "./App.scss";
 
-store.dispatch(fetchLaunchesList(api));
+//store.dispatch(fetchLaunchList());
 
 function App() {
 		return (

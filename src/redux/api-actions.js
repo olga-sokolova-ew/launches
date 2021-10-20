@@ -9,14 +9,14 @@ import {
 	eventAdapter, launchAdapter, rocketAdapter, currentLaunchAdapter
 } from "../utils/adapter";
 
-export const fetchLaunchesList = () => (
+/*export const fetchLaunchesList = () => (
 	dispatch, _getState, api
 ) => (
 	api.get(APIRoute.LAUNCHES)
 		.then(({data}) => dispatch(loadLaunches(data.results.map((item) => launchAdapter(item)))))
 		.catch((err) => dispatch(launchError(err.message)))
     //.catch((err) => console.log("load error"))
-);
+);*/
 
 export const fetchEventsList = () => (
 	dispatch, _getState, api

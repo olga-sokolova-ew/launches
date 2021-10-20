@@ -5,9 +5,8 @@ import { persistStore, persistReducer } from "redux-persist";
 import { composeWithDevTools } from "redux-devtools-extension";
 import storage from "redux-persist/lib/storage";
 import rootReducer from "../rootReducer";
-import {createAPI} from "services/api";
 
-const api = createAPI();
+
 
 const persistConfig = {
 	key: "primary",
@@ -19,7 +18,7 @@ const pReducer = persistReducer(
 	rootReducer 
 );
 
-const middleware = composeWithDevTools(applyMiddleware(thunk.withExtraArgument(api)),);
+const middleware = composeWithDevTools(applyMiddleware(thunk),);
 
 // Store with redux-persist (save stores in browser local storage )
 const store = createStore(
@@ -29,4 +28,4 @@ const store = createStore(
 
 const persistor = persistStore( store );
 
-export { persistor, store, api };
+export { persistor, store };

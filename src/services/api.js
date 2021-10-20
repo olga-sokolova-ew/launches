@@ -4,24 +4,26 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const REQUEST_TIMEOUT = process.env.REACT_APP_REQUEST_TIMEOUT;
 
 
-export const createAPI = () => {
-	const api = axios.create({
-		baseURL: BACKEND_URL,
-		timeout: REQUEST_TIMEOUT,
-	});
+const axiosInstance = axios.create({
+	method: "get",
+	baseURL: BACKEND_URL,
+	timeout: REQUEST_TIMEOUT,
+	responseType: "json",
+	maxContentLength: 2000,
+	validateStatus: (status) => status >= 200 && status < 300,
+	maxRedirects: 5,
+});
 
-	const onSuccess = (response) => response;
+const onSuccess = (response) => response;
 
-	const onFail = (err) => {
-		const {response} = err;
+const onFail = (err) => {
+	const { response } = err;
 
-		throw err;
-	};
-
-	api.interceptors.response.use(
-		onSuccess,
-		onFail
-	);
-
-	return api;
+	throw err;
 };
+
+axiosInstance.interceptors.response.use(
+	onSuccess,
+	onFail
+);
+export { axiosInstance };
