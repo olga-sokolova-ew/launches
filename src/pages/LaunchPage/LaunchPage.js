@@ -3,12 +3,12 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
-import { Container } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import PageLayout from "layouts/PageLayout";
 import Loader from "components/common/Loader/Loader";
 import LaunchHero from "components/launch/LaunchHero/LaunchHero";
 import LaunchPageContent from "components/launch/LaunchPageContent/LaunchPageContent";
-import { fetchCurrentLaunch } from "redux/api-actions";
+import { fetchCurrentLaunch } from "redux/launchData/fetches";
 //import { loadLaunches, launchError, loadCurrentLaunch } from "redux/launchData/launchData";
 //import { getCurrentLaunch, getCurrentLaunchStatus } from "redux/launchData/selectors";
 
@@ -48,6 +48,8 @@ const LaunchPage = () => {
 
 	const currentLaunch = useSelector(state => state.launch.currentLaunch);
 	const isCurrentLaunch = useSelector(state => state.launch.isCurrentLaunch);
+	const lunchCurrentStatus = useSelector(state => state.launch.launchCurrentStatus);
+	const lunchCurrentError = useSelector(state => state.launch.launchCurrentError);
 
 	const dispatch = useDispatch();
 
@@ -67,13 +69,24 @@ const LaunchPage = () => {
 	return (
 		<PageLayout>
 			{(!isCurrentLaunch) ?
-				<Loader />
+				<>
+					<Loader />
+					{(lunchCurrentStatus === "rejected") &&
+						<Typography
+							variant="h3"
+							textAlign="center"
+						>
+							{lunchCurrentError}
+						</Typography>
+					}
+				</>
 				:
 				<>
 					<LaunchHero launch={currentLaunch} />
 
 					<Container maxWidth="lg">
 						<section className={classes.page_content} >
+
 							<LaunchPageContent launch={currentLaunch} />
 						</section>
 					</Container>

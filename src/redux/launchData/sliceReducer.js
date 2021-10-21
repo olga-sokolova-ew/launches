@@ -1,13 +1,5 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-//import { getLaunchList } from "services/launch";
-import {launchAdapter} from "../../utils/adapter";
-
-import { APIRoute } from "utils/const";
-import { axiosInstance } from "../../services/api";
-
-export const getLaunchList = () => {
-	return axiosInstance.get(APIRoute.LAUNCHES);
-};
+import { createSlice } from "@reduxjs/toolkit";
+import { fetchLaunchList, fetchCurrentLaunch } from "./fetches";
 
 const initialState = {
 	currentLaunch: {},
@@ -16,29 +8,9 @@ const initialState = {
 	launches: [],
 	launchError: null,
 	launchStatus: null,
+	launchCurrentStatus: null,
+	launchCurrentError: null,
 };
-
-export const fetchLaunchList = createAsyncThunk(
-	"launch/fetchLaunchesList",
-	async function (
-		_, { rejectWithValue }
-	) {
-		try {
-			const response = await getLaunchList();
-			console.log(response);
-			if (!response.status === 200) {
-				throw new Error("Server Error!");
-			}
-
-			const result = response.data.results.map((item) => launchAdapter(item));
-			console.log("result" + result);
-
-			return result;
-		} catch (error) {
-			return rejectWithValue(error.message);
-		}
-	}
-);
 
 const launchSlice = createSlice({
 	name: "launch",
@@ -80,6 +52,25 @@ const launchSlice = createSlice({
 			state.launchStatus = "rejected";
 			state.launchError = action.payload;
 			state.isLaunchesLoaded = false;
+		},
+
+		[fetchCurrentLaunch.pending]: (state) => {
+			state.launchCurrentStatus = "loading";
+			state.launchCurrentError = null;
+		},
+		[fetchCurrentLaunch.fulfilled]: (
+			state, action
+		) => {
+			state.launchCurrentStatus = "resolved";
+			state.currentLaunch = action.payload;
+			state.isCurrentLaunch = true;
+		},
+		[fetchCurrentLaunch.rejected]: (
+			state, action
+		) => {
+			state.launchCurrentStatus = "rejected";
+			state.launchCurrentError = action.payload;
+			state.isCurrentLaunch = false;
 		},
         
 	}

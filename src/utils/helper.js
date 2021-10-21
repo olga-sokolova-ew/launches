@@ -2,7 +2,11 @@ import {
 	HOURS, MINUTE, SECONDS 
 } from "./const";
 
-const getTimeFormate = (endtime) => {
+export const isDevelopment = () => process.env.NODE_ENV === "development";
+
+
+
+export const getTimeFormate = (endtime) => {
 	if (Date.parse(endtime) !== Date.parse(new Date())) {
 		const t = Date.parse(endtime) - Date.parse(new Date());
 		const seconds = Math.floor((t / 1000) % SECONDS);
@@ -22,5 +26,3 @@ const getTimeFormate = (endtime) => {
 
 	return 0;
 };
-
-export { getTimeFormate };

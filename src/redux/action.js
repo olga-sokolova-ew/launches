@@ -50,14 +50,14 @@ export const loadCurrentEvent = createAction(
         
 	})
 ); */
-export const loadCurrentRocket = createAction(
+/*export const loadCurrentRocket = createAction(
 	ActionType.LOAD_ROCKET,
 	(rocket) => ({
 		type: ActionType.LOAD_ROCKET,
 		payload: rocket,    
         
 	})
-); 
+); */
 /*export const loadCurrentLaunch = createAction(
 	ActionType.LOAD_LAUNCH,
 	(launch) => ({

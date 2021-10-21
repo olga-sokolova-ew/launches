@@ -9,8 +9,8 @@ import Loader from "components/common/Loader/Loader";
 import MainHero from "components/main/MainHero/MainHero";
 import EventsSwiper from "components/main/EventsSwiper/EventsSwiper";
 import LaunchesBlock from "components/main/LaunchesBlock/LaunchesBlock";
-//import { fetchEventsList, fetchLaunchesList } from "redux/api-actions";
-import { fetchLaunchList } from "redux/launchData";
+import { fetchLaunchList } from "redux/launchData/fetches";
+import { fetchEventList } from "redux/eventData/fetches";
 import { launchQnt } from "utils/const";
 
 
@@ -47,12 +47,12 @@ function Main() {
 
 		const dispatch = useDispatch();
 
-		//const events = useSelector(state => state.event.events);
+		const events = useSelector(state => state.event.events);
 		const launches = useSelector(state => state.launch.launches);
-		//const isEventsLoaded = useSelector(state => state.event.isEventsLoaded);
+		const isEventsLoaded = useSelector(state => state.event.isEventsLoaded);
 		const isLaunchesLoaded = useSelector(state => state.launch.isLaunchesLoaded);
 	
-	    //const eventError = useSelector(state => state.event.eventError);
+	    const eventError = useSelector(state => state.event.eventError);
 
 		//const currentLaunch = useSelector(state => state.launch.currentLaunch);
 		//const isCurrentLaunch = useSelector(state => state.launch.isCurrentLaunch);
@@ -61,7 +61,7 @@ function Main() {
 
 		useEffect(
 			() => {
-				//dispatch(fetchEventsList());
+				dispatch(fetchEventList());
 				dispatch(fetchLaunchList());
 			},
 			[]
@@ -81,11 +81,10 @@ function Main() {
 			<MainHero onShowAllClick={onShowAllClick} />
 
 			<Container maxWidth="lg">
-				{/*{(isEventsLoaded && isLaunchesLoaded) ?*/}
-				{ isLaunchesLoaded ? 
+				{(isEventsLoaded && isLaunchesLoaded) ?
 						<section className={classes.page_content}>
 
-							{/*<EventsSwiper events={events} />*/}
+							<EventsSwiper events={events} />
 
 							{isLaunchesLoaded &&
 								<LaunchesBlock
