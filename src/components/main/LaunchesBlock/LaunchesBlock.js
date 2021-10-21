@@ -2,6 +2,7 @@ import { makeStyles } from "@mui/styles";
 import {
 	Box, Grid, Typography
 } from "@mui/material";
+import { useIntl } from "react-intl";
 import LaunchCard from "../LaunchCard/LaunchCard";
 import Loader from "../../common/Loader/Loader";
 import TextButton from "../../common/button/TextButton";
@@ -26,6 +27,7 @@ const useStyles = makeStyles({
 
 const LaunchesBlock = ({ launches, onShowMore, showenLaunchesQnt }) => {
 	const classes = useStyles();
+	const intl = useIntl();
 
 	return (
 		<div className={classes.launchesWrapper}>
@@ -34,7 +36,7 @@ const LaunchesBlock = ({ launches, onShowMore, showenLaunchesQnt }) => {
 				mb='30px'
 				className={classes.launchesTitle}
 			>
-				Spaceflight Launches
+				{intl.formatMessage({id: "spaceflightLaunches"})}
 			</Typography>
 
 			<Grid
@@ -53,7 +55,7 @@ const LaunchesBlock = ({ launches, onShowMore, showenLaunchesQnt }) => {
 					<Box className={classes.loaderWrapper}>
 						<Loader />
 						<TextButton
-							btnText={"Load More"}
+							btnText={intl.formatMessage({id: "loadMoreBtn"})}
 							onBtnClick={onShowMore}
 						/>
 					</Box >}

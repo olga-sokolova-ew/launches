@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import { makeStyles } from "@mui/styles";
 import { Typography } from "@mui/material";
 import { format } from "date-fns";
+import { useIntl } from "react-intl";
 import "swiper/swiper.scss";
 import { ReactComponent as RocketSvg } from "assets/common/rocketLogo.svg";
 import { ReactComponent as ArrowImage } from "assets/common/swiper_arrow.svg";
@@ -144,6 +145,7 @@ const useStyles = makeStyles((theme) => ({
 
 const EventsSwiper = ({ events }) => {
 	const classes = useStyles();
+	const intl = useIntl();
 	const params = {
 		  Swiper,
 		  modules: [Navigation],
@@ -177,7 +179,7 @@ const EventsSwiper = ({ events }) => {
 				variant="h2"
 				mb="30px"
 			>
-				Recent Events
+				{intl.formatMessage({id: "recentEvents"})}
 			</Typography>
 
 			<Box

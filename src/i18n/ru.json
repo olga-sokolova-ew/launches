@@ -2,9 +2,12 @@
     "greeting": {
       "defaultMessage": "Greeting!"
     },
+    "loadMoreBtn": "Показать еще",
     "mainHeroTitle": "Предстоящие запуски космических полетов",
     "mainHeroSubTitle": "Просматривайте все доступные запуски, включая предыдущие, и используйте мощные фильтры поиска.",
-    "mainHeroButton": "Показать все запуски"
+    "mainHeroButton": "Показать все запуски",
+    "recentEvents": "Недавние события",
+    "spaceflightLaunches": "Запуски космических кораблей"
 
 }  
   
