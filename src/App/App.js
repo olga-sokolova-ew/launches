@@ -7,6 +7,7 @@ import theme from "../theme";
 import { ThemeProvider } from "@mui/material/styles";
 
 import Routes from "../routes";
+import AppIntlProvider from "hocs/AppIntlProvider";
 import Loader from "../components/common/Loader/Loader";
 import {
 	persistor, store, api
@@ -24,8 +25,10 @@ const App = () => {
       >
         <BrowserRouter>
           <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <Routes />
+            <AppIntlProvider>
+              <CssBaseline />
+              <Routes />
+            </AppIntlProvider>
           </ThemeProvider>
         </BrowserRouter>
       </PersistGate>
@@ -38,7 +41,7 @@ const App = () => {
 	transitionIn="fadeIn"
 	transitionOut="fadeOut"
 	progressBar
-	closeOnToastrClick  
+	closeOnToastrClick
       />
 
     </Provider>

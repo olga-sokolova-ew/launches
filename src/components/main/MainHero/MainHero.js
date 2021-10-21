@@ -4,6 +4,7 @@ import {
 	Button, Container, Typography
 } from "@mui/material";
 import { useTheme } from "@material-ui/core/styles";
+import { useIntl } from "react-intl";
 import BgImage from "assets/common/bg_hero.png";
 
 
@@ -116,6 +117,7 @@ const useStyles = makeStyles((theme) => ({
 
 const MainHero = ({ onShowAllClick }) => {
 	const theme = useTheme();
+	const intl = useIntl();
 	const classes = useStyles();
 
 	return (
@@ -134,7 +136,7 @@ const MainHero = ({ onShowAllClick }) => {
 						mb="30px"
 						color="primary"
 					>
-						Upcoming Spaceflight Launches
+						{intl.formatMessage({id: "mainHeroTitle"})}
 					</Typography>
 
 					<Typography
@@ -142,7 +144,7 @@ const MainHero = ({ onShowAllClick }) => {
 						mb="50px"
 						className={classes.heroAbout}
 					>
-						View all launches available - including launches from the past and utilize powerful search filters.
+						{intl.formatMessage({id: "mainHeroSubTitle"})}
 					</Typography>
 					{/*<Link to={url} className={classes.page__link} >
               Show All Launches
@@ -152,7 +154,7 @@ const MainHero = ({ onShowAllClick }) => {
 						onClick={onShowAllClick}
 						classes={{ root: classes.pageLink }}
 					>
-						Show All Launches
+						{intl.formatMessage({id: "mainHeroButton"})}
 					</Button>
 
 				</Box>
