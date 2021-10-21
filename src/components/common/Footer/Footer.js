@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import {AppRoute} from "utils/const";
+import { AppRoute } from "utils/const";
 import Box from "@mui/material/Box";
 import { makeStyles } from "@mui/styles";
 import { Typography } from "@mui/material";
@@ -18,10 +18,10 @@ const useStyles = makeStyles((theme) => ({
 		background: "#181B48",
 		[theme.breakpoints.down("sm")]: {
 			padding: "15px",
-		}, 
+		},
 	},
 
-	footer__wrapper: {
+	footerWrapper: {
 		width: "100%",
 		maxWidth: "1180px",
 		margin: "0 auto",
@@ -32,8 +32,7 @@ const useStyles = makeStyles((theme) => ({
 			flexDirection: "column"
 		},
 	},
-
-	footer__link: {
+	footerLink: {
 		width: "49px",
 		height: "55px",
 		transition: "0.3s ease",
@@ -47,43 +46,44 @@ const useStyles = makeStyles((theme) => ({
 		},
 		[theme.breakpoints.down("sm")]: {
 			marginBottom: "30px",
-		}, 
+		},
 	},
-	footer__copyright: {
+	footerCopyright: {
 		color: "#C0C0C0",
-        
+
 	}
 }));
-  
 
-const Footer = () =>  {
+
+const Footer = () => {
 	const classes = useStyles();
+	const date = new Date();
 
 	return (
-        <Box
-	component="div"
-	className={classes.footer}
-        >
-              <Box
-	component="div"
-	className={classes.footer__wrapper}
-              >
-                  <Link
-	to={AppRoute.ROOT}
-	className={classes.footer__link}
-                  >
-                      
-                      <LogoSvg />
-                  </Link>
-                  <Typography
-	variant="body1"
-	component="div"
-	className={classes.footer__copyright}
-                  >
-                      © 2021 Copyright
-                  </Typography>
-              </Box>
-        </Box>
+		<Box
+			component="div"
+			className={classes.footer}
+		>
+			<Box
+				component="div"
+				className={classes.footerWrapper}
+			>
+				<Link
+					to={AppRoute.ROOT}
+					className={classes.footerLink}
+				>
+
+					<LogoSvg />
+				</Link>
+				<Typography
+					variant="body1"
+					component="div"
+					className={classes.footerCopyright}
+				>
+					© {date.getFullYear()} Copyright
+				</Typography>
+			</Box>
+		</Box>
 
 	);
 };

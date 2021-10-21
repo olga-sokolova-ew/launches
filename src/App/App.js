@@ -9,15 +9,14 @@ import { ThemeProvider } from "@mui/material/styles";
 import Routes from "../routes";
 import Loader from "../components/common/Loader/Loader";
 import {
-	persistor, store, api 
+	persistor, store, api
 } from "../redux/store";
-//import { fetchLaunchList } from "../redux/launchData";
+import ReduxToastr from "react-redux-toastr";
 import "./App.scss";
+import "react-redux-toastr/lib/css/react-redux-toastr.min.css";
 
-//store.dispatch(fetchLaunchList());
-
-function App() {
-		return (
+const App = () => {
+	return (
     <Provider store={store}>
       <PersistGate
 	loading={<Loader />}
@@ -30,8 +29,20 @@ function App() {
           </ThemeProvider>
         </BrowserRouter>
       </PersistGate>
+      <ReduxToastr
+	timeOut={4000}
+	newestOnTop={false}
+	preventDuplicates
+	position="bottom-right"
+	getState={(state) => state.toastr} // This is the default
+	transitionIn="fadeIn"
+	transitionOut="fadeOut"
+	progressBar
+	closeOnToastrClick  
+      />
+
     </Provider>
-		);
-}
+	);
+};
 
 export default App;

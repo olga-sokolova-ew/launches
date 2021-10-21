@@ -9,7 +9,7 @@ import { ReactComponent as RocketSvg } from "assets/common/rocketLogo.svg";
 
 
 const useStyles = makeStyles((theme) => ({
-	launch__emptyimg: {
+	launchEmptyimg: {
 		boxSizing: "border-box",
 		width: "100%",
 		maxWidth: "580px",
@@ -31,14 +31,14 @@ const useStyles = makeStyles((theme) => ({
 			opacity: 0.2,
 		},
 	},
-	launch__img: {
+	launchImg: {
 		width: "100%",
 		maxWidth: "100%",
 		objectFit: "cover",
 		height: "16.88vw",
 		overflow: "hidden",
 	},
-	launch__time_block: {
+	launchTimeBlock: {
 		padding: "10px 30px",
 		marginBottom: "30px",
 		marginTop: "calc(-50% - 20px)",
@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
 		background: "linear-gradient(94.97deg, #8E2DE2 3.92%, #4A00E0 52.92%);",
 		borderRadius: "50px",
 	},
-	launch__name: {
+	launchNameClass: {
 		textDecoration: "none",
 		transition: "0.3s ease",
 		"&:hover": {
@@ -72,7 +72,7 @@ const LaunchCard = ({ launch }) => {
 			item
 			xs={12}
 			md={6}
-			className={classes.launch__item}
+			className={classes.launchItem}
 		>
 			<Item >
 				<Link
@@ -85,18 +85,17 @@ const LaunchCard = ({ launch }) => {
 							alt={launch.launchName}
 							width="580"
 							height="324"
-							className={classes.launch__img}
+							className={classes.launchImg}
 						/>
 						:
-						<div className={classes.launch__emptyimg}>
+						<div className={classes.launchEmptyimg}>
 							<RocketSvg />
 						</div>}
 				</Link>
 
-				<div className={classes.launch__time_block}>
+				<div className={classes.launchTimeBlock}>
 					<Typography variant="caption">
 						<time
-							className="launch__date"
 							dateTime={format(
 								new Date(launch.launchDate),
 								"yyyy-MM-dd"
@@ -112,7 +111,7 @@ const LaunchCard = ({ launch }) => {
 					underline="hover"
 					component={RouterLink}
 					to={`/launch/${launch.id}`}
-					className={classes.launch__name}
+					className={classes.launchNameClass}
 				>
 					<Typography
 						variant="h3"

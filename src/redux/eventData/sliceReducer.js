@@ -13,26 +13,7 @@ const initialState = {
 const eventSlice = createSlice({
 	name: "event",
 	initialState,
-	reducers: {
-		loadEvents(
-			state, action
-		) {
-			state.events = action.payload;
-			state.isEventsLoaded = true;
-		},
-		eventError(
-			state, action
-		) {
-			state.eventError = action.payload;
-		},
-		loadCurrentEvent(
-			state, action
-		) {
-			state.currentEvent = action.payload;
-			state.isCurrentEvent = true;
-		},
-
-	},
+	reducers: {},
 	
 	extraReducers: {
 		[fetchEventList.pending]: (state) => {
@@ -57,5 +38,4 @@ const eventSlice = createSlice({
 	}
 });
 
-export const { loadEvents, loadCurrentEvent, eventError } = eventSlice.actions;
 export default eventSlice.reducer;

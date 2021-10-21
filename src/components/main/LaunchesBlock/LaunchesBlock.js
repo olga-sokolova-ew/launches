@@ -9,13 +9,13 @@ import TextButton from "../../common/button/TextButton";
 
 
 const useStyles = makeStyles({
-	launches__wrapper: {
+	launchesWrapper: {
 		width: "100%",
 	},
-	launches__title: {
+	launchesTitle: {
 		textAlign: "center",
 	},
-	loader__wrapper: {
+	loaderWrapper: {
 		width: "100%",
 		display: "flex",
 		flexDirection: "column",
@@ -28,11 +28,11 @@ const LaunchesBlock = ({ launches, onShowMore, showenLaunchesQnt }) => {
 	const classes = useStyles();
 
 	return (
-		<div className={classes.launches__wrapper}>
+		<div className={classes.launchesWrapper}>
 			<Typography
 				variant="h2"
 				mb='30px'
-				className={classes.launches__title}
+				className={classes.launchesTitle}
 			>
 				Spaceflight Launches
 			</Typography>
@@ -50,7 +50,7 @@ const LaunchesBlock = ({ launches, onShowMore, showenLaunchesQnt }) => {
 						key={launch.id}
 					/>)}
 				{(showenLaunchesQnt < launches.length) &&
-					<Box className={classes.loader__wrapper}>
+					<Box className={classes.loaderWrapper}>
 						<Loader />
 						<TextButton
 							btnText={"Load More"}

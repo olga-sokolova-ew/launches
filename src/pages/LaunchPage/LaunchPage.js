@@ -9,18 +9,9 @@ import Loader from "components/common/Loader/Loader";
 import LaunchHero from "components/launch/LaunchHero/LaunchHero";
 import LaunchPageContent from "components/launch/LaunchPageContent/LaunchPageContent";
 import { fetchCurrentLaunch } from "redux/launchData/fetches";
-//import { loadLaunches, launchError, loadCurrentLaunch } from "redux/launchData/launchData";
-//import { getCurrentLaunch, getCurrentLaunchStatus } from "redux/launchData/selectors";
 
 const useStyles = makeStyles(theme => ({
-	/*page_wrapper: {
-		position: "relative",
-		padding: "0",
-		display: "flex",
-		flexDirection: "column",
-		minHeight: "100vh",
-	},*/
-	page_content: {
+	pageContent: {
 		position: "relative",
 		padding: "100px 130px 100px",
 		marginTop: "-170px",
@@ -58,7 +49,6 @@ const LaunchPage = () => {
 	};
 
 
-
 	useEffect(
 		() => {
 			onLoadLaunch(launchParam?.id);
@@ -85,7 +75,7 @@ const LaunchPage = () => {
 					<LaunchHero launch={currentLaunch} />
 
 					<Container maxWidth="lg">
-						<section className={classes.page_content} >
+						<section className={classes.pageContent} >
 
 							<LaunchPageContent launch={currentLaunch} />
 						</section>

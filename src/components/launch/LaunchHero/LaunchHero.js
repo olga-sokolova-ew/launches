@@ -8,7 +8,7 @@ import { getTimeFormate } from "utils/helper";
 
 
 const useStyles = makeStyles((theme) => ({
-	hero__about: {
+	heroAbout: {
 		maxWidth: "595px",
 		marginBottom: "50px",
 		color: theme.palette.info.main,
@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 		fontSize: "17px",
 		lineHeight: "165%",
 	},
-	hero__wrapper: {
+	heroWrapper: {
 		position: "relative",
 		fontFamily: "Montserrat",
 		width: "100%",
@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
 			background: "linear-gradient(1.22deg, #181B48 3.9%, rgba(24, 27, 72, 0) 98.66%)",
 		},
 	},
-	hero__text: {
+	heroText: {
 		fontFamily: "Montserrat",
 		marginBottom: "30px",
 		fontWeight: "800",
@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
 		lineHeight: "121%",
 		color: theme.palette.primary.main,
 	},
-	hero__text_wrapper: {
+	heroTextWrapper: {
 		display: "flex",
 		flexDirection: "column",
 		alignItems: "center",
@@ -66,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
 		},
 
 	},
-	timer__wrapper: {
+	timerWrapper: {
 		backgroundColor: "#4A00E0",
 		padding: "50px 70px",
 		minHeight: "190px",
@@ -89,6 +89,7 @@ const LaunchHero = ({ launch }) => {
 	const [timerStr, setTimerStr] = useState(getTimeFormate(launch.launchDate));
 	const [done, setDone] = useState(false);
 	const timerRef = useRef(null);
+	
 
 	useEffect(
 		() => {
@@ -123,13 +124,13 @@ const LaunchHero = ({ launch }) => {
 
 		<Box
 			component="div"
-			className={classes.hero__wrapper}
+			className={classes.heroWrapper}
 			style={{ backgroundImage: `url(${launch.launchImg})` }}
 		>
 			<Container maxWidth="lg">
 				<Box
 					component="div"
-					className={classes.hero__text_wrapper}
+					className={classes.heroTextWrapper}
 				>
 					<Typography
 						variant="h1"
@@ -143,13 +144,13 @@ const LaunchHero = ({ launch }) => {
 					<Typography
 						variant="h3"
 						mb="40px"
-						className={classes.hero__about}
+						className={classes.heroAbout}
 						textAlign="center"
 					>
 						Go for Launch
 					</Typography>
 
-					<Box className={classes.timer__wrapper}>
+					<Box className={classes.timerWrapper}>
 						<Typography
 							variant="h1"
 							className={classes.timer}

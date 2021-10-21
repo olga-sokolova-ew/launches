@@ -12,17 +12,18 @@ import LaunchesBlock from "components/main/LaunchesBlock/LaunchesBlock";
 import { fetchLaunchList } from "redux/launchData/fetches";
 import { fetchEventList } from "redux/eventData/fetches";
 import { launchQnt } from "utils/const";
+import { toastr } from "react-redux-toastr";
 
 
 const useStyles = makeStyles((theme) => ({
-	page_wrapper: {
+	pageWrapper: {
 		position: "relative",
 		padding: "0",
 		display: "flex",
 		flexDirection: "column",
 		minHeight: "100vh",
 	},
-	page_content: {
+	pageContent: {
 		padding: "118px 130px 100px",
 		marginTop: "-170px",
 		maxWidth: "1440px",
@@ -51,11 +52,12 @@ function Main() {
 		const launches = useSelector(state => state.launch.launches);
 		const isEventsLoaded = useSelector(state => state.event.isEventsLoaded);
 		const isLaunchesLoaded = useSelector(state => state.launch.isLaunchesLoaded);
-	
-	    const eventError = useSelector(state => state.event.eventError);
+		const launchStatus = useSelector(state => state.launch.launchStatus);
 
-		//const currentLaunch = useSelector(state => state.launch.currentLaunch);
-		//const isCurrentLaunch = useSelector(state => state.launch.isCurrentLaunch);
+		const launchError = useSelector(state => state.launch.launchError);
+
+	//const currentLaunch = useSelector(state => state.launch.currentLaunch);
+	//const isCurrentLaunch = useSelector(state => state.launch.isCurrentLaunch);
 
 		const [showenLaunchesQnt, setShowenLaunchesQnt] = useState(launchQnt);
 
@@ -67,6 +69,18 @@ function Main() {
 			[]
 		);
 
+		const toastrType1 = "info";
+		const toastrOptions1 = {
+			id: "loadingId",
+			icon: toastrType1,
+			status: toastrType1
+		};
+
+		const toastrType2 = "error";
+
+
+
+
 
 		const onShowAllClick = () => {
 			setShowenLaunchesQnt(isLaunchesLoaded ? launches.lenght : 0);
@@ -75,26 +89,44 @@ function Main() {
 			setShowenLaunchesQnt(showenLaunchesQnt + launchQnt);
 		};
 
+
+
 		return (
-		<div className={classes.page_wrapper}>
+		<div className={classes.pageWrapper}>
 			<Header isMain />
 			<MainHero onShowAllClick={onShowAllClick} />
 
 			<Container maxWidth="lg">
 				{(isEventsLoaded && isLaunchesLoaded) ?
-						<section className={classes.page_content}>
+					<section className={classes.pageContent}>
 
-							<EventsSwiper events={events} />
+						<EventsSwiper events={events} />
 
-							{isLaunchesLoaded &&
-								<LaunchesBlock
-									launches={launches}
-									onShowMore={onShowMoreClick}
-									showenLaunchesQnt={showenLaunchesQnt}
-								/>}
-						</section>
-						:
+						{isLaunchesLoaded &&
+							<LaunchesBlock
+								launches={launches}
+								onShowMore={onShowMoreClick}
+								showenLaunchesQnt={showenLaunchesQnt}
+							/>}
+					</section>
+					:
+					<>
 						<Loader />
+						{(launchStatus === "loading") &&
+							toastr.info(
+								"Loading",
+								"Please, wait ...",
+								toastrOptions1
+							)}
+						{(launchStatus !== "loading" && toastr.info) &&
+							toastr.remove("loadingId")}	{/*time of removing  = time of message life*/}
+
+						{(launchStatus === "rejected") && toastr.error(
+							"Error",
+							"Server error"
+							//{launchError}
+						)}
+					</>
 				}
 			</Container>
 			<Footer />

@@ -6,7 +6,7 @@ import { makeStyles } from "@mui/styles";
 import PageLayout from "layouts/PageLayout";
 
 const useStyles = makeStyles((theme) => ({
-	page__wrapper: {
+	pageWrapper: {
 		fontFamily: "Montserrat",
 		width: "100%",
 		display: "flex",
@@ -14,11 +14,8 @@ const useStyles = makeStyles((theme) => ({
 		justifyContent:"center",
 		flexGrow: 1,
 		margin: "0 auto",
-		
 	},
 }));
-
-
 
 const NotFound = () => {
 	const classes = useStyles();
@@ -26,7 +23,7 @@ const NotFound = () => {
     <PageLayout style={{ height: "100vh" }}>
       <Box
 	component="div"
-	className={classes.page__wrapper}
+	className={classes.pageWrapper}
       >
 			<Container maxWidth="lg">
         <h1 >Page not found</h1>

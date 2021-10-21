@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 		zIndex: 1,
 	},
 
-	header__wrapper: {
+	headerWrapper: {
 		position: "relative",
 		width: "100%",
 		maxWidth: "1180px",
@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 			maaxWidth: "100%",
 		},
 	},
-	header__back: {
+	headerBack: {
 		display: "flex",
 		alignItems: "center",
 		fontWeight: "600",
@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
 			transition: "0.3s ease",
 		},
 	},
-	header__link: {
+	headerLink: {
 		position: "absolute",
 		right: 0,
 		top: 0,
@@ -70,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
 			right: "0",
 		},
 	},
-	header__wrapper_main: {
+	headerWrapperMain: {
 		position: "absolute",
 		display: "flex",
 		justifyContent: "center",
@@ -91,15 +91,15 @@ const Header = ({ isMain = false }) => {
 			className={classes.header}
 		>
 			{isMain ? (
-				<Box className={classes.header__wrapper_main}>
+				<Box className={classes.headerWrapperMain}>
 					<LogoSvg />
 				</Box>
 			) : (
-				<Box className={classes.header__wrapper}>
+				<Box className={classes.headerWrapper}>
 					<Link
 						component={RouterLink}
 						to={AppRoute.ROOT}
-						className={classes.header__back}
+						className={classes.headerBack}
 					>
 						<ArrowLeftSvg />
 						<Typography variant="h3">Back To Home</Typography>
@@ -107,7 +107,7 @@ const Header = ({ isMain = false }) => {
 					<Link
 						component={RouterLink}
 						to={AppRoute.ROOT}
-						className={classes.header__link}
+						className={classes.headerLink}
 					>
 						<LogoSvg />
 					</Link>

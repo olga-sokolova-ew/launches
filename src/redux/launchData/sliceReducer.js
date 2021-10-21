@@ -16,23 +16,7 @@ const launchSlice = createSlice({
 	name: "launch",
 	initialState,
 	reducers: {
-		loadLaunches(
-			state, action
-		) {
-			state.launches = action.payload;
-			state.isLaunchesLoaded = true;
-		},
-		launchError(
-			state, action
-		) {
-			state.launchError = action.payload;
-		},
-		loadCurrentLaunch(
-			state, action
-		) {
-			state.currentLaunch = action.payload;
-			state.isCurrentLaunch = true;
-		},
+		
 	},
 	extraReducers: {
 		[fetchLaunchList.pending]: (state) => {
@@ -77,6 +61,6 @@ const launchSlice = createSlice({
 });
 
 export default launchSlice.reducer;
-export const { loadLaunches, loadCurrentLaunch, launchError } = launchSlice.actions;
+//export const { loadLaunches, loadCurrentLaunch, launchError } = launchSlice.actions;
 
 

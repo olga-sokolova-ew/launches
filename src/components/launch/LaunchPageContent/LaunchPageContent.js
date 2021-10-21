@@ -3,7 +3,7 @@ import { Box, Typography } from "@mui/material";
 
 
 const useStyles = makeStyles({
-	launch__content_wrap: {
+	launchContentWrap: {
 		width: "100%",
 		display: "flex",
 		flexDirection: "column",
@@ -14,10 +14,10 @@ const useStyles = makeStyles({
 			color: "#F1EBFF",
 		}
 	},
-	launch__line_wrap: {
+	launchLineWrap: {
 		display: "block",
 	},
-	launch__video_wrap: {
+	launchVideoWrap: {
 		widthh: "100%",
 		height: "inherit",
 	}
@@ -28,14 +28,14 @@ const LaunchPageContent = ({ launch }) => {
 	const classes = useStyles();
 
 	return (
-		<div className={classes.launches__wrapper}>
+		<div className={classes.launchesWrapper}>
 			{/*launch.videoURLs && <video
 				src={launch.videoURLs}
 				className="launch__player"
 			>
 			</video>*/}
 			<iframe
-				className={classes.launch__video_wrap}
+				className={classes.launchVideoWrap}
 				src={launch.videoURLs}
 				frameBorder="0"
 				allowFullScreen
@@ -49,9 +49,9 @@ const LaunchPageContent = ({ launch }) => {
 				Overview
 			</Typography>
 
-			<Box className={classes.launch__content_wrap}>
+			<Box className={classes.launchContentWrap}>
 				{launch.launchDestination &&
-					<Box className={classes.launch__line_wrap}>
+					<Box className={classes.launchLineWrap}>
 						<Typography
 							variant="h5"
 							component="span"
@@ -70,7 +70,7 @@ const LaunchPageContent = ({ launch }) => {
 						</Typography>
 					</Box>}
 				{launch.launchMission &&	
-					<Box className={classes.launch__line_wrap}>
+					<Box className={classes.launchLineWrap}>
 						<Typography
 							variant="h5"
 							component="span"

@@ -4,7 +4,7 @@ import Footer from "components/common/Footer/Footer";
 import Header from "components/common/Header/Header";
 
 const useStyles = makeStyles({
-	page_wrapper: {
+	pageWrapper: {
 		position: "relative",
 		padding: "0",
 		display: "flex",
@@ -16,7 +16,7 @@ const useStyles = makeStyles({
 const PageLayout = ({ children }) => {
 	const classes = useStyles();
 	return (
-        <Box className={classes.page_wrapper}>
+        <Box className={classes.pageWrapper}>
             <Header />
             {children}
             <Footer />

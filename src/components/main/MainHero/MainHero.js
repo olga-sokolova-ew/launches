@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
 			padding: "10px 30px",
 		},
 	},
-	hero__about: {
+	heroAbout: {
 		maxWidth: "595px",
 		marginBottom: "50px",
 		color: theme.palette.info.main,
@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
 		fontSize: "17px",
 		lineHeight: "165%",
 	},
-	hero__wrapper: {
+	heroWrapper: {
 		fontFamily: "Montserrat",
 		width: "100%",
 		//height: "58.94vw",
@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
 			height: "auto",
 		},
 	},
-	hero__text: {
+	heroText: {
 		fontFamily: "Montserrat",
 		marginBottom: "30px",
 		fontWeight: "800",
@@ -68,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
 		lineHeight: "121%",
 		color: theme.palette.primary.main,
 	},
-	hero__text_wrapper: {
+	heroTextWrapper: {
 		fontFamily: "Montserrat",
 		//maxWidth: "900px",
 		paddingTop: "29%", //"23.6%",
@@ -84,7 +84,7 @@ const useStyles = makeStyles((theme) => ({
 			paddingLeft: 0,
 		},
 	},
-	page__link: {
+	pageLink: {
 		display: "inline-block",
 		padding: "27px 80px",
 		fontFamily: "Montserrat",
@@ -122,12 +122,12 @@ const MainHero = ({ onShowAllClick }) => {
 
 		<Box
 			component="div"
-			className={classes.hero__wrapper}
+			className={classes.heroWrapper}
 		>
 			<Container maxWidth="lg">
 				<Box
 					component="div"
-					className={classes.hero__text_wrapper}
+					className={classes.heroTextWrapper}
 				>
 					<Typography
 						variant="h1"
@@ -140,7 +140,7 @@ const MainHero = ({ onShowAllClick }) => {
 					<Typography
 						variant="h5"
 						mb="50px"
-						className={classes.hero__about}
+						className={classes.heroAbout}
 					>
 						View all launches available - including launches from the past and utilize powerful search filters.
 					</Typography>
@@ -150,7 +150,7 @@ const MainHero = ({ onShowAllClick }) => {
 					<Button
 						variant="contained"
 						onClick={onShowAllClick}
-						classes={{ root: classes.page__link }}
+						classes={{ root: classes.pageLink }}
 					>
 						Show All Launches
 					</Button>

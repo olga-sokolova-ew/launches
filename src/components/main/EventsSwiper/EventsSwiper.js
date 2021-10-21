@@ -10,7 +10,7 @@ import { ReactComponent as ArrowImage } from "assets/common/swiper_arrow.svg";
 
 
 const useStyles = makeStyles((theme) => ({
-	swiper__emptyimg: {
+	swiperEmptyimg: {
 		width: "380px",
 		height: "13.75vw",
 		marginBottom: "20px",
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 			opacity: 0.2,
 		},
 	},
-	swiper__img: {
+	swiperImg: {
 		width: "100%",
 		maxWidth: "100%",
 		objectFit: "cover",
@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
 			height: "60vw",
 		},
 	},
-	swiper__time_block: {
+	swiperTimeBlock: {
 		padding: "10px 30px",
 		marginBottom: "15px",
 		display: "inline-flex",
@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
 		backgroundColor: "#4A00E0",
 		borderRadius: "50px",
 	},
-	swiper__wrapper1: {
+	swiperWrapper1: {
 		width: "100%",
 
 		"& .swiper-container": {
@@ -172,7 +172,7 @@ const EventsSwiper = ({ events }) => {
 	  };
 
 	return (
-		<div className={classes.swiper__wrapper}>
+		<div className={classes.swiperWrapper}>
 			<Typography
 				variant="h2"
 				mb="30px"
@@ -182,7 +182,7 @@ const EventsSwiper = ({ events }) => {
 
 			<Box
 				component="div"
-				className={classes.swiper__wrapper1}
+				className={classes.swiperWrapper1}
 			>
 				<ReactIdSwiperCustom {...params}>
 					{events.map((event) =>
@@ -193,18 +193,17 @@ const EventsSwiper = ({ events }) => {
 									alt={event.eventName}
 									width="380"
 									height="264"
-									className={classes.swiper__img}
+									className={classes.swiperImg}
 								/>
 								:
-								<div className={classes.swiper__emptyimg}>
+								<div className={classes.swiperEmptyimg}>
 									<RocketSvg />
 								</div>}
 
 
-							<div className={classes.swiper__time_block}>
+							<div className={classes.swiperTimeBlock}>
 								<Typography variant="caption">
 									<time
-										className="review__date"
 										dateTime={format(
 											new Date(event.eventDate),
 											"yyyy-MM-dd"
