@@ -2,6 +2,7 @@
     "greeting": {
       "defaultMessage": "Greeting!"
     },
+    "loadMoreBtn": "Load more",
     "mainHeroTitle": "Upcoming Spaceflight Launches",
     "mainHeroSubTitle": "View all launches available - including launches from the past and utilize powerful search filters.",
     "mainHeroButton": "Show All Launches",

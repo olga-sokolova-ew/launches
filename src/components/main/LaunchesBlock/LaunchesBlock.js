@@ -29,6 +29,8 @@ const LaunchesBlock = ({ launches, onShowMore, showenLaunchesQnt }) => {
 	const classes = useStyles();
 	const intl = useIntl();
 
+	const buttonText = intl.formatMessage({id: "loadMoreBtn"});
+
 	return (
 		<div className={classes.launchesWrapper}>
 			<Typography
@@ -55,7 +57,7 @@ const LaunchesBlock = ({ launches, onShowMore, showenLaunchesQnt }) => {
 					<Box className={classes.loaderWrapper}>
 						<Loader />
 						<TextButton
-							btnText={intl.formatMessage({id: "loadMoreBtn"})}
+							btnText={buttonText}
 							onBtnClick={onShowMore}
 						/>
 					</Box >}

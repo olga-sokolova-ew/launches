@@ -8,9 +8,12 @@ import dayjs from "dayjs";
 const AppIntlProvider = ({
 	children
 }) => {
-	const currentLanguage = useSelector((state) => state.language.selectedLanguage) ?? "ru";
-
-    //if need to show currency use it else - delete
+	//const currentLanguage = useSelector((state) => state.language.selectedLanguage) ?? "ru";
+	const currentLanguage = navigator.language.slice(
+		0,
+		2
+	) && "en";
+	//if need to show currency use it else - delete
 	const formats = {
 		number: {
 			CURRENCY: {
@@ -20,7 +23,7 @@ const AppIntlProvider = ({
 		},
 	};
 
-    // dictionary keys with translation
+	// dictionary keys with translation
 	const messages = {
 		"en": messages_en,
 		"ru": messages_ru,
@@ -36,13 +39,13 @@ const AppIntlProvider = ({
 	);
 
 	return (
-        <IntlProvider
-	locale={currentLanguage}
-	messages={messages[currentLanguage]}
-	formats={formats}
-        >
-            {children}
-        </IntlProvider>
+		<IntlProvider
+			locale={currentLanguage}
+			messages={messages[currentLanguage]}
+			formats={formats}
+		>
+			{children}
+		</IntlProvider>
 	);
 };
 
