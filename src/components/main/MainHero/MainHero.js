@@ -3,7 +3,6 @@ import { makeStyles } from "@mui/styles";
 import {
 	Button, Container, Typography
 } from "@mui/material";
-import { useTheme } from "@material-ui/core/styles";
 import { useIntl } from "react-intl";
 import BgImage from "assets/common/bg_hero.png";
 
@@ -116,7 +115,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const MainHero = ({ onShowAllClick }) => {
-	const theme = useTheme();
 	const intl = useIntl();
 	const classes = useStyles();
 

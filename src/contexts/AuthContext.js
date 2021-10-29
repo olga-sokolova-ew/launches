@@ -19,8 +19,8 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }) => {
-	const [currentUser, setCurrentUser] = useState();
-	console.log(currentUser);
+	const [currentUser, setCurrentUser] = useState(null);
+	
 	const dispatch = useDispatch();
 	const history = useHistory();
 
@@ -29,20 +29,11 @@ export const AuthProvider = ({ children }) => {
 			const unsubsribe = auth.onAuthStateChanged(user => {
 				setCurrentUser(user);
 			});
-
+			console.log(currentUser);
 			return unsubsribe;
 		},
 		[]
 	);
-
-	/*const signup = (
-		email, password
-	) => {
-		return auth.createUserWithEmailAndPassword(
-			email,
-			password
-		);
-	  };*/
 
 	const signup = async ({
 		email, password
@@ -56,10 +47,11 @@ export const AuthProvider = ({ children }) => {
 
 			console.log(res);
 
-			history.push("/");
+			//history.push("/");
+			history.goBack();
 
 		} catch (error) {
-			console.error(error);
+			console.error("signup error" + error);
 			//const errorCode = error.code;
 			//const errorMessage = error.message;
 		}
@@ -92,7 +84,7 @@ export const AuthProvider = ({ children }) => {
 			history.push("/");
 
 		} catch (error) {
-			console.error(error);
+			console.error("signin error" + error);
 			//const errorCode = error.code;
 			//const errorMessage = error.message;
 		}

@@ -14,14 +14,50 @@ import { useAuth } from "contexts/AuthContext";
 
 const useStyles = makeStyles(theme => ({
 	pageContent: {
-
-		borderColor: "green",
-		"& input": {
-
-			color: theme.palette.secondary.main,
+		"& fieldset": {
+			borderColor: theme.palette.secondary.main,
+			"&:hover": {
+				borderColor: theme.palette.secondary.main,
+			}
+		},
+		"& .MuiOutlinedInput-root": {
+			"& input": {
+				color: theme.palette.secondary.main,
+				borderColor: theme.palette.secondary.main,
+	
+				"&::placeholder": {
+					color: theme.palette.secondary.main,
+				},
+			},
+			"& fieldset": {
+			  borderColor: theme.palette.secondary.main,
+			},
+			"&:hover fieldset": {
+			  borderColor: "#8E2DE2",
+			},
+			"&.Mui-focused fieldset": {
+			  borderColor: "#4A00E0",
+			},
+			"& input::placeholder": {
+				color: "#4A00E0",
+			},
+		  },
+		  "& label.Mui-focused": {
+			color: "#4A00E0",
+		  },
+		  
+		
+	},
+	textField: {
+		"&::placeholder": {
+			borderColor: theme.palette.secondary.main,
+		},
+		"&:hover": {
 			borderColor: theme.palette.secondary.main,
 		}
-	} 
+	},
+	
+
 }));
 
 
@@ -78,6 +114,8 @@ const LoginForm = ({
 						value={values.email}
 						variant="outlined"
 						color="secondary"
+						classes={classes.textField}
+						
 					/>
 					<TextField
 						error={Boolean(touched.password && errors.password)}
@@ -92,6 +130,7 @@ const LoginForm = ({
 						value={values.password}
 						variant="outlined"
 						color="secondary"
+						classes={classes.textField}
 					/>
 					<Box mt={4}>
 						<Button

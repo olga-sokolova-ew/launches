@@ -9,12 +9,62 @@ import {
 	Typography
 } from "@material-ui/core";
 //import {signup} from "firebase/auth_signup_password";
+import { makeStyles } from "@mui/styles";
 import { useAuth } from "contexts/AuthContext";
+
+const useStyles = makeStyles(theme => ({
+	pageContent: {
+		"& fieldset": {
+			borderColor: theme.palette.secondary.main,
+			"&:hover": {
+				borderColor: theme.palette.secondary.main,
+			}
+		},
+		"& .MuiOutlinedInput-root": {
+			"& input": {
+				color: theme.palette.secondary.main,
+				borderColor: theme.palette.secondary.main,
+
+				"&::placeholder": {
+					color: theme.palette.secondary.main,
+				},
+			},
+			"& fieldset": {
+				borderColor: theme.palette.secondary.main,
+			},
+			"&:hover fieldset": {
+				borderColor: "#8E2DE2",
+			},
+			"&.Mui-focused fieldset": {
+				borderColor: "#4A00E0",
+			},
+			"& input::placeholder": {
+				color: "#4A00E0",
+			},
+		},
+		"& label.Mui-focused": {
+			color: "#4A00E0",
+		},
+
+
+	},
+	textField: {
+		"&::placeholder": {
+			borderColor: theme.palette.secondary.main,
+		},
+		"&:hover": {
+			borderColor: theme.palette.secondary.main,
+		}
+	},
+
+
+}));
 
 
 const RegisterForm = ({
 	initialValues
 }) => {
+	const classes = useStyles();
 	const { signup } = useAuth();
 
 	const onSubmit = (
@@ -22,7 +72,7 @@ const RegisterForm = ({
 	) => {
 
 		signup(values);
-		form.isSubmitting = false;
+		//form.isSubmitting = false;
 	};
 
 	return (
@@ -46,17 +96,19 @@ const RegisterForm = ({
 				touched,
 				values
 			}) => (
-				<form onSubmit={handleSubmit}>
+				<form
+					onSubmit={handleSubmit}
+					className={classes.pageContent}
+				>
 					<Box mb={3}>
 						<Typography
-							color="textPrimary"
 							variant="h2"
 							align="center"
 						>
 							Create new account
 						</Typography>
 						<Typography
-							color="textSecondary"
+							color="#ffffff"
 							gutterBottom
 							variant="body2"
 							align="center"
@@ -77,6 +129,7 @@ const RegisterForm = ({
 						type="email"
 						value={values.email}
 						variant="outlined"
+						classes={classes.textField}
 					/>
 					<TextField
 						error={Boolean(touched.password && errors.password)}
@@ -90,6 +143,7 @@ const RegisterForm = ({
 						type="password"
 						value={values.password}
 						variant="outlined"
+						classes={classes.textField}
 					/>
 					<TextField
 						error={Boolean(touched.passwordConfirm && errors.passwordConfirm)}
@@ -103,6 +157,7 @@ const RegisterForm = ({
 						type="password"
 						value={values.passwordConfirm}
 						variant="outlined"
+						classes={classes.textField}
 					/>
 
 
@@ -119,10 +174,10 @@ const RegisterForm = ({
 					</Box>
 					<Box mt={2}>
 						<Typography
-							color="textSecondary"
+							color="#ffffff"
 							variant="body1"
 						>
-							Have an account?
+							Have an account? {"   "}
 							<Link
 								component={RouterLink}
 								to="login"

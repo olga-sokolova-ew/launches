@@ -56,6 +56,17 @@ const theme = createTheme({
 					color: "#F1EBFF",
 				}
 			}
+		},
+		MuiInput: {
+			color: "#FFFFFF",
+			"&::placeholder": {
+				color: "#FFFFFF"
+			  },
+			transition: "0.3s ease",
+		},
+		"MuiOutlinedInput-root": {
+			color: "#FFFFFF",
+			"&:hover": "#FFFFFF",
 		}
 	}
 });

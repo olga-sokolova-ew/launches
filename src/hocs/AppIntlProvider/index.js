@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
 import { IntlProvider } from "react-intl";
 import messages_en from "../../i18n/en.json";
 import messages_ru from "../../i18n/ru.json";
