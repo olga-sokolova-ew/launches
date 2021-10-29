@@ -9,7 +9,16 @@ const AppRoute = {
 const APIRoute = {
 	LAUNCHES: "launch/upcoming?mode=detailed",
 	EVENTS: "event/upcoming/",
-};  
+}; 
+
+const AuthorizationStatus = {
+	AUTH: "AUTH",
+	NO_AUTH: "NO_AUTH",
+	UNKNOWN: "UNKNOWN",
+};
+
+// Sol key for encrypt user info token
+const KEY = "skeletonEcnryptKey";
 
 const launchQnt = 6;  
 const MINUTE = 60;
@@ -17,25 +26,4 @@ const HOURS = 24;
 const SECONDS = 60;
 
 
-
-/*const theme = createTheme({
-  typography: {
-    roboto: {
-        fontFamily: "Roboto",
-    },
-    montserrat: {
-        fontFamily: "Montserrat",
-    } 
-  },
-  breakpoints: {
-    values: {
-      xs: 0,
-      sm: 600,
-      md: 900,
-      lg: 1440,
-      xl: 1536,
-    },
-  },
-});  */
-
-export {APIRoute, AppRoute, HOURS, launchQnt, MINUTE, SECONDS};
+export {APIRoute, AppRoute, AuthorizationStatus, HOURS, KEY, launchQnt, MINUTE, SECONDS};

@@ -15,10 +15,8 @@ export const fetchCurrentRocket = createAsyncThunk(
 				throw new Error("Server Error!");
 			}
 
-			console.log(response);
-			const result = rocketAdapter(response.data);
+			return rocketAdapter(response.data);
 
-			return result;
 		} catch (error) {
 			return rejectWithValue(error.message);
 		}

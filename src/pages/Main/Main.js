@@ -54,7 +54,7 @@ function Main() {
 		const isLaunchesLoaded = useSelector(state => state.launch.isLaunchesLoaded);
 		const launchStatus = useSelector(state => state.launch.launchStatus);
 
-		const launchError = useSelector(state => state.launch.launchError);
+		//const launchError = useSelector(state => state.launch.launchError);
 
 	//const currentLaunch = useSelector(state => state.launch.currentLaunch);
 	//const isCurrentLaunch = useSelector(state => state.launch.isCurrentLaunch);
@@ -76,20 +76,12 @@ function Main() {
 			status: toastrType1
 		};
 
-		const toastrType2 = "error";
-
-
-
-
-
 		const onShowAllClick = () => {
 			setShowenLaunchesQnt(isLaunchesLoaded ? launches.lenght : 0);
 		};
 		const onShowMoreClick = () => {
 			setShowenLaunchesQnt(showenLaunchesQnt + launchQnt);
 		};
-
-
 
 		return (
 		<div className={classes.pageWrapper}>

@@ -13,9 +13,8 @@ export const fetchLaunchList = createAsyncThunk(
 				throw new Error("Server Error!");
 			}
 
-			const result = response.data.results.map((item) => launchAdapter(item));
+			return response.data.results.map((item) => launchAdapter(item));
 
-			return result;
 		} catch (error) {
 			return rejectWithValue(error.message);
 		}
