@@ -21,6 +21,7 @@ const PrivateRoute = ({
 		currentUser
 	);
 
+
 	const isUserLoggedIn = authorizationStatus === AuthorizationStatus.AUTH && currentUser;
 
 

@@ -12,7 +12,6 @@ import { AppRoute, AuthorizationStatus } from "../utils/const";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useIntl } from "react-intl";
-//{intl.formatMessage({id: "mainHeroTitle"})}
 
 const AuthContext = React.createContext();
 
