@@ -8,7 +8,6 @@ import {
 	TextField,
 	Typography
 } from "@material-ui/core";
-//import {signup} from "firebase/auth_signup_password";
 import { makeStyles } from "@mui/styles";
 import { useAuth } from "contexts/AuthContext";
 
@@ -73,12 +72,12 @@ const RegisterForm = ({
 
 		signup(values);
 		login(values);
-		//form.isSubmitting = false;
+		form.setSubmitting(false);
 	};
 
 	return (
 		<Formik
-			initialValues={initialValues}
+			initialValues={{ email: "", password: "", passwordConfirm: "" }}
 			validationSchema={
 				Yup.object().shape({
 					email: Yup.string().email("Must be a valid email").max(255).required("Email is required"),
@@ -100,11 +99,6 @@ const RegisterForm = ({
 				<form
 					onSubmit={handleSubmit}
 					className={classes.pageContent}
-					initialvalues={{
-						email: values.email ||  "",
-						password: "",
-						passwordConfirm: "",
-					}}
 				>
 					<Box mb={3}>
 						<Typography
@@ -135,7 +129,6 @@ const RegisterForm = ({
 						type="email"
 						value={values.email}
 						variant="outlined"
-						//classes={classes.textField}
 					/>
 					<TextField
 						error={Boolean(touched.password && errors.password)}
@@ -149,7 +142,6 @@ const RegisterForm = ({
 						type="password"
 						value={values.password}
 						variant="outlined"
-						//classes={classes.textField}
 					/>
 					<TextField
 						error={Boolean(touched.passwordConfirm && errors.passwordConfirm)}
@@ -163,14 +155,13 @@ const RegisterForm = ({
 						type="password"
 						value={values.passwordConfirm}
 						variant="outlined"
-						//classes={classes.textField}
 					/>
 
 
 					<Box mt={2}>
 						<Button
 							color="primary"
-							// disabled={isSubmitting}
+							disabled={isSubmitting}
 							fullWidth
 							type="submit"
 							variant="contained"

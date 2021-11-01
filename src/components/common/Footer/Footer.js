@@ -54,6 +54,16 @@ const useStyles = makeStyles((theme) => ({
 			marginBottom: "30px",
 		},
 	},
+	footerLoginLink: {
+		color: theme.palette.primary.text,
+		fontSize: "18px",
+		textTransform: "none",
+		transition: "0.3s ease",
+		"&:hover": {
+			opacity: "0.7",
+		},
+		
+	},
 	footerCopyright: {
 		color: "#C0C0C0",
 
@@ -118,7 +128,7 @@ const Footer = () => {
 
 					{(!currentUser) && <Link
 						to={AppRoute.LOGIN}
-						className={classes.footerLink}
+						className={classes.footerLoginLink}
 					>
 						Login
                         </Link>}

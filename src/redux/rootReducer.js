@@ -1,17 +1,14 @@
 import {combineReducers} from "redux";
-import { reducer as toastrReducer } from "react-redux-toastr";
 import eventSlice from "./eventData/sliceReducer";
 import launchSlice from "./launchData/sliceReducer";
 import rocketSlice from "./rocketData/sliceReducer";
-import languageSlice from "./languages/sliceReducer";
+//import languageSlice from "./languages/sliceReducer";
 import userSlice from "./user/sliceReducer";
 
 export default combineReducers({
 	event: eventSlice,
 	launch: launchSlice,
 	rocket: rocketSlice,
-	language: languageSlice,
+	//language: languageSlice,
 	user: userSlice,
-	toastr: toastrReducer,
-	
 });

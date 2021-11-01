@@ -10,10 +10,10 @@ import { AuthProvider } from "contexts/AuthContext";
 import Routes from "../routes";
 import AppIntlProvider from "hocs/AppIntlProvider";
 import Loader from "../components/common/Loader/Loader";
-import {persistor, store} from "../redux/store";
-import ReduxToastr from "react-redux-toastr";
+import { persistor, store } from "../redux/store";
+import { ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./App.scss";
-import "react-redux-toastr/lib/css/react-redux-toastr.min.css";
 
 const App = () => {
 	return (
@@ -33,16 +33,16 @@ const App = () => {
 					</AuthProvider>
 				</BrowserRouter>
 			</PersistGate>
-			<ReduxToastr
-				timeOut={4000}
-				newestOnTop={false}
-				preventDuplicates
+			<ToastContainer
 				position="bottom-right"
-				getState={(state) => state.toastr} // This is the default
-				transitionIn="fadeIn"
-				transitionOut="fadeOut"
-				progressBar
-				closeOnToastrClick
+				autoClose={5000}
+				hideProgressBar={false}
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss
+				draggable
+				pauseOnHover
 			/>
 
 		</Provider>

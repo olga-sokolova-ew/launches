@@ -12,7 +12,7 @@ import LaunchesBlock from "components/main/LaunchesBlock/LaunchesBlock";
 import { fetchLaunchList } from "redux/launchData/fetches";
 import { fetchEventList } from "redux/eventData/fetches";
 import { launchQnt } from "utils/const";
-import { toastr } from "react-redux-toastr";
+import { toast } from "react-toastify";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -54,10 +54,13 @@ function Main() {
 		const isLaunchesLoaded = useSelector(state => state.launch.isLaunchesLoaded);
 		const launchStatus = useSelector(state => state.launch.launchStatus);
 
-		//const launchError = useSelector(state => state.launch.launchError);
+	//const launchError = useSelector(state => state.launch.launchError);
 
 	//const currentLaunch = useSelector(state => state.launch.currentLaunch);
 	//const isCurrentLaunch = useSelector(state => state.launch.isCurrentLaunch);
+		const customId = "loading";
+		const customIdError = "errorLoading";
+
 
 		const [showenLaunchesQnt, setShowenLaunchesQnt] = useState(launchQnt);
 
@@ -68,13 +71,6 @@ function Main() {
 			},
 			[]
 		);
-
-		const toastrType1 = "info";
-		const toastrOptions1 = {
-			id: "loadingId",
-			icon: toastrType1,
-			status: toastrType1
-		};
 
 		const onShowAllClick = () => {
 			setShowenLaunchesQnt(isLaunchesLoaded ? launches.lenght : 0);
@@ -104,19 +100,15 @@ function Main() {
 					:
 					<>
 						<Loader />
-						{(launchStatus === "loading") &&
-							toastr.info(
-								"Loading",
-								"Please, wait ...",
-								toastrOptions1
-							)}
-						{(launchStatus !== "loading" && toastr.info) &&
-							toastr.remove("loadingId")}	{/*time of removing  = time of message life*/}
-
-						{(launchStatus === "rejected") && toastr.error(
-							"Error",
-							"Server error"
-							//{launchError}
+						{(launchStatus === "loading") && toast.info(
+							"Please, wait ...",
+							{ toastId: customId }
+						)}
+						{(launchStatus === "rejected") && toast.error(
+							"Server error",
+							{
+								toastId: customIdError
+							}
 						)}
 					</>
 				}

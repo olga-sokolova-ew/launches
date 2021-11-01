@@ -10,9 +10,29 @@ import {
 import { requireAuthorization } from "../redux/user/sliceReducer";
 import { AppRoute, AuthorizationStatus } from "../utils/const";
 import { useHistory } from "react-router-dom";
+import { toast} from "react-toastify";
 
 
 const AuthContext = React.createContext();
+
+const outputtingError = (error) => {
+	switch (error) {
+	case "auth/user-not-found":
+		toast.error("User not found");
+		break;
+	case "auth/email-already-exists":
+		toast.error("Email already exist");
+		break;	
+	case "auth/wrong-password":
+		toast.error("Invalid password");
+		break;
+	case "auth/too-many-requests":
+		toast.error("Too many request");
+		break;
+	default:
+		toast.error("Error in login");
+		  }
+};
 
 export const useAuth = () => {
 	return useContext(AuthContext);
@@ -20,17 +40,12 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
 	const [currentUser, setCurrentUser] = useState(null);
-	
+
 	const dispatch = useDispatch();
 	const history = useHistory();
 
 	useEffect(
 		() => {
-			/*const unsubsribe = auth.onAuthStateChanged(user => {
-				setCurrentUser(user);
-			});
-			console.log(currentUser);
-			return unsubsribe;*/
 			const unsubsribe = onAuthStateChanged(
 				auth,
 				(user) => {
@@ -56,27 +71,15 @@ export const AuthProvider = ({ children }) => {
 				email,
 				password
 			);
-			console.log("signup");	
+			console.log("signup");
 			console.log(res);
 
 			history.push(AppRoute.LOGIN);
-			//history.goBack();
 
 		} catch (error) {
-			console.error("signup error" + error);
-			//const errorCode = error.code;
-			//const errorMessage = error.message;
+			outputtingError(error.code);
 		}
 	};
-
-	/*const login = (
-		email, password
-	) => {
-		return auth.signInWithEmailAndPassword(
-			email,
-			password
-		);
-	};*/
 
 	const login = async ({ email, password }) => {
 		try {
@@ -97,9 +100,8 @@ export const AuthProvider = ({ children }) => {
 			history.push("/");
 
 		} catch (error) {
-			console.error("signin error" + error);
-			//const errorCode = error.code;
-			//const errorMessage = error.message;
+			outputtingError(error.code);
+	
 		}
 	};
 

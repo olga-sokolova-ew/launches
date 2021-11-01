@@ -1,7 +1,7 @@
 
 import { Link as RouterLink } from "react-router-dom";
 import * as Yup from "yup";
-import { Formik } from "formik";
+import { Formik, Form } from "formik";
 import { makeStyles } from "@mui/styles";
 import {
 	Box,
@@ -70,17 +70,15 @@ const LoginForm = ({
 	const onSubmit = (
 		values, form
 	) => {
+		console.log(form);
 		login(values);
-		//form.isSubmitting = false;
+		form.setSubmitting(false);
+		
 	};
-
-	/*const onSubmit = async(values) => {		
-		await login({...values});
-	};*/
 
 	return (
 		<Formik
-			initialValues={initialValues}
+			initialValues={{ email: "", password: "",}}
 			validationSchema={Yup.object().shape({
 				email: Yup.string().email("Must be a valid email").max(255).required("Email is required"),
 				password: Yup.string().max(255).required("Password is required")
@@ -91,13 +89,11 @@ const LoginForm = ({
 				errors,
 				handleBlur,
 				handleChange,
-				handleSubmit,
 				isSubmitting,
 				touched,
 				values
 			}) => (
-				<form
-					onSubmit={handleSubmit}
+				<Form
 					className={classes.pageContent}
 				>
 					<Box mb={3}>
@@ -166,7 +162,7 @@ const LoginForm = ({
 							</Link>
 						</Typography>
 					</Box>
-				</form>
+				</Form>
 			)}
 		</Formik>
 	);
