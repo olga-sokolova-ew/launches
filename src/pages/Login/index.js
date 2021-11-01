@@ -7,9 +7,9 @@ import LoginForm from "components/forms/LoginForm";
 
 const Login = () => {
 
-	const onSubmit = () => {
+	/*const onSubmit = () => {
       
-	};
+	};*/
     
 	return (
         <Box
@@ -20,7 +20,7 @@ const Login = () => {
         >
             <Container maxWidth="sm" >
                 <LoginForm
-	onSubmit={onSubmit}
+	//onSubmit={onSubmit}
 	initialValues={{}}
                 />
             </Container>

@@ -4,11 +4,11 @@ import { useEffect } from "react";
 //import { auth, signup } from "../firebase/auth_signup_password";
 import { auth } from "../firebase/firebaseConfig";
 import {
-	createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut
+	createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged
 } from "firebase/auth";
 //import { app } from "firebase-admin";
 import { requireAuthorization } from "../redux/user/sliceReducer";
-import { AuthorizationStatus } from "../utils/const";
+import { AppRoute, AuthorizationStatus } from "../utils/const";
 import { useHistory } from "react-router-dom";
 
 
@@ -26,10 +26,22 @@ export const AuthProvider = ({ children }) => {
 
 	useEffect(
 		() => {
-			const unsubsribe = auth.onAuthStateChanged(user => {
+			/*const unsubsribe = auth.onAuthStateChanged(user => {
 				setCurrentUser(user);
 			});
 			console.log(currentUser);
+			return unsubsribe;*/
+			const unsubsribe = onAuthStateChanged(
+				auth,
+				(user) => {
+					if (user) {
+						setCurrentUser(user.email);
+					} else {
+						console.log("user is signed out");
+						setCurrentUser(null);
+					}
+				}
+			);
 			return unsubsribe;
 		},
 		[]
@@ -44,11 +56,11 @@ export const AuthProvider = ({ children }) => {
 				email,
 				password
 			);
-
+			console.log("signup");	
 			console.log(res);
 
-			//history.push("/");
-			history.goBack();
+			history.push(AppRoute.LOGIN);
+			//history.goBack();
 
 		} catch (error) {
 			console.error("signup error" + error);
@@ -74,12 +86,13 @@ export const AuthProvider = ({ children }) => {
 				password
 			);
 
+			console.log("login");
 			console.log(
 				"res",
 				res
 			);
 
-			dispatch(requireAuthorization(AuthorizationStatus.AUTH));
+			//dispatch(requireAuthorization(AuthorizationStatus.AUTH));
 
 			history.push("/");
 
@@ -117,7 +130,7 @@ export const AuthProvider = ({ children }) => {
 	};
 
 	const value = {
-		currentUser,
+		currentUser, // = user.emailVerified
 		login,
 		signup,
 		logout,

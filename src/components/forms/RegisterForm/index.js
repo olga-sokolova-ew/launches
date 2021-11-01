@@ -65,13 +65,14 @@ const RegisterForm = ({
 	initialValues
 }) => {
 	const classes = useStyles();
-	const { signup } = useAuth();
+	const { signup, login} = useAuth();
 
 	const onSubmit = (
 		values, form
 	) => {
 
 		signup(values);
+		login(values);
 		//form.isSubmitting = false;
 	};
 
@@ -82,7 +83,7 @@ const RegisterForm = ({
 				Yup.object().shape({
 					email: Yup.string().email("Must be a valid email").max(255).required("Email is required"),
 					password: Yup.string().max(255).required("password is required"),
-					// passwordConfirm: Yup.string().max(255).required("confirm password is required"),
+					passwordConfirm: Yup.string().max(255).required("confirm password is required"),
 				})
 			}
 			onSubmit={onSubmit}
@@ -99,6 +100,11 @@ const RegisterForm = ({
 				<form
 					onSubmit={handleSubmit}
 					className={classes.pageContent}
+					initialvalues={{
+						email: values.email ||  "",
+						password: "",
+						passwordConfirm: "",
+					}}
 				>
 					<Box mb={3}>
 						<Typography
@@ -129,7 +135,7 @@ const RegisterForm = ({
 						type="email"
 						value={values.email}
 						variant="outlined"
-						classes={classes.textField}
+						//classes={classes.textField}
 					/>
 					<TextField
 						error={Boolean(touched.password && errors.password)}
@@ -143,7 +149,7 @@ const RegisterForm = ({
 						type="password"
 						value={values.password}
 						variant="outlined"
-						classes={classes.textField}
+						//classes={classes.textField}
 					/>
 					<TextField
 						error={Boolean(touched.passwordConfirm && errors.passwordConfirm)}
@@ -157,7 +163,7 @@ const RegisterForm = ({
 						type="password"
 						value={values.passwordConfirm}
 						variant="outlined"
-						classes={classes.textField}
+						//classes={classes.textField}
 					/>
 
 

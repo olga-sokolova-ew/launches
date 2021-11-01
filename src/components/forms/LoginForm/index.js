@@ -66,10 +66,17 @@ const LoginForm = ({
 }) => {
 	const classes = useStyles();
 	const { login } = useAuth();
-
-	const onSubmit = async(values) => {		
-		await login({...values});
+	
+	const onSubmit = (
+		values, form
+	) => {
+		login(values);
+		//form.isSubmitting = false;
 	};
+
+	/*const onSubmit = async(values) => {		
+		await login({...values});
+	};*/
 
 	return (
 		<Formik

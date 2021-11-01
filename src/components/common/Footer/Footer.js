@@ -2,8 +2,10 @@ import { Link } from "react-router-dom";
 import { AppRoute } from "utils/const";
 import Box from "@mui/material/Box";
 import { makeStyles } from "@mui/styles";
-import { Typography } from "@mui/material";
+import {  Typography } from "@mui/material";
+import { ButtonUnstyled } from "@mui/core";
 import { ReactComponent as LogoSvg } from "assets/common/logo.svg";
+import { useAuth } from "contexts/AuthContext";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -32,6 +34,10 @@ const useStyles = makeStyles((theme) => ({
 			flexDirection: "column"
 		},
 	},
+	loginWrap: {
+		display: "flex",
+		alignItems: "center",
+	},
 	footerLink: {
 		width: "49px",
 		height: "55px",
@@ -51,6 +57,17 @@ const useStyles = makeStyles((theme) => ({
 	footerCopyright: {
 		color: "#C0C0C0",
 
+	},
+	logoutBtn: {
+		padding: "3px 7px",
+		background: "rgba(0,0,0,0)",
+		border: "none",
+		color: theme.palette.primary.text,
+		fontSize: "18px",
+		transition: "0.3s ease",
+		"&:hover": {
+			opacity: "0.7",
+		},
 	}
 }));
 
@@ -58,6 +75,11 @@ const useStyles = makeStyles((theme) => ({
 const Footer = () => {
 	const classes = useStyles();
 	const date = new Date();
+	const { currentUser,
+		logout,} = useAuth();
+
+	const onLogoutClick = () => logout();
+	console.log(currentUser);
 
 	return (
 		<Box
@@ -75,6 +97,35 @@ const Footer = () => {
 
 					<LogoSvg />
 				</Link>
+				<Box className={classes.loginWrap}>
+					{currentUser && 
+					<>
+						<Typography
+							variant="body1"
+							component="div"
+							className={classes.footerCopyright}
+						>
+							Login as {"  " + currentUser}
+						</Typography>
+						<ButtonUnstyled
+							color="primary"
+							size="small"
+							className={classes.logoutBtn}
+							onClick = {onLogoutClick}
+						>Logout
+						</ButtonUnstyled>
+					</>}
+
+					{(!currentUser) && <Link
+						to={AppRoute.LOGIN}
+						className={classes.footerLink}
+					>
+						Login
+                        </Link>}
+
+				</Box>
+
+
 				<Typography
 					variant="body1"
 					component="div"

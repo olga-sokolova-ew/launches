@@ -3,6 +3,8 @@ const AppRoute = {
 	ROCKET: "/rocket/:id",
 	EVENT: "/event/:id",
 	ROOT: "/",
+	LOGIN: "/login",
+	SIGNIN: "/signin",
 	PAGE_NOT_FOUND: "/404",
 };
 
