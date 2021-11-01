@@ -7,7 +7,12 @@
     "mainHeroSubTitle": "Просматривайте все доступные запуски, включая предыдущие, и используйте мощные фильтры поиска.",
     "mainHeroButton": "Показать все запуски",
     "recentEvents": "Недавние события",
-    "spaceflightLaunches": "Запуски космических кораблей"
+    "spaceflightLaunches": "Запуски космических кораблей",
+    "userNotFound": "Пользователь не найден",
+    "emailAlreadyExist": "Электронная почта уже существует",
+    "invalidPassword" : "Неверный пароль",
+    "tooManyRequest": "Слишком много запросов",
+    "errorInLogin": "Ошибка авторизации"
 
 }  
   

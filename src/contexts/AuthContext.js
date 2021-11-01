@@ -10,28 +10,33 @@ import {
 import { requireAuthorization } from "../redux/user/sliceReducer";
 import { AppRoute, AuthorizationStatus } from "../utils/const";
 import { useHistory } from "react-router-dom";
-import { toast} from "react-toastify";
-
+import { toast } from "react-toastify";
+import { useIntl } from "react-intl";
+//{intl.formatMessage({id: "mainHeroTitle"})}
 
 const AuthContext = React.createContext();
 
-const outputtingError = (error) => {
+
+const outputtingError = (
+	error, intl
+) => {
+
 	switch (error) {
 	case "auth/user-not-found":
-		toast.error("User not found");
+		toast.error(intl.formatMessage({ id: "userNotFound" }));
 		break;
 	case "auth/email-already-exists":
-		toast.error("Email already exist");
-		break;	
+		toast.error(intl.formatMessage({ id: "emailAlreadyExist" }));
+		break;
 	case "auth/wrong-password":
-		toast.error("Invalid password");
+		toast.error(intl.formatMessage({ id: "invalidPassword" }));
 		break;
 	case "auth/too-many-requests":
-		toast.error("Too many request");
+		toast.error(intl.formatMessage({ id: "tooManyRequest" }));
 		break;
 	default:
-		toast.error("Error in login");
-		  }
+		toast.error(intl.formatMessage({ id: "errorInLogin" }));
+	}
 };
 
 export const useAuth = () => {
@@ -39,6 +44,7 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }) => {
+	const intl = useIntl();
 	const [currentUser, setCurrentUser] = useState(null);
 
 	const dispatch = useDispatch();
@@ -77,7 +83,10 @@ export const AuthProvider = ({ children }) => {
 			history.push(AppRoute.LOGIN);
 
 		} catch (error) {
-			outputtingError(error.code);
+			outputtingError(
+				error.code,
+				intl
+			);
 		}
 	};
 
@@ -95,13 +104,16 @@ export const AuthProvider = ({ children }) => {
 				res
 			);
 
-			//dispatch(requireAuthorization(AuthorizationStatus.AUTH));
+			dispatch(requireAuthorization(AuthorizationStatus.AUTH));
 
 			history.push("/");
 
 		} catch (error) {
-			outputtingError(error.code);
-	
+			outputtingError(
+				error.code,
+				intl
+			);
+
 		}
 	};
 

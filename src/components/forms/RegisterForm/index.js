@@ -64,14 +64,13 @@ const RegisterForm = ({
 	initialValues
 }) => {
 	const classes = useStyles();
-	const { signup, login} = useAuth();
+	const { signup} = useAuth();
 
 	const onSubmit = (
 		values, form
 	) => {
 
 		signup(values);
-		login(values);
 		form.setSubmitting(false);
 	};
 

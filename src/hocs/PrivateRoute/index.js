@@ -1,14 +1,11 @@
 import { Route, Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
-
 import { AuthorizationStatus } from "../../utils/const";
 import { useAuth } from "contexts/AuthContext";
 
 
 const PrivateRoute = ({
 	component: Component,
-	//roles,
-	//denyShowLoginPage,
 	...rest
 }) => {
 	const { currentUser } = useAuth();
@@ -25,6 +22,7 @@ const PrivateRoute = ({
 	);
 
 	const isUserLoggedIn = authorizationStatus === AuthorizationStatus.AUTH && currentUser;
+
 
 	if (!isUserLoggedIn) {
 		return (

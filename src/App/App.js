@@ -16,6 +16,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./App.scss";
 
 const App = () => {
+
 	return (
 		<Provider store={store}>
 			<PersistGate
@@ -23,14 +24,16 @@ const App = () => {
 				persistor={persistor}
 			>
 				<BrowserRouter>
-					<AuthProvider>
-						<ThemeProvider theme={theme}>
-							<AppIntlProvider>
+					<AppIntlProvider>
+						<AuthProvider>
+							<ThemeProvider theme={theme}>
+										
 								<CssBaseline />
 								<Routes />
-							</AppIntlProvider>
-						</ThemeProvider>
-					</AuthProvider>
+								
+							</ThemeProvider>
+						</AuthProvider>
+					</AppIntlProvider>
 				</BrowserRouter>
 			</PersistGate>
 			<ToastContainer

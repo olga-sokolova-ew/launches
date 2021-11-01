@@ -11,8 +11,11 @@ import EventsSwiper from "components/main/EventsSwiper/EventsSwiper";
 import LaunchesBlock from "components/main/LaunchesBlock/LaunchesBlock";
 import { fetchLaunchList } from "redux/launchData/fetches";
 import { fetchEventList } from "redux/eventData/fetches";
+import {requireAuthorization} from "redux/user/sliceReducer";
+import { AuthorizationStatus } from "utils/const";
 import { launchQnt } from "utils/const";
 import { toast } from "react-toastify";
+import { useAuth } from "contexts/AuthContext";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -45,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Main() {
 		const classes = useStyles();
+		const { currentUser } = useAuth();
 
 		const dispatch = useDispatch();
 
@@ -68,8 +72,11 @@ function Main() {
 			() => {
 				dispatch(fetchEventList());
 				dispatch(fetchLaunchList());
+				if (currentUser) {
+					dispatch(requireAuthorization(AuthorizationStatus.AUTH));
+				}
 			},
-			[]
+			[currentUser]
 		);
 
 		const onShowAllClick = () => {
