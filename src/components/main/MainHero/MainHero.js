@@ -144,9 +144,7 @@ const MainHero = ({ onShowAllClick }) => {
 					>
 						{intl.formatMessage({id: "mainHeroSubTitle"})}
 					</Typography>
-					{/*<Link to={url} className={classes.page__link} >
-              Show All Launches
-  </Link>*/}
+				
 					<Button
 						variant="contained"
 						onClick={onShowAllClick}

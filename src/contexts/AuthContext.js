@@ -4,7 +4,7 @@ import { useEffect } from "react";
 //import { auth, signup } from "../firebase/auth_signup_password";
 import { auth } from "../firebase/firebaseConfig";
 import {
-	createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged
+	createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, signInWithPopup, GoogleAuthProvider
 } from "firebase/auth";
 //import { app } from "firebase-admin";
 import { requireAuthorization } from "../redux/user/sliceReducer";
@@ -14,6 +14,7 @@ import { toast } from "react-toastify";
 import { useIntl } from "react-intl";
 
 const AuthContext = React.createContext();
+const provider = new GoogleAuthProvider();
 
 
 const outputtingError = (
@@ -27,17 +28,37 @@ const outputtingError = (
 	case "auth/email-already-exists":
 		toast.error(intl.formatMessage({ id: "emailAlreadyExist" }));
 		break;
+	case "auth/email-already-in-use":
+		toast.error(intl.formatMessage({ id: "emailAlreadyInUse" }));
+		break;
 	case "auth/wrong-password":
 		toast.error(intl.formatMessage({ id: "invalidPassword" }));
 		break;
 	case "auth/too-many-requests":
 		toast.error(intl.formatMessage({ id: "tooManyRequest" }));
 		break;
+	case "400":
+		toast.error(intl.formatMessage({ id: "emailAlreadyExist" }));
+		break;
 	default:
 		toast.error(intl.formatMessage({ id: "errorInLogin" }));
 	}
 };
 
+const outputtingGoogleError = (
+	error, intl
+) => {
+
+	switch (error) {
+	case "auth/user-not-found":
+		toast.error(intl.formatMessage({ id: "userNotFound" }));
+		break;
+	default:
+		toast.error(intl.formatMessage({ id: "errorInGoogleLogin" }));
+	}
+};
+
+console.log(auth);
 export const useAuth = () => {
 	return useContext(AuthContext);
 };
@@ -76,12 +97,12 @@ export const AuthProvider = ({ children }) => {
 				email,
 				password
 			);
-			console.log("signup");
 			console.log(res);
 
 			history.push(AppRoute.LOGIN);
 
 		} catch (error) {
+			console.log(error);
 			outputtingError(
 				error.code,
 				intl
@@ -96,8 +117,6 @@ export const AuthProvider = ({ children }) => {
 				email,
 				password
 			);
-
-			console.log("login");
 			console.log(
 				"res",
 				res
@@ -118,14 +137,6 @@ export const AuthProvider = ({ children }) => {
 
 	const logout = () => {
 		return signOut(auth).then(() => {
-			localStorage.setItem(
-				"token",
-				""
-			);
-			localStorage.setItem(
-				"login",
-				""
-			);
 			dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH));
 		});
 	};
@@ -142,6 +153,25 @@ export const AuthProvider = ({ children }) => {
 		return currentUser.updatePassword(password);
 	};
 
+	const googlePopupSignIn = async () => {
+		try {
+			const result = await signInWithPopup(
+				auth,
+				provider
+			);
+			setCurrentUser(result.user.email);
+			history.push(AppRoute.ROOT);
+		} catch (error) {
+			outputtingGoogleError(
+				error.code,
+				intl
+			);
+		}
+	};
+
+
+
+
 	const value = {
 		currentUser, // = user.emailVerified
 		login,
@@ -149,7 +179,8 @@ export const AuthProvider = ({ children }) => {
 		logout,
 		resetPassword,
 		updateEmail,
-		updatePassword
+		updatePassword,
+		googlePopupSignIn
 	};
 
 	return (

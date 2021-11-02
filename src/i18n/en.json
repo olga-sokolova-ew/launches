@@ -8,11 +8,13 @@
     "mainHeroButton": "Show All Launches",
     "recentEvents": "Recent Events",
     "spaceflightLaunches": "Spaceflight Launches",
-    "userNotFound": "User not found4",
+    "userNotFound": "User not found",
     "emailAlreadyExist": "Email already exist",
     "invalidPassword" : "Invalid password",
     "tooManyRequest": "Too many request",
-    "errorInLogin": "Error in login"
+    "errorInLogin": "Error in login",
+    "emailAlreadyInUse": "Email already in use",
+    "errorInGoogleLogin": "Error in login with Google acc"
 
 }  
   

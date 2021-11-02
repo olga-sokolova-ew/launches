@@ -1,5 +1,5 @@
 import { Link as RouterLink } from "react-router-dom";
-import * as Yup from "yup";
+
 import { Formik } from "formik";
 import {
 	Box,
@@ -9,7 +9,7 @@ import {
 	Typography
 } from "@material-ui/core";
 import { makeStyles } from "@mui/styles";
-import { useAuth } from "contexts/AuthContext";
+
 
 const useStyles = makeStyles(theme => ({
 	pageContent: {
@@ -61,29 +61,15 @@ const useStyles = makeStyles(theme => ({
 
 
 const RegisterForm = ({
-	initialValues
+	initialValues, onSubmit, validationSchema
 }) => {
 	const classes = useStyles();
-	const { signup} = useAuth();
-
-	const onSubmit = (
-		values, form
-	) => {
-
-		signup(values);
-		form.setSubmitting(false);
-	};
+	
 
 	return (
 		<Formik
-			initialValues={{ email: "", password: "", passwordConfirm: "" }}
-			validationSchema={
-				Yup.object().shape({
-					email: Yup.string().email("Must be a valid email").max(255).required("Email is required"),
-					password: Yup.string().max(255).required("password is required"),
-					passwordConfirm: Yup.string().max(255).required("confirm password is required"),
-				})
-			}
+			initialValues={initialValues}
+			validationSchema={validationSchema}
 			onSubmit={onSubmit}
 		>
 			{({

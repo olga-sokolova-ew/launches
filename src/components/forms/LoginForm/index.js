@@ -1,6 +1,5 @@
 
 import { Link as RouterLink } from "react-router-dom";
-import * as Yup from "yup";
 import { Formik, Form } from "formik";
 import { makeStyles } from "@mui/styles";
 import {
@@ -62,27 +61,17 @@ const useStyles = makeStyles(theme => ({
 
 
 const LoginForm = ({
-	initialValues
+	initialValues, validationSchema, onSubmit
 }) => {
 	const classes = useStyles();
-	const { login } = useAuth();
+	const { googlePopupSignIn } = useAuth();
 	
-	const onSubmit = (
-		values, form
-	) => {
-		console.log(form);
-		login(values);
-		form.setSubmitting(false);
-		
-	};
+	
 
 	return (
 		<Formik
-			initialValues={{ email: "", password: "",}}
-			validationSchema={Yup.object().shape({
-				email: Yup.string().email("Must be a valid email").max(255).required("Email is required"),
-				password: Yup.string().max(255).required("Password is required")
-			})}
+			initialValues={initialValues}
+			validationSchema={validationSchema}
 			onSubmit={onSubmit}
 		>
 			{({
@@ -117,7 +106,7 @@ const LoginForm = ({
 						value={values.email}
 						variant="outlined"
 						color="secondary"
-						classes={classes.textField}
+						
 						
 					/>
 					<TextField
@@ -133,7 +122,7 @@ const LoginForm = ({
 						value={values.password}
 						variant="outlined"
 						color="secondary"
-						classes={classes.textField}
+						
 					/>
 					<Box mt={4}>
 						<Button
@@ -161,6 +150,18 @@ const LoginForm = ({
 								Sign up
 							</Link>
 						</Typography>
+					</Box>
+					<Box mt={2}>
+						
+						<Button
+							
+							onClick={googlePopupSignIn}
+							classes={{ root: classes.pageLink }}
+							fullWidth={true}
+						>
+							Login with Google account
+						</Button>
+						
 					</Box>
 				</Form>
 			)}

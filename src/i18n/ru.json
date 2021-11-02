@@ -12,7 +12,9 @@
     "emailAlreadyExist": "Электронная почта уже существует",
     "invalidPassword" : "Неверный пароль",
     "tooManyRequest": "Слишком много запросов",
-    "errorInLogin": "Ошибка авторизации"
+    "errorInLogin": "Ошибка авторизации",
+    "emailAlreadyInUse": "Этот электронный адрес уже занят",
+    "errorInGoogleLogin": "Ошибка входа в аккаунт с помощью Google"
 
 }  
   
