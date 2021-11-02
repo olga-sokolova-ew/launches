@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { makeStyles } from "@mui/styles";
-import { Container } from "@mui/material";
+import { Container, Box } from "@mui/material";
 import Header from "components/common/Header/Header";
 import Footer from "components/common/Footer/Footer";
 import Loader from "components/common/Loader/Loader";
@@ -12,8 +12,7 @@ import LaunchesBlock from "components/main/LaunchesBlock/LaunchesBlock";
 import { fetchLaunchList } from "redux/launchData/fetches";
 import { fetchEventList } from "redux/eventData/fetches";
 import {requireAuthorization} from "redux/user/sliceReducer";
-import { AuthorizationStatus } from "utils/const";
-import { launchQnt } from "utils/const";
+import { AuthorizationStatus, launchQnt } from "utils/const";
 import { toast } from "react-toastify";
 import { useAuth } from "contexts/AuthContext";
 
@@ -43,6 +42,13 @@ const useStyles = makeStyles((theme) => ({
 			marginTop: "-20px",
 			padding: "20px",
 		},
+	},
+	errorsBlock: {
+		fontSize: 0,
+		color: "rgba(0,0,0,0)",
+		opacity: 0,
+		visibility: 0
+
 	}
 }));
 
@@ -105,7 +111,7 @@ function Main() {
 							/>}
 					</section>
 					:
-					<>
+					<Box  className={classes.errorsBlock}>
 						<Loader />
 						{(launchStatus === "loading") && toast.info(
 							"Please, wait ...",
@@ -117,7 +123,7 @@ function Main() {
 								toastId: customIdError
 							}
 						)}
-					</>
+					</Box>
 				}
 			</Container>
 			<Footer />

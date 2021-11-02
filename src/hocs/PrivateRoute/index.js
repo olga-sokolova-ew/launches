@@ -12,18 +12,21 @@ const PrivateRoute = ({
 
 	const authorizationStatus = useSelector(state => state.user.authorizationStatus);
 
-	console.log(
+	/*console.log(
 		"authorizationStatus",
 		authorizationStatus
 	);
 	console.log(
 		"currentUser",
 		currentUser
-	);
+	);*/
 
 
 	const isUserLoggedIn = authorizationStatus === AuthorizationStatus.AUTH && currentUser;
-
+	console.log(
+		"isUserLoggedIn",
+		isUserLoggedIn
+	);	
 
 	if (!isUserLoggedIn) {
 		return (
@@ -40,7 +43,8 @@ const PrivateRoute = ({
 		);
 	}
 
-	if (isUserLoggedIn) {
+	/*if (isUserLoggedIn) {
+		
 		return (
 			<Route
 				{...rest}
@@ -53,7 +57,7 @@ const PrivateRoute = ({
 				)}
 			/>
 		);
-	}
+	}*/
 
 	return (
 		<Route
