@@ -14,7 +14,7 @@ import { toast } from "react-toastify";
 import { useIntl } from "react-intl";
 
 const AuthContext = React.createContext();
-const provider = new GoogleAuthProvider();
+
 
 
 const outputtingError = (
@@ -154,14 +154,25 @@ export const AuthProvider = ({ children }) => {
 	};
 
 	const googlePopupSignIn = async () => {
+		const provider = new GoogleAuthProvider();
 		try {
 			const result = await signInWithPopup(
 				auth,
 				provider
 			);
+			const credential = GoogleAuthProvider.credentialFromResult(result);
+			const token = credential.accessToken;
+			console.log(credential);
+			console.log(token);
 			setCurrentUser(result.user.email);
 			history.push(AppRoute.ROOT);
 		} catch (error) {
+			console.log(error);
+			const errorCode = error.code;
+			const errorMessage = error.message;
+			console.log(errorCode );
+			console.log(errorMessage);
+			
 			outputtingGoogleError(
 				error.code,
 				intl

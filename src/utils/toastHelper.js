@@ -23,6 +23,8 @@ export const showWaitMessage = () => {
 
 export const showServerDetail = (error) => {
 	const currentDetailId = "currentDetailId";
+	
+	console.log(error);
 	toast.error(
 		error,
 		{ toastId: currentDetailId }
