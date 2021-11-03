@@ -13,13 +13,15 @@ export const fetchLaunchList = createAsyncThunk(
 	) => {
 		try {
 			const response = await getLaunchList();
-			if (!response.statusText) {
+			if (response.status < 200 && response.status >= 300) {	
+				console.log(response);
 				throw new Error("Server Error!");
 			}
 			showWaitMessage();
 			return response.data.results.map((item) => launchAdapter(item));
 
 		} catch (error) {
+			console.log(error);
 			showToast();
 			showServerDetail(error.response.data.detail);
 			
@@ -41,7 +43,8 @@ export const fetchCurrentLaunch = createAsyncThunk(
 	) => {
 		try {
 			const response = await getCurrentLaunch(id);
-			if (!response.statusText) {
+			//if (!response.status === 200) {
+			if (response.status < 200 && response.status >= 300) {		
 				throw new Error("Server Error!");
 			}
 			showWaitMessage();

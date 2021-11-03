@@ -12,7 +12,7 @@ export const fetchCurrentRocket = createAsyncThunk(
 	) => {
 		try {
 			const response = await getCurrentRocket(id);
-			if (!response.statusText) {
+			if (response.status < 200 && response.status >= 300) {	
 				throw new Error("Server Error!");
 			}
 
