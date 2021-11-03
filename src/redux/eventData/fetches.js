@@ -9,7 +9,8 @@ export const fetchEventList = createAsyncThunk(
 	) => {
 		try {
 			const response = await getEventList();
-			if (!response.status === 200) {
+			//if (!response.status === 200) {
+			if (!response.statusText) {
 				throw new Error("Server Error!");
 			}
 
@@ -17,7 +18,7 @@ export const fetchEventList = createAsyncThunk(
 
 			return result;
 		} catch (error) {
-			return rejectWithValue(error.message);
+			return rejectWithValue(error.response.data.error);
 		}
 	}
 );

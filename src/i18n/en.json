@@ -14,7 +14,10 @@
     "tooManyRequest": "Too many request",
     "errorInLogin": "Error in login",
     "emailAlreadyInUse": "Email already in use",
-    "errorInGoogleLogin": "Error in login with Google acc"
+    "errorInGoogleLogin": "Error in login with Google acc",
+    "errorServer": "Server Error",
+    "waitMessage": "Please, wait ..."
+
 
 }  
   

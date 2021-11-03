@@ -1,6 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getLaunchList, getCurrentLaunch } from "services/launch";
 import {launchAdapter, currentLaunchAdapter} from "utils/adapter";
+import { toast } from "react-toastify";
+import {FormattedMessage} from "react-intl";
+import {showToast, showServerDetail} from "utils/toastHelper";
+
+
+//const customIdError = "errorLoading";
 
 export const fetchLaunchList = createAsyncThunk(
 	"launch/fetchLaunchesList",
@@ -9,14 +15,30 @@ export const fetchLaunchList = createAsyncThunk(
 	) => {
 		try {
 			const response = await getLaunchList();
-			if (!response.status === 200) {
+			const customId = "loading";
+			if (!response.statusText) {
 				throw new Error("Server Error!");
 			}
-
+			toast.info(
+				<FormattedMessage
+					id="waitMessage"
+				/>,
+				{ toastId: customId }
+			);
 			return response.data.results.map((item) => launchAdapter(item));
 
 		} catch (error) {
-			return rejectWithValue(error.message);
+			//const customIdError = "errorLoading";
+			showToast();
+			showServerDetail(error.response.data.detail);
+			
+			/*toast.error(
+				<FormattedMessage
+					id="errorServer"
+				/>,
+				{ toastId: customIdError }
+			);*/
+			return rejectWithValue(error.response.data.error);
 		}
 	}
 );
@@ -28,7 +50,7 @@ export const fetchCurrentLaunch = createAsyncThunk(
 	) => {
 		try {
 			const response = await getCurrentLaunch(id);
-			if (!response.status === 200) {
+			if (!response.statusText) {
 				throw new Error("Server Error!");
 			}
 
@@ -37,7 +59,7 @@ export const fetchCurrentLaunch = createAsyncThunk(
 
 			return result;
 		} catch (error) {
-			return rejectWithValue(error.message);
+			return rejectWithValue(error.response.data.error);
 		}
 	}
 );

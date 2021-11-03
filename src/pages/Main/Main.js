@@ -13,8 +13,9 @@ import { fetchLaunchList } from "redux/launchData/fetches";
 import { fetchEventList } from "redux/eventData/fetches";
 import {requireAuthorization} from "redux/user/sliceReducer";
 import { AuthorizationStatus, launchQnt } from "utils/const";
-import { toast } from "react-toastify";
+//import { toast } from "react-toastify";
 import { useAuth } from "contexts/AuthContext";
+import { useIntl } from "react-intl";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -55,6 +56,7 @@ const useStyles = makeStyles((theme) => ({
 function Main() {
 		const classes = useStyles();
 		const { currentUser } = useAuth();
+		const intl = useIntl();
 
 		const dispatch = useDispatch();
 
@@ -62,14 +64,14 @@ function Main() {
 		const launches = useSelector(state => state.launch.launches);
 		const isEventsLoaded = useSelector(state => state.event.isEventsLoaded);
 		const isLaunchesLoaded = useSelector(state => state.launch.isLaunchesLoaded);
-		const launchStatus = useSelector(state => state.launch.launchStatus);
+		//const launchStatus = useSelector(state => state.launch.launchStatus);
 
 	//const launchError = useSelector(state => state.launch.launchError);
 
 	//const currentLaunch = useSelector(state => state.launch.currentLaunch);
 	//const isCurrentLaunch = useSelector(state => state.launch.isCurrentLaunch);
-		const customId = "loading";
-		const customIdError = "errorLoading";
+		//const customId = "loading";
+		//const customIdError = "errorLoading";
 
 
 		const [showenLaunchesQnt, setShowenLaunchesQnt] = useState(launchQnt);
@@ -77,7 +79,7 @@ function Main() {
 		useEffect(
 			() => {
 				dispatch(fetchEventList());
-				dispatch(fetchLaunchList());
+				dispatch(fetchLaunchList(intl));
 				if (currentUser) {
 					dispatch(requireAuthorization(AuthorizationStatus.AUTH));
 				}
@@ -113,6 +115,7 @@ function Main() {
 					:
 					<Box  className={classes.errorsBlock}>
 						<Loader />
+						{/*
 						{(launchStatus === "loading") && toast.info(
 							"Please, wait ...",
 							{ toastId: customId }
@@ -122,7 +125,7 @@ function Main() {
 							{
 								toastId: customIdError
 							}
-						)}
+						)}*/}
 					</Box>
 				}
 			</Container>

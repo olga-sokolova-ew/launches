@@ -11,14 +11,14 @@ export const fetchCurrentRocket = createAsyncThunk(
 	) => {
 		try {
 			const response = await getCurrentRocket(id);
-			if (!response.status === 200) {
+			if (!response.statusText) {
 				throw new Error("Server Error!");
 			}
 
 			return rocketAdapter(response.data);
 
 		} catch (error) {
-			return rejectWithValue(error.message);
+			return rejectWithValue(error.response.data.error);
 		}
 	}
 );
