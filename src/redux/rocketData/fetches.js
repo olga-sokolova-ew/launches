@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getCurrentRocket } from "services/rocket";
 import {rocketAdapter} from "utils/adapter";
+import {showToast, showServerDetail} from "utils/toastHelper";
 
 
 
@@ -18,6 +19,8 @@ export const fetchCurrentRocket = createAsyncThunk(
 			return rocketAdapter(response.data);
 
 		} catch (error) {
+			showToast();
+			showServerDetail(error.response.data.detail);
 			return rejectWithValue(error.response.data.error);
 		}
 	}

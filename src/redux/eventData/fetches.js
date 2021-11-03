@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getEventList} from "services/event";
 import {eventAdapter} from "utils/adapter";
+import {showToast, showServerDetail} from "utils/toastHelper";
 
 export const fetchEventList = createAsyncThunk(
 	"event/fetchEventList",
@@ -18,6 +19,8 @@ export const fetchEventList = createAsyncThunk(
 
 			return result;
 		} catch (error) {
+			showToast();
+			showServerDetail(error.response.data.detail);
 			return rejectWithValue(error.response.data.error);
 		}
 	}

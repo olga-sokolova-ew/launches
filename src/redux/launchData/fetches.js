@@ -28,7 +28,6 @@ export const fetchLaunchList = createAsyncThunk(
 			return response.data.results.map((item) => launchAdapter(item));
 
 		} catch (error) {
-			//const customIdError = "errorLoading";
 			showToast();
 			showServerDetail(error.response.data.detail);
 			
@@ -59,6 +58,8 @@ export const fetchCurrentLaunch = createAsyncThunk(
 
 			return result;
 		} catch (error) {
+			showToast();
+			showServerDetail(error.response.data.detail);
 			return rejectWithValue(error.response.data.error);
 		}
 	}
