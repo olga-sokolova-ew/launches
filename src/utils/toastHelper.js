@@ -11,11 +11,18 @@ export const showToast = (error) => {
 	);
 };
 
+export const showWaitMessage = () => {
+	const customId = "loading";
+	toast.info(
+		<FormattedMessage
+			id="waitMessage"
+		/>,
+		{ toastId: customId }
+	);
+};
+
 export const showServerDetail = (error) => {
 	const currentDetailId = "currentDetailId";
-	console.log("22222");
-	console.log(error);
-	console.log(typeof error);
 	toast.error(
 		error,
 		{ toastId: currentDetailId }

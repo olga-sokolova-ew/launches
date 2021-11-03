@@ -1,12 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getLaunchList, getCurrentLaunch } from "services/launch";
 import {launchAdapter, currentLaunchAdapter} from "utils/adapter";
-import { toast } from "react-toastify";
-import {FormattedMessage} from "react-intl";
-import {showToast, showServerDetail} from "utils/toastHelper";
+import {
+	showToast, showServerDetail, showWaitMessage
+} from "utils/toastHelper";
 
-
-//const customIdError = "errorLoading";
 
 export const fetchLaunchList = createAsyncThunk(
 	"launch/fetchLaunchesList",
@@ -15,16 +13,10 @@ export const fetchLaunchList = createAsyncThunk(
 	) => {
 		try {
 			const response = await getLaunchList();
-			const customId = "loading";
 			if (!response.statusText) {
 				throw new Error("Server Error!");
 			}
-			toast.info(
-				<FormattedMessage
-					id="waitMessage"
-				/>,
-				{ toastId: customId }
-			);
+			showWaitMessage();
 			return response.data.results.map((item) => launchAdapter(item));
 
 		} catch (error) {
@@ -52,7 +44,7 @@ export const fetchCurrentLaunch = createAsyncThunk(
 			if (!response.statusText) {
 				throw new Error("Server Error!");
 			}
-
+			showWaitMessage();
 			console.log(response);
 			const result = currentLaunchAdapter(response.data);
 
