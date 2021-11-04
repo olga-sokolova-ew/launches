@@ -15,7 +15,7 @@ const Register = () => {
 	const onSubmit = (
 		values, form
 	) => {
-		
+
 
 		signup(values);
 		form.setSubmitting(false);
@@ -24,7 +24,12 @@ const Register = () => {
 		Yup.object().shape({
 			email: Yup.string().email("Must be a valid email").max(255).required("Email is required"),
 			password: Yup.string().max(255).required("password is required"),
-			passwordConfirm: Yup.string().max(255).required("confirm password is required"),
+			passwordConfirm: Yup
+				.string()
+				.oneOf(
+					[Yup.ref("password"), null],
+					"Passwords don't match"
+				)
 		});
 
 	return (
