@@ -1,13 +1,13 @@
 import { toast } from "react-toastify";
-import {FormattedMessage} from "react-intl";
+import { FormattedMessage } from "react-intl";
 
 export const showToast = (error) => {
-	const currentId="errorServer";
+	const currentId = "errorServer";
 	toast.error(
-	<FormattedMessage
-		id="errorServer"
-	/>,
-	{ toastId: currentId }
+		<FormattedMessage
+			id="errorServer"
+		/>,
+		{ toastId: currentId }
 	);
 };
 
@@ -23,7 +23,7 @@ export const showWaitMessage = () => {
 
 export const showServerDetail = (error) => {
 	const currentDetailId = "currentDetailId";
-	
+
 	console.log(error);
 	toast.error(
 		error,

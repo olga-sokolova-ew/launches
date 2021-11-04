@@ -12,8 +12,6 @@ dayjs.extend(isSameOrAfter);
 
 export const isDevelopment = () => process.env.NODE_ENV === "development";
 
-
-
 export const getTimeFormate = (endtime) => {
 	if (Date.parse(endtime) !== Date.parse(new Date())) {
 		const t = Date.parse(endtime) - Date.parse(new Date());

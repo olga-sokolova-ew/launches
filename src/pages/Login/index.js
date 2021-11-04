@@ -7,9 +7,9 @@ import { useAuth } from "contexts/AuthContext";
 import LoginForm from "components/forms/LoginForm";
 
 const Login = () => {
-	const { login} = useAuth();
+	const { login } = useAuth();
 
-	const initialValuesLogin={ email: "", password: "",};
+	const initialValuesLogin = { email: "", password: "", };
 
 	const onSubmit = (
 		values, form
@@ -17,10 +17,10 @@ const Login = () => {
 		console.log(form);
 		login(values);
 		form.setSubmitting(false);
-		
+
 	};
 
-	const validationSchema=
+	const validationSchema =
 		Yup.object().shape({
 			email: Yup.string().email("Must be a valid email").max(255).required("Email is required"),
 			password: Yup.string().max(255).required("Password is required")

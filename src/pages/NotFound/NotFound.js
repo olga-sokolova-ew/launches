@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
 		width: "100%",
 		display: "flex",
 		flexDirection: "column",
-		justifyContent:"center",
+		justifyContent: "center",
 		flexGrow: 1,
 		margin: "0 auto",
 	},
@@ -19,24 +19,25 @@ const useStyles = makeStyles((theme) => ({
 
 const NotFound = () => {
 	const classes = useStyles();
+	
 	return (
-    <PageLayout style={{ height: "100vh" }}>
-      <Box
-	component="div"
-	className={classes.pageWrapper}
-      >
-			<Container maxWidth="lg">
-        <h1 >Page not found</h1>
-        <Link
-	component={RouterLink}
-	to={AppRoute.ROOT}
-        >
-          Link to Main Page
-        </Link>
-   </Container>
-      </Box>
+		<PageLayout style={{ height: "100vh" }}>
+			<Box
+				component="div"
+				className={classes.pageWrapper}
+			>
+				<Container maxWidth="lg">
+					<h1 >Page not found</h1>
+					<Link
+						component={RouterLink}
+						to={AppRoute.ROOT}
+					>
+						Link to Main Page
+					</Link>
+				</Container>
+			</Box>
 
-    </PageLayout>
+		</PageLayout>
 	);
 };
 

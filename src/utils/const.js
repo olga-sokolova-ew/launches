@@ -11,7 +11,7 @@ const AppRoute = {
 const APIRoute = {
 	LAUNCHES: "launch/upcoming?mode=detailed",
 	EVENTS: "event/upcoming/",
-}; 
+};
 
 const AuthorizationStatus = {
 	AUTH: "AUTH",
@@ -22,10 +22,10 @@ const AuthorizationStatus = {
 // Sol key for encrypt user info token
 const KEY = "skeletonEcnryptKey";
 
-const launchQnt = 6;  
+const launchQnt = 6;
 const MINUTE = 60;
 const HOURS = 24;
 const SECONDS = 60;
 
 
-export {APIRoute, AppRoute, AuthorizationStatus, HOURS, KEY, launchQnt, MINUTE, SECONDS};
+export { APIRoute, AppRoute, AuthorizationStatus, HOURS, KEY, launchQnt, MINUTE, SECONDS };

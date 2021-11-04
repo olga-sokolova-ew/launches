@@ -1,12 +1,10 @@
 import React, { useState, useContext } from "react";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-//import { auth, signup } from "../firebase/auth_signup_password";
 import { auth } from "../firebase/firebaseConfig";
 import {
 	createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, signInWithPopup, GoogleAuthProvider
 } from "firebase/auth";
-//import { app } from "firebase-admin";
 import { requireAuthorization } from "../redux/user/sliceReducer";
 import { AppRoute, AuthorizationStatus } from "../utils/const";
 import { useHistory } from "react-router-dom";
@@ -78,7 +76,6 @@ export const AuthProvider = ({ children }) => {
 					if (user) {
 						setCurrentUser(user.email);
 					} else {
-						console.log("user is signed out");
 						setCurrentUser(null);
 					}
 				}
@@ -92,17 +89,15 @@ export const AuthProvider = ({ children }) => {
 		email, password
 	}) => {
 		try {
-			const res = await createUserWithEmailAndPassword(
+			await createUserWithEmailAndPassword(
 				auth,
 				email,
 				password
 			);
-			console.log(res);
 
 			history.push(AppRoute.LOGIN);
 
 		} catch (error) {
-			console.log(error);
 			outputtingError(
 				error.code,
 				intl
@@ -112,15 +107,12 @@ export const AuthProvider = ({ children }) => {
 
 	const login = async ({ email, password }) => {
 		try {
-			const res = await signInWithEmailAndPassword(
+			await signInWithEmailAndPassword(
 				auth,
 				email,
 				password
 			);
-			console.log(
-				"res",
-				res
-			);
+
 
 			dispatch(requireAuthorization(AuthorizationStatus.AUTH));
 
@@ -170,18 +162,15 @@ export const AuthProvider = ({ children }) => {
 			console.log(error);
 			const errorCode = error.code;
 			const errorMessage = error.message;
-			console.log(errorCode );
+			console.log(errorCode);
 			console.log(errorMessage);
-			
+
 			outputtingGoogleError(
 				error.code,
 				intl
 			);
 		}
 	};
-
-
-
 
 	const value = {
 		currentUser, // = user.emailVerified
