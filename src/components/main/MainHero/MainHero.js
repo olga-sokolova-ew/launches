@@ -134,7 +134,7 @@ const MainHero = ({ onShowAllClick }) => {
 						mb="30px"
 						color="primary"
 					>
-						{intl.formatMessage({id: "mainHeroTitle"})}
+						{intl.formatMessage({ id: "mainHeroTitle" })}
 					</Typography>
 
 					<Typography
@@ -142,23 +142,20 @@ const MainHero = ({ onShowAllClick }) => {
 						mb="50px"
 						className={classes.heroAbout}
 					>
-						{intl.formatMessage({id: "mainHeroSubTitle"})}
+						{intl.formatMessage({ id: "mainHeroSubTitle" })}
 					</Typography>
-				
+
 					<Button
 						variant="contained"
 						onClick={onShowAllClick}
 						classes={{ root: classes.pageLink }}
 					>
-						{intl.formatMessage({id: "mainHeroButton"})}
+						{intl.formatMessage({ id: "mainHeroButton" })}
 					</Button>
 
 				</Box>
 			</Container>
 		</Box>
-
-
-
 	);
 };
 

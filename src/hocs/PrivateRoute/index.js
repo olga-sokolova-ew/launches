@@ -9,24 +9,9 @@ const PrivateRoute = ({
 	...rest
 }) => {
 	const { currentUser } = useAuth();
-
 	const authorizationStatus = useSelector(state => state.user.authorizationStatus);
 
-	/*console.log(
-		"authorizationStatus",
-		authorizationStatus
-	);
-	console.log(
-		"currentUser",
-		currentUser
-	);*/
-
-
 	const isUserLoggedIn = authorizationStatus === AuthorizationStatus.AUTH && currentUser;
-	console.log(
-		"isUserLoggedIn",
-		isUserLoggedIn
-	);	
 
 	if (!isUserLoggedIn) {
 		return (
@@ -43,21 +28,6 @@ const PrivateRoute = ({
 		);
 	}
 
-	/*if (isUserLoggedIn) {
-		
-		return (
-			<Route
-				{...rest}
-				render={() => (
-					<Redirect
-						to={{
-							pathname: "/",
-						}}
-					/>
-				)}
-			/>
-		);
-	}*/
 
 	return (
 		<Route

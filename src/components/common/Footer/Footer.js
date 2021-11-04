@@ -2,11 +2,10 @@ import { Link } from "react-router-dom";
 import { AppRoute } from "utils/const";
 import Box from "@mui/material/Box";
 import { makeStyles } from "@mui/styles";
-import {  Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { ButtonUnstyled } from "@mui/core";
 import { ReactComponent as LogoSvg } from "assets/common/logo.svg";
 import { useAuth } from "contexts/AuthContext";
-
 
 const useStyles = makeStyles((theme) => ({
 	footer: {
@@ -62,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
 		"&:hover": {
 			opacity: "0.7",
 		},
-		
+
 	},
 	footerCopyright: {
 		color: "#C0C0C0",
@@ -81,15 +80,13 @@ const useStyles = makeStyles((theme) => ({
 	}
 }));
 
-
 const Footer = () => {
 	const classes = useStyles();
 	const date = new Date();
 	const { currentUser,
-		logout,} = useAuth();
+		logout, } = useAuth();
 
 	const onLogoutClick = () => logout();
-	console.log(currentUser);
 
 	return (
 		<Box
@@ -108,23 +105,23 @@ const Footer = () => {
 					<LogoSvg />
 				</Link>
 				<Box className={classes.loginWrap}>
-					{currentUser && 
-					<>
-						<Typography
-							variant="body1"
-							component="div"
-							className={classes.footerCopyright}
-						>
-							Login as {"  " + currentUser}
-						</Typography>
-						<ButtonUnstyled
-							color="primary"
-							size="small"
-							className={classes.logoutBtn}
-							onClick = {onLogoutClick}
-						>Logout
-						</ButtonUnstyled>
-					</>}
+					{currentUser &&
+						<>
+							<Typography
+								variant="body1"
+								component="div"
+								className={classes.footerCopyright}
+							>
+								Login as {"  " + currentUser}
+							</Typography>
+							<ButtonUnstyled
+								color="primary"
+								size="small"
+								className={classes.logoutBtn}
+								onClick={onLogoutClick}
+							>Logout
+							</ButtonUnstyled>
+						</>}
 
 					{(!currentUser) && <Link
 						to={AppRoute.LOGIN}
@@ -134,7 +131,6 @@ const Footer = () => {
                         </Link>}
 
 				</Box>
-
 
 				<Typography
 					variant="body1"

@@ -5,7 +5,6 @@ export const launchAdapter = (incomingLaunch) =>  {
 		launchImg: incomingLaunch.img_url,
 		launchDate: incomingLaunch.net,
 		rocketId: incomingLaunch.rocket.configuration.id,
-      
 	};
 	return adaptedLaunch;
   
@@ -19,7 +18,6 @@ export const eventAdapter = (incomingEvent) =>  {
 		eventDate: incomingEvent.date,
 	};
 	return adaptedEvent;
-  
 };
 
 export const rocketAdapter = (incomingRocket) =>  {
@@ -40,17 +38,7 @@ export const currentLaunchAdapter = (incomingCurrentLaunch) =>  {
 		rocketDescription: incomingCurrentLaunch.rocket.description,
 		launchDestination: incomingCurrentLaunch.mission.orbit,
 		launchMission: incomingCurrentLaunch.mission.type,
-
-    
-    /*launchDescription: incomingCurrentLaunch.launcher_stage.launcher.details,
-    launchDestination: incomingCurrentLaunch.rocket.spacecraft_stage.destination,
-
-    roketName: incomingCurrentLaunch.rocket.name,
-    destination: incomingCurrentLaunch.rocket.spacecraft_stage.destination,
-    mission: incomingCurrentLaunch.rocket.mission,*/
-
 		launchDate: incomingCurrentLaunch.net,
 	};
 	return adaptedLaunch;
-
 };

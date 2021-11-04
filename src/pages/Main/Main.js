@@ -11,9 +11,8 @@ import EventsSwiper from "components/main/EventsSwiper/EventsSwiper";
 import LaunchesBlock from "components/main/LaunchesBlock/LaunchesBlock";
 import { fetchLaunchList } from "redux/launchData/fetches";
 import { fetchEventList } from "redux/eventData/fetches";
-import {requireAuthorization} from "redux/user/sliceReducer";
+import { requireAuthorization } from "redux/auth/sliceReducer";
 import { AuthorizationStatus, launchQnt } from "utils/const";
-//import { toast } from "react-toastify";
 import { useAuth } from "contexts/AuthContext";
 import { useIntl } from "react-intl";
 
@@ -64,15 +63,6 @@ function Main() {
 		const launches = useSelector(state => state.launch.launches);
 		const isEventsLoaded = useSelector(state => state.event.isEventsLoaded);
 		const isLaunchesLoaded = useSelector(state => state.launch.isLaunchesLoaded);
-		//const launchStatus = useSelector(state => state.launch.launchStatus);
-
-	//const launchError = useSelector(state => state.launch.launchError);
-
-	//const currentLaunch = useSelector(state => state.launch.currentLaunch);
-	//const isCurrentLaunch = useSelector(state => state.launch.isCurrentLaunch);
-		//const customId = "loading";
-		//const customIdError = "errorLoading";
-
 
 		const [showenLaunchesQnt, setShowenLaunchesQnt] = useState(launchQnt);
 
@@ -113,19 +103,8 @@ function Main() {
 							/>}
 					</section>
 					:
-					<Box  className={classes.errorsBlock}>
+					<Box className={classes.errorsBlock}>
 						<Loader />
-						{/*
-						{(launchStatus === "loading") && toast.info(
-							"Please, wait ...",
-							{ toastId: customId }
-						)}
-						{(launchStatus === "rejected") && toast.error(
-							"Server error",
-							{
-								toastId: customIdError
-							}
-						)}*/}
 					</Box>
 				}
 			</Container>

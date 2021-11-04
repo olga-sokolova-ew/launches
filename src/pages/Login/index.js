@@ -14,7 +14,6 @@ const Login = () => {
 	const onSubmit = (
 		values, form
 	) => {
-		console.log(form);
 		login(values);
 		form.setSubmitting(false);
 

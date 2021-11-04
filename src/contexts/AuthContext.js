@@ -5,15 +5,13 @@ import { auth } from "../firebase/firebaseConfig";
 import {
 	createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, signInWithPopup, GoogleAuthProvider
 } from "firebase/auth";
-import { requireAuthorization } from "../redux/user/sliceReducer";
+import { requireAuthorization } from "../redux/auth/sliceReducer";
 import { AppRoute, AuthorizationStatus } from "../utils/const";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useIntl } from "react-intl";
 
 const AuthContext = React.createContext();
-
-
 
 const outputtingError = (
 	error, intl
@@ -42,7 +40,6 @@ const outputtingError = (
 		toast.error(intl.formatMessage({ id: "errorInLogin" }));
 	}
 };
-
 const outputtingGoogleError = (
 	error, intl
 ) => {
@@ -56,7 +53,7 @@ const outputtingGoogleError = (
 	}
 };
 
-console.log(auth);
+
 export const useAuth = () => {
 	return useContext(AuthContext);
 };
@@ -112,10 +109,7 @@ export const AuthProvider = ({ children }) => {
 				email,
 				password
 			);
-
-
 			dispatch(requireAuthorization(AuthorizationStatus.AUTH));
-
 			history.push("/");
 
 		} catch (error) {
@@ -123,7 +117,6 @@ export const AuthProvider = ({ children }) => {
 				error.code,
 				intl
 			);
-
 		}
 	};
 
@@ -152,19 +145,14 @@ export const AuthProvider = ({ children }) => {
 				auth,
 				provider
 			);
-			const credential = GoogleAuthProvider.credentialFromResult(result);
-			const token = credential.accessToken;
-			console.log(credential);
-			console.log(token);
+			//const credential = GoogleAuthProvider.credentialFromResult(result);
+			//const token = credential.accessToken;
+
 			setCurrentUser(result.user.email);
 			history.push(AppRoute.ROOT);
 		} catch (error) {
-			console.log(error);
-			const errorCode = error.code;
-			const errorMessage = error.message;
-			console.log(errorCode);
-			console.log(errorMessage);
-
+			//const errorCode = error.code;
+			//const errorMessage = error.message;
 			outputtingGoogleError(
 				error.code,
 				intl
@@ -189,6 +177,3 @@ export const AuthProvider = ({ children }) => {
 		</AuthContext.Provider>
 	);
 };
-
-
-

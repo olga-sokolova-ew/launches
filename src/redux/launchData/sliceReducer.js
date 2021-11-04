@@ -1,7 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchLaunchList, fetchCurrentLaunch } from "./fetches";
-//import { toast } from "react-toastify";
-//import {FormattedMessage} from "react-intl";
 
 const initialState = {
 	currentLaunch: {},
@@ -17,18 +15,11 @@ const initialState = {
 const launchSlice = createSlice({
 	name: "launch",
 	initialState,
-	reducers: {
-
-	},
+	reducers: {},
 	extraReducers: {
 		[fetchLaunchList.pending]: (state) => {
-			//const customId = "loading";
 			state.launchStatus = "loading";
 			state.launchError = null;
-			/*toast.info(
-				"Please, wait ...",
-				{ toastId: customId }
-			);*/
 		},
 		[fetchLaunchList.fulfilled]: (
 			state, action
@@ -40,17 +31,9 @@ const launchSlice = createSlice({
 		[fetchLaunchList.rejected]: (
 			state, action
 		) => {
-			//const customIdError = "errorLoading";
 			state.launchStatus = "rejected";
 			state.launchError = action.error;
 			state.isLaunchesLoaded = false;
-			/*toast.error(
-				<FormattedMessage
-					id="errorServer"
-				/>,
-				{ toastId: customIdError }
-			);*/
-			
 		},
 
 		[fetchCurrentLaunch.pending]: (state) => {
@@ -71,10 +54,7 @@ const launchSlice = createSlice({
 			state.launchCurrentError = action.payload;
 			state.isCurrentLaunch = false;
 		},
-
-	}
+	},
 });
 
 export default launchSlice.reducer;
-
-
