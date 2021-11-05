@@ -9,7 +9,7 @@ const PrivateRoute = ({
 	...rest
 }) => {
 	const { currentUser } = useAuth();
-	const authorizationStatus = useSelector(state => state.user.authorizationStatus);
+	const authorizationStatus = useSelector(state => state.auth.authorizationStatus);
 
 	const isUserLoggedIn = authorizationStatus === AuthorizationStatus.AUTH && currentUser;
 

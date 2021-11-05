@@ -1,8 +1,9 @@
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 import { AppRoute } from "utils/const";
 import Box from "@mui/material/Box";
 import { makeStyles } from "@mui/styles";
-import { Typography } from "@mui/material";
+import { Typography, Link } from "@mui/material";
 import { ButtonUnstyled } from "@mui/core";
 import { ReactComponent as LogoSvg } from "assets/common/logo.svg";
 import { useAuth } from "contexts/AuthContext";
@@ -19,6 +20,27 @@ const useStyles = makeStyles((theme) => ({
 		background: "#181B48",
 		[theme.breakpoints.down("sm")]: {
 			padding: "15px",
+		},
+	},
+	footerContainer: {
+		display: "frlex",
+		flexDirection: "column"
+	},
+	footerMenu: {
+		maxWidth: "1180px",
+		padding: "20px 0",
+		margin: "0 auto",
+		display: "flex",
+		alignItems: "center",
+
+	},
+	footerMenuLink: {
+		display: "inline-flex",
+		textDecoration: "none",
+		transition: "0.3s ease",
+		marginRight: "30px !important",
+		"&:hover": {
+			opacity: "0.9",
 		},
 	},
 
@@ -91,54 +113,86 @@ const Footer = () => {
 	return (
 		<Box
 			component="div"
-			className={classes.footer}
+			className={classes.footerContainer}
 		>
 			<Box
 				component="div"
-				className={classes.footerWrapper}
+				className={classes.footerMenu}
 			>
 				<Link
-					to={AppRoute.ROOT}
-					className={classes.footerLink}
+					component={RouterLink}
+					underline="hover"
+					to={AppRoute.DASHBOARD}
+					className={classes.footerMenuLink}
 				>
 
-					<LogoSvg />
+					Dashboard
 				</Link>
-				<Box className={classes.loginWrap}>
-					{currentUser &&
-						<>
-							<Typography
-								variant="body1"
-								component="div"
-								className={classes.footerCopyright}
-							>
-								Login as {"  " + currentUser}
-							</Typography>
-							<ButtonUnstyled
-								color="primary"
-								size="small"
-								className={classes.logoutBtn}
-								onClick={onLogoutClick}
-							>Logout
-							</ButtonUnstyled>
-						</>}
-
-					{(!currentUser) && <Link
-						to={AppRoute.LOGIN}
-						className={classes.footerLoginLink}
-					>
-						Login
-                        </Link>}
-
-				</Box>
-
-				<Typography
-					variant="body1"
-					component="div"
-					className={classes.footerCopyright}
+				<Link
+					component={RouterLink}
+					underline="hover"
+					to={AppRoute.ADDPRODUCT_PAGE}
+					className={classes.footerMenuLink}
 				>
-					© {date.getFullYear()} Copyright
-				</Typography>
+
+					Add New Product
+				</Link>
+
+			</Box>
+			<Box
+				component="div"
+				className={classes.footer}
+			>
+
+				<Box
+					component="div"
+					className={classes.footerWrapper}
+				>
+					<Link
+						component={RouterLink}
+						to={AppRoute.ROOT}
+						className={classes.footerLink}
+					>
+
+						<LogoSvg />
+					</Link>
+					<Box className={classes.loginWrap}>
+						{currentUser &&
+							<>
+								<Typography
+									variant="body1"
+									component="div"
+									className={classes.footerCopyright}
+								>
+									Login as {"  " + currentUser}
+								</Typography>
+								<ButtonUnstyled
+									color="primary"
+									size="small"
+									className={classes.logoutBtn}
+									onClick={onLogoutClick}
+								>Logout
+								</ButtonUnstyled>
+							</>}
+
+						{(!currentUser) && <Link
+							to={AppRoute.LOGIN}
+							component={RouterLink}
+							className={classes.footerLoginLink}
+						>
+							Login
+                         </Link>}
+
+					</Box>
+
+					<Typography
+						variant="body1"
+						component="div"
+						className={classes.footerCopyright}
+					>
+						© {date.getFullYear()} Copyright
+					</Typography>
+				</Box>
 			</Box>
 		</Box>
 

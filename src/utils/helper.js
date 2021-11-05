@@ -1,5 +1,5 @@
 import {
-	HOURS, MINUTE, SECONDS 
+	HOURS, MAX_FILE_SIZE, MINUTE, SECONDS, SUPPORTED_FORMATS
 } from "./const";
 import AES from "crypto-js/aes";
 import CryptoJS from "crypto-js";
@@ -21,12 +21,12 @@ export const getTimeFormate = (endtime) => {
 		const days = Math.floor(t / (1000 * SECONDS * MINUTE * HOURS));
 		return (
 			(days <= 9 ? `0` + days : days) +
-      ` : ` +
-      (hours <= 9 ? `0` + hours : hours) +
-      ` : ` +
-      (minutes <= 9 ? `0` + minutes : minutes) +
-      ` : ` +
-      (seconds <= 9 ? `0` + seconds : seconds)
+			` : ` +
+			(hours <= 9 ? `0` + hours : hours) +
+			` : ` +
+			(minutes <= 9 ? `0` + minutes : minutes) +
+			` : ` +
+			(seconds <= 9 ? `0` + seconds : seconds)
 		);
 	}
 
@@ -64,8 +64,26 @@ export const isAuthExpired = () => {
 	const authInfo = deryptUserInfo();
 	const refreshToken = localStorage.getItem("refreshToken");
 	const expiresAt = authInfo?.access_token ? jwtDecode(authInfo?.access_token) : null;
-    
+
 	if (!parseInt(refreshToken))
 		return dayjs().isSameOrAfter(dayjs.unix(expiresAt?.exp));
+};
+
+export const checkIfFileIsCorrectType = (file) => {
+	let valid = true;
+	if (!SUPPORTED_FORMATS.includes(file.type)) {
+		valid = false;
+	}
+	return valid;
+};
+
+export const checkIfFileIsTooBig = (file) => {
+	let valid = true;
+	const size = file.size;
+	if (size > MAX_FILE_SIZE) {
+		valid = false;
+	}
+
+	return valid;
 };
 
