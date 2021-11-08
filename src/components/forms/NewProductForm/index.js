@@ -1,5 +1,5 @@
 
-import { Formik, Form } from "formik";
+import {Formik, Form} from "formik";
 import { makeStyles } from "@mui/styles";
 import {
 	Box, Button, TextField, Typography
@@ -52,9 +52,14 @@ const useStyles = makeStyles((theme) => ({
 			color: theme.palette.secondary.main,
 		}
 	},
+	fileField: {
+		"& label": {
+			display: "none",
+		}
+	}
 }));
 
-const NewProductForm = ({ initialValues, validationSchema, onSubmit,  onInputChange}) => {
+const NewProductForm = ({ initialValues, validationSchema, onSubmit,  onInputChange, file}) => {
 	const intl = useIntl();
 	const classes = useStyles();
 	
@@ -69,9 +74,13 @@ const NewProductForm = ({ initialValues, validationSchema, onSubmit,  onInputCha
                 errors,
                 handleBlur,
                 handleChange,
+				onInputChange,
                 isSubmitting,
                 touched,
                 values,
+				file
+
+				
             }) => (
                 <Form className={classes.pageContent}>
                     <Box mb={3}>
@@ -97,17 +106,18 @@ const NewProductForm = ({ initialValues, validationSchema, onSubmit,  onInputCha
 	color="secondary"
 	className={classes.textField}
                     />
-                    <input
-	error={Boolean(touched.picture && errors.picture)}
+                    <TextField
+	error={Boolean(touched.file && errors.file)}
 	label={intl.formatMessage({ id: "picture" })}
 	margin="normal"
 	name="picture"
 	onBlur={handleBlur}
 	onChange={onInputChange}
 	type="file"
-	value={values.picture}
+	value={file}
 	variant="outlined"
 	color="secondary"
+	className={classes.fileField}
                     />
                     <TextField
 	error={Boolean(touched.productQnt && errors.productQnt)}

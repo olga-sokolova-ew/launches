@@ -124,11 +124,12 @@ const Dashboard = () => {
 												className={classes.productTitle}
 											>{product.title}
 											</TableCell>
-											<TableCell align="left"><img
-												src={product.product_picture}
-												alt={product.title}
-												className={classes.tableImg}
-											/>
+											<TableCell align="left">
+												{product.product_picture && <img
+													src={product.product_picture}
+													alt={product.title}
+													className={classes.tableImg}
+												/>}
 											</TableCell>
 											<TableCell align="left">{product.quantity}</TableCell>
 										</TableRow>

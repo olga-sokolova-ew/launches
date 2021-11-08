@@ -15,8 +15,9 @@ import {
 
 
 const AddProductPage = () => {
+	const [file, setFile] = useState(null);
 	const [fileUrl, setFileUrl] = useState(null);
-	const initialValuesLogin = { productName: "", picture: "", productQnt: "0" };
+	const initialValuesAddProduct = { productName: "", file: "", productQnt: "0" };
 
 
 	const handleFileChange = async (evt) => {
@@ -30,6 +31,7 @@ const AddProductPage = () => {
 			file
 		);
 		setFileUrl(await getDownloadURL( fileRef));
+		setFile(file);
 	};
 
 	const onSubmit = (
@@ -55,7 +57,7 @@ const AddProductPage = () => {
 	const validationSchema =
 		Yup.object().shape({
 			productName: Yup.string().max(255).required("Product name is required"),
-			picture: Yup.mixed()
+			file: Yup.mixed()
 				.test(
 					"MAX_FILE_SIZE",
 					"Uploaded file is too big.",
@@ -66,7 +68,8 @@ const AddProductPage = () => {
 					"VALIDATION_FIELD_FILE_WRONG_TYPE",
 					(value) =>
 						!value || (value && SUPPORTED_FORMATS.includes(value.type))
-				),
+				)
+				.required("File is required"),
 			productQnt: Yup.number().min(0)
 		});
 
@@ -80,10 +83,11 @@ const AddProductPage = () => {
 			>
 				<Container maxWidth="sm" >
 					<NewProductForm
-						initialValues={initialValuesLogin}
+						initialValues={initialValuesAddProduct}
 						onSubmit={onSubmit}
 						validationSchema={validationSchema}
 						onInputChange={handleFileChange}
+						file={file}
 
 					/>
 				</Container>
