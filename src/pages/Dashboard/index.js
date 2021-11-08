@@ -14,6 +14,7 @@ import { makeStyles } from "@mui/styles";
 import { useEffect, useState } from "react";
 import { database } from "firebase/firebaseConfig";
 import { ref, onValue } from "firebase/database";
+import { useIntl } from "react-intl";
 
 const useStyles = makeStyles((theme) => ({
 	tableBody: {
@@ -58,6 +59,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Dashboard = () => {
+	const intl = useIntl();
 	const classes = useStyles();
 	const [products, setProducts] = useState(null);
 
@@ -94,7 +96,7 @@ const Dashboard = () => {
 					<Typography
 						variant="h2"
 						mb="30px"
-					>Product List
+					>{intl.formatMessage({ id: "productList" })}
 					</Typography>
 					<TableContainer >
 						<Table
@@ -103,10 +105,10 @@ const Dashboard = () => {
 						>
 							<TableHead className={classes.tableHead}>
 								<TableRow className={classes.tableRow}>
-									<TableCell align="left">Product id</TableCell>
-									<TableCell align="left">Title</TableCell>
-									<TableCell align="left">Picture</TableCell>
-									<TableCell align="left">Quantity, pcs</TableCell>
+									<TableCell align="left">{intl.formatMessage({ id: "productId" })}</TableCell>
+									<TableCell align="left">{intl.formatMessage({ id: "title" })}</TableCell>
+									<TableCell align="left">{intl.formatMessage({ id: "picture" })}</TableCell>
+									<TableCell align="left">{intl.formatMessage({ id: "quantity" })}</TableCell>
 								</TableRow>
 							</TableHead>
 							<TableBody className={classes.tableBody}>

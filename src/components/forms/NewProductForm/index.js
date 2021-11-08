@@ -4,7 +4,7 @@ import { makeStyles } from "@mui/styles";
 import {
 	Box, Button, TextField, Typography
 } from "@material-ui/core";
-//import { Field } from "formik";
+import { useIntl } from "react-intl";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -48,10 +48,14 @@ const useStyles = makeStyles((theme) => ({
 		"&:hover": {
 			borderColor: theme.palette.secondary.main,
 		},
+		"label": {
+			color: theme.palette.secondary.main,
+		}
 	},
 }));
 
 const NewProductForm = ({ initialValues, validationSchema, onSubmit,  onInputChange}) => {
+	const intl = useIntl();
 	const classes = useStyles();
 	
 
@@ -75,14 +79,14 @@ const NewProductForm = ({ initialValues, validationSchema, onSubmit,  onInputCha
 	align="center"
 	variant="h2"
                         >
-                            New Product
+                            {intl.formatMessage({ id: "newProduct" })}
                         </Typography>
                     </Box>
                     <TextField
 	error={Boolean(touched.productName && errors.productName)}
 	fullWidth
 	helperText={touched.productName && errors.productName}
-	label="Product Name"
+	label={intl.formatMessage({ id: "productName" })}
 	margin="normal"
 	name="productName"
 	onBlur={handleBlur}
@@ -91,10 +95,11 @@ const NewProductForm = ({ initialValues, validationSchema, onSubmit,  onInputCha
 	value={values.productName}
 	variant="outlined"
 	color="secondary"
+	className={classes.textField}
                     />
                     <input
 	error={Boolean(touched.picture && errors.picture)}
-	label="Picture"
+	label={intl.formatMessage({ id: "picture" })}
 	margin="normal"
 	name="picture"
 	onBlur={handleBlur}
@@ -108,7 +113,7 @@ const NewProductForm = ({ initialValues, validationSchema, onSubmit,  onInputCha
 	error={Boolean(touched.productQnt && errors.productQnt)}
 	fullWidth
 	helperText={touched.productQnt && errors.productQnt}
-	label="Product Quantity"
+	label={intl.formatMessage({ id: "productQuantity" })}
 	margin="normal"
 	name="productQnt"
 	onBlur={handleBlur}
@@ -126,7 +131,7 @@ const NewProductForm = ({ initialValues, validationSchema, onSubmit,  onInputCha
 	type="submit"
 	variant="contained"
                         >
-                            Add New Product
+                            {intl.formatMessage({ id: "addNewProduct" })}
                         </Button>
                     </Box>
 
