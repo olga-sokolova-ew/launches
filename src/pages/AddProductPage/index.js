@@ -7,7 +7,6 @@ import * as Yup from "yup";
 import PageLayout from "layouts/PageLayout";
 import NewProductForm from "components/forms/NewProductForm";
 import { MAX_FILE_SIZE, SUPPORTED_FORMATS } from "utils/const";
-//import { checkIfFileIsCorrectType, checkIfFileIsTooBig } from "utils/helper";
 import { database, storage } from "firebase/firebaseConfig";
 import { ref, set } from "firebase/database";
 import {
@@ -31,27 +30,24 @@ const AddProductPage = () => {
 			file
 		);
 		setFileUrl(await getDownloadURL( fileRef));
-		console.log(fileUrl);
 	};
 
 	const onSubmit = (
 		values, form
 	) => {
-		const productListRef = ref(
-			database,
-			"products"
-		);
 		set(
-			productListRef,
+			ref(
+				database,
+				`products/` + values.productName
+			),
 			{
 				id: Date.now(),
 				title: values.productName,
 				quantity: values.productQnt,
-				profile_picture: fileUrl
+				product_picture: fileUrl
 			}
 		);
 		
-		console.log("Form submit");
 		form.setSubmitting(false);
 		form.resetForm();
 	};
