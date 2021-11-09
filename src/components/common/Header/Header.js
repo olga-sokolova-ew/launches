@@ -6,6 +6,8 @@ import { makeStyles } from "@mui/styles";
 import {
 	Box, Typography, Link
 } from "@mui/material";
+import { useAuth } from "contexts/AuthContext";
+import UserMenu from "./UserMenu";
 import { ReactComponent as LogoSvg } from "assets/common/logo.svg";
 import { ReactComponent as ArrowLeftSvg } from "assets/common/arrow_left.svg";
 
@@ -21,12 +23,16 @@ const useStyles = makeStyles((theme) => ({
 		background: "rgba(0, 0, 0, 0.2)",
 		zIndex: 1,
 	},
+	headerContainer: {
+		width: "100%",
+		maxWidth: "1180px",
+		display: "flex",
+		flexDirection: "column",
+	},
 
 	headerWrapper: {
 		position: "relative",
-		width: "100%",
 		maxWidth: "1180px",
-		//padding: "0 130px",
 		display: "flex",
 		justifyContent: "space-between",
 		[theme.breakpoints.down("md")]: {
@@ -76,14 +82,17 @@ const useStyles = makeStyles((theme) => ({
 		justifyContent: "center",
 		alignItems: "end",
 		bottom: "-55.6%",
+		left: "50%",
 		width: "95px",
 		height: "107px",
+		transform: "translateX(-50%)",
 	},
 }));
 
 
 const Header = ({ isMain = false }) => {
 	const classes = useStyles();
+	const { currentUser } = useAuth();
 
 	return (
 		<Box
@@ -91,26 +100,32 @@ const Header = ({ isMain = false }) => {
 			className={classes.header}
 		>
 			{isMain ? (
-				<Box className={classes.headerWrapperMain}>
-					<LogoSvg />
+				<Box className={classes.headerContainer}>
+					<Box className={classes.headerWrapperMain}>
+						<LogoSvg />
+					</Box>
+					{currentUser && <UserMenu />}
 				</Box>
 			) : (
-				<Box className={classes.headerWrapper}>
-					<Link
-						component={RouterLink}
-						to={AppRoute.ROOT}
-						className={classes.headerBack}
-					>
-						<ArrowLeftSvg />
-						<Typography variant="h3">Back To Home</Typography>
-					</Link>
-					<Link
-						component={RouterLink}
-						to={AppRoute.ROOT}
-						className={classes.headerLink}
-					>
-						<LogoSvg />
-					</Link>
+				<Box className={classes.headerContainer}>
+					<Box className={classes.headerWrapper}>
+						<Link
+							component={RouterLink}
+							to={AppRoute.ROOT}
+							className={classes.headerBack}
+						>
+							<ArrowLeftSvg />
+							<Typography variant="h3">Back To Home</Typography>
+						</Link>
+						<Link
+							component={RouterLink}
+							to={AppRoute.ROOT}
+							className={classes.headerLink}
+						>
+							<LogoSvg />
+						</Link>
+					</Box>
+					{currentUser && <UserMenu />}
 				</Box>
 			)}
 		</Box>

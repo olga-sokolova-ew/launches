@@ -61,6 +61,7 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
 	const intl = useIntl();
 	const [currentUser, setCurrentUser] = useState(null);
+	console.log(currentUser);
 
 	const dispatch = useDispatch();
 	const history = useHistory();
@@ -110,7 +111,7 @@ export const AuthProvider = ({ children }) => {
 				password
 			);
 			dispatch(requireAuthorization(AuthorizationStatus.AUTH));
-			history.push("/");
+			history.push(AppRoute.DASHBOARD);
 
 		} catch (error) {
 			outputtingError(
@@ -149,7 +150,7 @@ export const AuthProvider = ({ children }) => {
 			//const token = credential.accessToken;
 
 			setCurrentUser(result.user.email);
-			history.push(AppRoute.ROOT);
+			history.push(AppRoute.DASHBOARD);
 		} catch (error) {
 			//const errorCode = error.code;
 			//const errorMessage = error.message;

@@ -115,30 +115,7 @@ const Footer = () => {
 			component="div"
 			className={classes.footerContainer}
 		>
-			<Box
-				component="div"
-				className={classes.footerMenu}
-			>
-				<Link
-					component={RouterLink}
-					underline="hover"
-					to={AppRoute.DASHBOARD}
-					className={classes.footerMenuLink}
-				>
-
-					Dashboard
-				</Link>
-				<Link
-					component={RouterLink}
-					underline="hover"
-					to={AppRoute.ADDPRODUCT_PAGE}
-					className={classes.footerMenuLink}
-				>
-
-					Add New Product
-				</Link>
-
-			</Box>
+			
 			<Box
 				component="div"
 				className={classes.footer}

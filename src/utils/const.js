@@ -30,11 +30,7 @@ const HOURS = 24;
 const SECONDS = 60;
 
 const MAX_FILE_SIZE = 1000000; //1mb
-const SUPPORTED_FORMATS = [
-	"image/jpg",
-	"image/jpeg",
-	"image/png"
-];
+const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
 
 
 export { APIRoute, AppRoute, AuthorizationStatus, MAX_FILE_SIZE, HOURS, KEY, launchQnt, MINUTE, SECONDS, SUPPORTED_FORMATS };
