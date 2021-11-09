@@ -15,6 +15,8 @@ import { useEffect, useState } from "react";
 import { database } from "firebase/firebaseConfig";
 import { ref, onValue } from "firebase/database";
 import { useIntl } from "react-intl";
+import { useAuth } from "contexts/AuthContext";
+
 
 const useStyles = makeStyles((theme) => ({
 	tableBody: {
@@ -62,13 +64,16 @@ const Dashboard = () => {
 	const intl = useIntl();
 	const classes = useStyles();
 	const [products, setProducts] = useState(null);
+	const { currentUserId } = useAuth();
+	
+
 
 	useEffect(
 		() => {
 			const fetchProducts = async () => {
 				const productsRef = ref(
 					database,
-					`products/`
+					`users/${currentUserId}/products/`
 				);
 
 				await onValue(
@@ -83,6 +88,7 @@ const Dashboard = () => {
 		},
 		[]
 	);
+	
 
 	return (
 		<PageLayout>

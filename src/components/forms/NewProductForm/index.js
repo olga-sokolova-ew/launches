@@ -142,6 +142,7 @@ const NewProductForm = ({ initialValues, validationSchema, onSubmit, onInputChan
 						//className={"dropzoneStyle"}
 						className={classes.dropzoneStyle.toString()}
 						//validator={showError}
+						onDrop={onInputChange}
 					/>
 
 					{/*<TextField

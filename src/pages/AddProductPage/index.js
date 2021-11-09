@@ -6,20 +6,20 @@ import {
 import * as Yup from "yup";
 import PageLayout from "layouts/PageLayout";
 import NewProductForm from "components/forms/NewProductForm";
-import { MAX_FILE_SIZE, SUPPORTED_FORMATS } from "utils/const";
+//import { MAX_FILE_SIZE, SUPPORTED_FORMATS } from "utils/const";
 import { database, storage } from "firebase/firebaseConfig";
 import { ref, set } from "firebase/database";
 import {
 	ref as storeRef, uploadBytesResumable, getDownloadURL
 } from "firebase/storage";
+import { useAuth } from "contexts/AuthContext";
 
 
 const AddProductPage = () => {
 	const [file, setFile] = useState("");
 	const [fileUrl, setFileUrl] = useState(null);
 	const initialValuesAddProduct = { productName: "", file: "", productQnt: 0 };
-	console.log(file);
-
+	const { currentUserId } = useAuth();
 
 	const handleFileChange = async (evt) => {
 		const file = evt.target.files[0];
@@ -41,10 +41,13 @@ const AddProductPage = () => {
 	const onSubmit = (
 		values, form
 	) => {
+		if (currentUserId === 0) {
+			return;
+		} 
 		set(
 			ref(
 				database,
-				`products/` + values.productName
+				`users/${currentUserId}/products/` + values.productName
 			),
 			{
 				id: Date.now(),
@@ -58,19 +61,7 @@ const AddProductPage = () => {
 		form.resetForm();
 	};
 
-	const validateFile = (value) => {
-		console.log("111");
-		let error;
-		if (value.size >= MAX_FILE_SIZE) {
-			error = "Uploaded file is too big.";
-		}
-		let type = value.match(/[^:]\w+\/[\w-+\d.]+(?=;|,)/)[0];
-		if (SUPPORTED_FORMATS.includes(type)) {
-			error = "File formate is wrong2.";
-		}
-		console.log(error);
-		return error;
-	};
+	
 
 	const validationSchema =
 		Yup.object().shape({
@@ -119,7 +110,7 @@ const AddProductPage = () => {
 						validationSchema={validationSchema}
 						onInputChange={handleFileChange}
 						file={file}
-						validateFile={validateFile}
+						//validateFile={validateFile}
 
 					/>
 				</Container>

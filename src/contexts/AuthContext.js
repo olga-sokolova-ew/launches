@@ -61,6 +61,7 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
 	const intl = useIntl();
 	const [currentUser, setCurrentUser] = useState(null);
+	const [currentUserId, setCurrentUserId] = useState(null);
 	console.log(currentUser);
 
 	const dispatch = useDispatch();
@@ -105,11 +106,13 @@ export const AuthProvider = ({ children }) => {
 
 	const login = async ({ email, password }) => {
 		try {
-			await signInWithEmailAndPassword(
+			const result = await signInWithEmailAndPassword(
 				auth,
 				email,
 				password
 			);
+			setCurrentUser(result.user.email);
+			setCurrentUserId(result.user.uid);
 			dispatch(requireAuthorization(AuthorizationStatus.AUTH));
 			history.push(AppRoute.DASHBOARD);
 
@@ -150,6 +153,7 @@ export const AuthProvider = ({ children }) => {
 			//const token = credential.accessToken;
 
 			setCurrentUser(result.user.email);
+			setCurrentUserId(result.user.uid);
 			history.push(AppRoute.DASHBOARD);
 		} catch (error) {
 			//const errorCode = error.code;
@@ -163,6 +167,7 @@ export const AuthProvider = ({ children }) => {
 
 	const value = {
 		currentUser, // = user.emailVerified
+		currentUserId,
 		login,
 		signup,
 		logout,

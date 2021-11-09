@@ -36,7 +36,6 @@ const useStyles = makeStyles((theme) => ({
 		display: "flex",
 		justifyContent: "space-between",
 		[theme.breakpoints.down("md")]: {
-			//padding: 0,
 			maaxWidth: "100%",
 		},
 	},
