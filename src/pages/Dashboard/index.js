@@ -11,11 +11,10 @@ import TableRow from "@mui/material/TableRow";
 import PageLayout from "layouts/PageLayout";
 import { Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { useEffect, useState } from "react";
 import { database } from "firebase/firebaseConfig";
-import { ref, onValue } from "firebase/database";
 import { useIntl } from "react-intl";
 import { useAuth } from "contexts/AuthContext";
+import useProducts from "hook/useProducts";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -63,32 +62,12 @@ const useStyles = makeStyles((theme) => ({
 const Dashboard = () => {
 	const intl = useIntl();
 	const classes = useStyles();
-	const [products, setProducts] = useState(null);
+
 	const { currentUserId } = useAuth();
-	
-
-
-	useEffect(
-		() => {
-			const fetchProducts = async () => {
-				const productsRef = ref(
-					database,
-					`users/${currentUserId}/products/`
-				);
-
-				await onValue(
-					productsRef,
-					(snapshot) => {
-						const data = snapshot.val();
-						setProducts(data);
-					}
-				);
-			};
-			fetchProducts();
-		},
-		[]
+	const products = useProducts(
+		currentUserId,
+		database
 	);
-	
 
 	return (
 		<PageLayout>
