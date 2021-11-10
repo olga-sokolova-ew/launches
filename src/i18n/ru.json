@@ -3,6 +3,8 @@
       "defaultMessage": "Greeting!"
     },
     "addNewProduct": "Добавить новый  товар",
+    "addProductFail": "Не удалось добавить продукт",
+    "addProductSuccess": "Товар успешно добавлен",
     "errorInLogin": "Ошибка авторизации",
     "emailAlreadyExist": "Электронная почта уже существует",
     "emailAlreadyInUse": "Этот электронный адрес уже занят",
@@ -10,6 +12,7 @@
     "errorServer": "Ошибка сервера",
     "invalidPassword" : "Неверный пароль",
     "loadMoreBtn": "Показать еще",
+    "loginSuccess": "Вход выполнен успешно",
     "mainHeroTitle": "Предстоящие запуски космических полетов",
     "mainHeroSubTitle": "Просматривайте все доступные запуски, включая предыдущие, и используйте мощные фильтры поиска.",
     "mainHeroButton": "Показать все запуски",

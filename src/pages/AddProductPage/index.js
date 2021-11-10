@@ -44,6 +44,7 @@ const AddProductPage = () => {
 
 		form.setSubmitting(false);
 		form.resetForm();
+		
 	};
 
 	

@@ -3,6 +3,8 @@
       "defaultMessage": "Greeting!"
     },
     "addNewProduct": "Add New Product",
+    "addProductFail": "Adding the ptoduct is failed",
+    "addProductSuccess": "Adding the ptoduct is successful",
     "errorInLogin": "Error in login",
     "emailAlreadyExist": "Email already exist",
     "emailAlreadyInUse": "Email already in use",

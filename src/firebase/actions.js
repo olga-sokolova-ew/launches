@@ -2,6 +2,7 @@ import { ref, set } from "firebase/database";
 import {
 	ref as storeRef, uploadBytesResumable, getDownloadURL
 } from "firebase/storage";
+import { showAddProductSuccessToast, showAddProductFailToast } from "utils/toastHelper";
 
 export const setInfoToDatabase = (
 	values, currentUserId, database, fileUrl
@@ -9,6 +10,7 @@ export const setInfoToDatabase = (
 	if (currentUserId === 0) {
 		return;
 	}
+	console.log(currentUserId);
 	set(
 		ref(
 			database,
@@ -20,7 +22,13 @@ export const setInfoToDatabase = (
 			quantity: values.productQnt,
 			product_picture: fileUrl
 		}
-	);
+	)
+		.then(() => {
+			showAddProductSuccessToast();
+		})
+		.catch((error) => {
+			showAddProductFailToast();
+		});
 };
 
 export const uploadFile = async (

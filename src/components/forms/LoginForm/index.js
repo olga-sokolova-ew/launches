@@ -65,6 +65,7 @@ const LoginForm = ({
 }) => {
 	const classes = useStyles();
 	const { googlePopupSignIn } = useAuth();
+	console.log("login start");
 	
 	
 

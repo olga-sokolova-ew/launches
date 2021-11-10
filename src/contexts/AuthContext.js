@@ -8,51 +8,13 @@ import {
 import { requireAuthorization } from "../redux/auth/sliceReducer";
 import { AppRoute, AuthorizationStatus } from "../utils/const";
 import { useHistory } from "react-router-dom";
-import { toast } from "react-toastify";
 import { useIntl } from "react-intl";
+import {
+	outputtingError,
+	outputtingGoogleError
+} from "utils/toastHelper";
 
 const AuthContext = React.createContext();
-
-const outputtingError = (
-	error, intl
-) => {
-
-	switch (error) {
-	case "auth/user-not-found":
-		toast.error(intl.formatMessage({ id: "userNotFound" }));
-		break;
-	case "auth/email-already-exists":
-		toast.error(intl.formatMessage({ id: "emailAlreadyExist" }));
-		break;
-	case "auth/email-already-in-use":
-		toast.error(intl.formatMessage({ id: "emailAlreadyInUse" }));
-		break;
-	case "auth/wrong-password":
-		toast.error(intl.formatMessage({ id: "invalidPassword" }));
-		break;
-	case "auth/too-many-requests":
-		toast.error(intl.formatMessage({ id: "tooManyRequest" }));
-		break;
-	case "400":
-		toast.error(intl.formatMessage({ id: "emailAlreadyExist" }));
-		break;
-	default:
-		toast.error(intl.formatMessage({ id: "errorInLogin" }));
-	}
-};
-const outputtingGoogleError = (
-	error, intl
-) => {
-
-	switch (error) {
-	case "auth/user-not-found":
-		toast.error(intl.formatMessage({ id: "userNotFound" }));
-		break;
-	default:
-		toast.error(intl.formatMessage({ id: "errorInGoogleLogin" }));
-	}
-};
-
 
 export const useAuth = () => {
 	return useContext(AuthContext);
@@ -61,7 +23,7 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
 	const intl = useIntl();
 	const [currentUser, setCurrentUser] = useState(null);
-	const [currentUserId, setCurrentUserId] = useState(null);
+	const [currentUserId, setCurrentUserId] = useState(0);
 
 	const dispatch = useDispatch();
 	const history = useHistory();
@@ -73,8 +35,10 @@ export const AuthProvider = ({ children }) => {
 				(user) => {
 					if (user) {
 						setCurrentUser(user.email);
+						setCurrentUserId(user.uid);
 					} else {
 						setCurrentUser(null);
+						setCurrentUserId(0);
 					}
 				}
 			);
@@ -148,15 +112,11 @@ export const AuthProvider = ({ children }) => {
 				auth,
 				provider
 			);
-			//const credential = GoogleAuthProvider.credentialFromResult(result);
-			//const token = credential.accessToken;
-
 			setCurrentUser(result.user.email);
 			setCurrentUserId(result.user.uid);
+			dispatch(requireAuthorization(AuthorizationStatus.AUTH));
 			history.push(AppRoute.DASHBOARD);
 		} catch (error) {
-			//const errorCode = error.code;
-			//const errorMessage = error.message;
 			outputtingGoogleError(
 				error.code,
 				intl
