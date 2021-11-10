@@ -111,7 +111,7 @@ export const AuthProvider = ({ children }) => {
 			const result = await signInWithPopup(
 				auth,
 				provider
-			);
+			);  
 			setCurrentUser(result.user.email);
 			setCurrentUserId(result.user.uid);
 			dispatch(requireAuthorization(AuthorizationStatus.AUTH));

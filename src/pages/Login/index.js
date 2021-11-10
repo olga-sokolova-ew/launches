@@ -15,9 +15,7 @@ const Login = () => {
 		values, form
 	) => {
 		login(values);
-		console.log("login submit");
 		form.setSubmitting(false);
-
 	};
 
 	const validationSchema =

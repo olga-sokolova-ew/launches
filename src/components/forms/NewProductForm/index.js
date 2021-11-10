@@ -7,7 +7,7 @@ import {
 import { useIntl } from "react-intl";
 import { Form, DropZone } from "react-formik-ui";
 import "./style.scss";
-//import { SUPPORTED_FORMATS } from "utils/const";
+import { SUPPORTED_FORMATS } from "utils/const";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -76,14 +76,13 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const NewProductForm = ({ initialValues, validationSchema, onSubmit, onInputChange, file, validateFile }) => {
+const NewProductForm = ({ initialValues, validationSchema, onSubmit, onInputChange }) => {
 	const intl = useIntl();
 	const classes = useStyles();
 
-	/*const showError = (file) => {
-		console.log("333");
-		console.log(file);
-	};*/
+	const showErrorDropzone = (files) => {   
+		console.log(files);		
+	};
 
 	return (
 		<Formik
@@ -92,6 +91,7 @@ const NewProductForm = ({ initialValues, validationSchema, onSubmit, onInputChan
 			onSubmit={onSubmit}
 
 			onInputChange={onInputChange}
+			showErrorDropzone={showErrorDropzone}
 		//file={file}
 
 		>
@@ -99,12 +99,12 @@ const NewProductForm = ({ initialValues, validationSchema, onSubmit, onInputChan
 				errors,
 				handleBlur,
 				handleChange,
-				onInputChange,
 				isSubmitting,
 				touched,
 				values,
 				//file,
-				isValidating
+				isValidating,
+				showErrorDropzone
 			}) => (
 				<Form className={classes.pageContent}>
 					<Box mb={3}>
@@ -134,14 +134,14 @@ const NewProductForm = ({ initialValues, validationSchema, onSubmit, onInputChan
 						name='file'
 						label='Photo upload'
 						placeholder='Try dropping some files here, or click to select files to upload.'
-						//acceptedFiles={SUPPORTED_FORMATS}
-						accept="image/*"
+						acceptedFiles={SUPPORTED_FORMATS}
+						//accept="image/*"
 						multiple={false}
 						fileInfo={true}
 						maxSize={1000000}
-						//className={"dropzoneStyle"}
 						className={classes.dropzoneStyle.toString()}
-						//validator={showError}
+						validator={showErrorDropzone}
+						isFileDialogActive={true}
 						onDrop={onInputChange}
 					/>
 
