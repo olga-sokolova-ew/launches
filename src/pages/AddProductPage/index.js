@@ -8,10 +8,8 @@ import PageLayout from "layouts/PageLayout";
 import NewProductForm from "components/forms/NewProductForm";
 //import { MAX_FILE_SIZE, SUPPORTED_FORMATS } from "utils/const";
 import { database, storage } from "firebase/firebaseConfig";
-import { ref, set } from "firebase/database";
-import {
-	ref as storeRef, uploadBytesResumable, getDownloadURL
-} from "firebase/storage";
+import {setInfoToDatabase, uploadFile} from "firebase/actions";
+
 import { useAuth } from "contexts/AuthContext";
 
 
@@ -23,15 +21,11 @@ const AddProductPage = () => {
 
 	const handleFileChange = async (evt) => {
 		const file = evt.target.files[0];
-		const fileRef = storeRef(
-			storage,
-			"images/" + file.name
-		);
-		await uploadBytesResumable(
-			fileRef,
-			file
-		);
-		setFileUrl(await getDownloadURL(fileRef));
+		
+		setFileUrl(uploadFile(
+			file,
+			storage
+		));
 		setFile(file);
 		console.log("2");
 		console.log(file);
@@ -41,20 +35,11 @@ const AddProductPage = () => {
 	const onSubmit = (
 		values, form
 	) => {
-		if (currentUserId === 0) {
-			return;
-		} 
-		set(
-			ref(
-				database,
-				`users/${currentUserId}/products/` + values.productName
-			),
-			{
-				id: Date.now(),
-				title: values.productName,
-				quantity: values.productQnt,
-				product_picture: fileUrl
-			}
+		setInfoToDatabase(
+			values,
+			currentUserId,
+			database,
+			fileUrl
 		);
 
 		form.setSubmitting(false);

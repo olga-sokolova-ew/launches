@@ -62,7 +62,6 @@ export const AuthProvider = ({ children }) => {
 	const intl = useIntl();
 	const [currentUser, setCurrentUser] = useState(null);
 	const [currentUserId, setCurrentUserId] = useState(null);
-	console.log(currentUser);
 
 	const dispatch = useDispatch();
 	const history = useHistory();
