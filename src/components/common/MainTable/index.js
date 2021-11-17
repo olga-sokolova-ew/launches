@@ -5,7 +5,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { makeStyles } from "@mui/styles";
-import { useTable } from "react-table";
+import { useSortBy, useTable } from "react-table";
 import { Button } from "@mui/material";
 
 
@@ -93,7 +93,8 @@ const MainTable = ({ columns, data }) => {
 			columns,
 			data,
 		},
-		tableHooks
+		tableHooks,
+		useSortBy
 	);
 
 	const isEven = (idx) => idx % 2 === 0;
@@ -115,7 +116,7 @@ const MainTable = ({ columns, data }) => {
 								<TableCell
 									className={classes.tableCell}
 									key={Math.random(9999)}
-									{...column.getHeaderProps()}
+									{...column.getHeaderProps(column.getSortByToggleProps())}
 								>
 									{column.render("Header")}
 									{/* Add a sort direction indicator */}
