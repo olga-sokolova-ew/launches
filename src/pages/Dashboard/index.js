@@ -1,9 +1,11 @@
+/* eslint-disable no-unused-vars */
+import { useMemo } from "react";
 import {
 	Box,
 	Container,
 } from "@material-ui/core";
 import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
+//import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
@@ -14,49 +16,29 @@ import { makeStyles } from "@mui/styles";
 import { database } from "firebase/firebaseConfig";
 import { useIntl } from "react-intl";
 import { useAuth } from "contexts/AuthContext";
+import { useTable } from "react-table";
 import useProducts from "hook/useProducts";
+import MainTable from "components/common/MainTable";
 
 
 const useStyles = makeStyles((theme) => ({
-	tableBody: {
-		display: "block",
-		overflow: "auto",
-		maxHeight: "70vh",
-		"&.MuiTableBody-root": {
-			display: "block",
-		}
-	},
-	tableHead: {
-
-		fontWeight: "bold",
-
-		".MuiTableCell-root": {
-			color: theme.palette.primary.main,
-		}
-	},
-	tableRow: {
-		"&.MuiTableRow-root": {
-			display: "flex",
-			justifyContent: "space-between"
-		}
-	},
-	productTable: {
-		color: theme.palette.primary.main,
-		"& .MuiTableCell-root": {
-			color: theme.palette.primary.main,
-			width: "100%",
-		},
-
-	},
 	tableImg: {
+		position: "relative",
 		maxWidth: "250px",
 		height: "auto",
 		maxHeight: "250px",
 		overflow: "hidden",
+		"&::after": {
+			position: "absolute",
+			content: "ghghghg",
+			top: 0,
+			left: 0,
+			right: 0,
+			bottom: 0,
+			bacgroundColor: "rgba(255, 0, 0, 0, 0.3)",
+		}
+
 	},
-	productTitle: {
-		textTransform: "uppercase"
-	}
 }));
 
 const Dashboard = () => {
@@ -68,6 +50,49 @@ const Dashboard = () => {
 		currentUserId,
 		database
 	);
+	console.log(
+		"products",
+		products
+	);
+
+	const productData = useMemo(
+		//() => [...products],
+		() => 
+			products ? Object.values(products): [],
+		[products]
+	);
+
+	const columns = useMemo(
+		() => ([
+			{
+				Header: intl.formatMessage({ id: "productId" }),
+				accessor: "id"
+			},
+			{
+				Header: intl.formatMessage({ id: "title" }),
+				accessor: "title"
+			},
+			{
+				Header: intl.formatMessage({ id: "quantity" }),
+				accessor: "quantity"
+			},
+			{
+				Header: intl.formatMessage({ id: "picture" }),
+				accessor: d => ( d.product_picture ? <img 
+					className={classes.tableImg}
+					src={d.product_picture}
+					width={200}
+					height={200}
+					alt={d.title}
+				/> : "N/A" ),
+			},
+		]),
+		[]
+	);
+
+	
+	
+	console.log(columns);
 
 	return (
 		<PageLayout>
@@ -83,47 +108,11 @@ const Dashboard = () => {
 						mb="30px"
 					>{intl.formatMessage({ id: "productList" })}
 					</Typography>
-					<TableContainer >
-						<Table
-							aria-label="product table"
-							className={classes.productTable}
-						>
-							<TableHead className={classes.tableHead}>
-								<TableRow className={classes.tableRow}>
-									<TableCell align="left">{intl.formatMessage({ id: "productId" })}</TableCell>
-									<TableCell align="left">{intl.formatMessage({ id: "title" })}</TableCell>
-									<TableCell align="left">{intl.formatMessage({ id: "picture" })}</TableCell>
-									<TableCell align="left">{intl.formatMessage({ id: "quantity" })}</TableCell>
-								</TableRow>
-							</TableHead>
-							<TableBody className={classes.tableBody}>
-								{products && Object.values(products).map((product) => {
-									return (
-										<TableRow
-											key={product.id}
-											className={classes.tableRow}
-										>
-											<TableCell align="left">{product.id}</TableCell>
-											<TableCell
-												align="left"
-												className={classes.productTitle}
-											>{product.title}
-											</TableCell>
-											<TableCell align="left">
-												{product.product_picture && <img
-													src={product.product_picture}
-													alt={product.title}
-													className={classes.tableImg}
-												/>}
-											</TableCell>
-											<TableCell align="left">{product.quantity}</TableCell>
-										</TableRow>
-									);
-								})}
-
-							</TableBody>
-						</Table>
-					</TableContainer>
+					
+					<MainTable 
+						columns={columns}
+						data={productData}
+					/>
 				</Container>
 			</Box>
 		</PageLayout>

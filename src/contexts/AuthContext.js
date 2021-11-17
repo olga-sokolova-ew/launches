@@ -23,6 +23,7 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
 	const intl = useIntl();
 	const [currentUser, setCurrentUser] = useState(null);
+	const [ isLoading, setIsLoading ] = useState(false);
 	const [currentUserId, setCurrentUserId] = useState(0);
 
 	const dispatch = useDispatch();
@@ -30,15 +31,14 @@ export const AuthProvider = ({ children }) => {
 
 	useEffect(
 		() => {
+			setIsLoading(true);
 			const unsubsribe = onAuthStateChanged(
 				auth,
 				(user) => {
 					if (user) {
 						setCurrentUser(user.email);
 						setCurrentUserId(user.uid);
-					} else {
-						setCurrentUser(null);
-						setCurrentUserId(0);
+						setIsLoading(false);
 					}
 				}
 			);
@@ -136,9 +136,11 @@ export const AuthProvider = ({ children }) => {
 		googlePopupSignIn
 	};
 
+	console.log(isLoading);
+
 	return (
 		<AuthContext.Provider value={value}>
-			{children}
+			{!isLoading && children}
 		</AuthContext.Provider>
 	);
 };

@@ -13,7 +13,7 @@ const useProducts = (
 					database,
 					`users/${currentUserId}/products/`
 				);
-
+				
 				await onValue(
 					productsRef,
 					(snapshot) => {

@@ -1,6 +1,6 @@
 import { Route, Redirect } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { AuthorizationStatus } from "../../utils/const";
+// import { useSelector } from "react-redux";
+// import { AuthorizationStatus } from "../../utils/const";
 import { useAuth } from "contexts/AuthContext";
 
 
@@ -9,9 +9,19 @@ const PrivateRoute = ({
 	...rest
 }) => {
 	const { currentUser } = useAuth();
-	const authorizationStatus = useSelector(state => state.auth.authorizationStatus);
+	// const authorizationStatus = useSelector(state => state.auth.authorizationStatus);
 
-	const isUserLoggedIn = authorizationStatus === AuthorizationStatus.AUTH && currentUser;
+	console.log(
+		"currentUser",
+		currentUser
+	);
+
+	const isUserLoggedIn = currentUser;
+
+	console.log(
+		`isUserLoggedIn`,
+		isUserLoggedIn
+	);
 
 	if (!isUserLoggedIn) {
 		return (
