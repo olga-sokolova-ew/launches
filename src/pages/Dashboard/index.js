@@ -99,7 +99,7 @@ const Dashboard = () => {
 			<Box
 				display={"flex"}
 				flexDirection={"column"}
-				height="100vh"
+				//height="100vh"
 				justifyContent="center"
 			>
 				<Container maxWidth="lg" >

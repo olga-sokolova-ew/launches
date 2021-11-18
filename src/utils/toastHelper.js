@@ -12,7 +12,7 @@ export const showToast = (error) => {
 };
 export const showAddProductSuccessToast = () => {
 	const currentId = "productSuccess";
-	toast.error(
+	toast.success(
 		<FormattedMessage
 			id="addProductSuccess"
 		/>,

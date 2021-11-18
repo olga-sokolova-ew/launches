@@ -111,6 +111,8 @@ const NewProductForm = ({ initialValues, validationSchema, onSubmit, onInputChan
 						<Typography
 							align="center"
 							variant="h2"
+							mb="15px"
+							mt="15px"
 						>
 							{intl.formatMessage({ id: "newProduct" })}
 						</Typography>
@@ -144,22 +146,6 @@ const NewProductForm = ({ initialValues, validationSchema, onSubmit, onInputChan
 						isFileDialogActive={true}
 						onDrop={onInputChange}
 					/>
-
-					{/*<TextField
-						validate={validateFile}
-						error={Boolean(touched.file && errors.file)}
-						helperText={touched.file && errors.file}
-						label={intl.formatMessage({ id: "picture" })}
-						margin="normal"
-						name="picture"
-						onBlur={handleBlur}
-						onChange={onInputChange}
-						type="file"
-						value={file}
-						variant="outlined"
-						color="secondary"
-						className={classes.fileField}
-					/>*/}
 					<TextField
 						error={Boolean(touched.productQnt && errors.productQnt)}
 						fullWidth

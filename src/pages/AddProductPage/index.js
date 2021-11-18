@@ -60,8 +60,8 @@ const AddProductPage = () => {
 			<Box
 				display={"flex"}
 				flexDirection={"column"}
-				height="100vh"
 				justifyContent="center"
+				flexGrow="1"
 			>
 				<Container maxWidth="sm" >
 					<NewProductForm

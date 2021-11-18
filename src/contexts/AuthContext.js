@@ -38,7 +38,14 @@ export const AuthProvider = ({ children }) => {
 					if (user) {
 						setCurrentUser(user.email);
 						setCurrentUserId(user.uid);
+						console.log("onAuthStateChanged 111");
+						dispatch(requireAuthorization(AuthorizationStatus.AUTH));
 						setIsLoading(false);
+					} else {
+						console.log("onAuthStateChanged 222");
+						setCurrentUser(null);
+						setCurrentUserId(0);
+						dispatch(requireAuthorization(AuthorizationStatus.UNKNOWN));
 					}
 				}
 			);
@@ -56,7 +63,7 @@ export const AuthProvider = ({ children }) => {
 				email,
 				password
 			);
-
+			console.log("signup 111");
 			history.push(AppRoute.LOGIN);
 
 		} catch (error) {
@@ -74,6 +81,7 @@ export const AuthProvider = ({ children }) => {
 				email,
 				password
 			);
+			console.log("login 111");
 			setCurrentUser(result.user.email);
 			setCurrentUserId(result.user.uid);
 			dispatch(requireAuthorization(AuthorizationStatus.AUTH));
@@ -111,7 +119,8 @@ export const AuthProvider = ({ children }) => {
 			const result = await signInWithPopup(
 				auth,
 				provider
-			);  
+			); 
+			console.log("googlePopupSignIn 111"); 
 			setCurrentUser(result.user.email);
 			setCurrentUserId(result.user.uid);
 			dispatch(requireAuthorization(AuthorizationStatus.AUTH));
@@ -136,7 +145,8 @@ export const AuthProvider = ({ children }) => {
 		googlePopupSignIn
 	};
 
-	console.log(isLoading);
+	console.log("isLoading AuthContext  " + isLoading);
+	console.log("isLoading AuthContext currentUser " + currentUser);
 
 	return (
 		<AuthContext.Provider value={value}>

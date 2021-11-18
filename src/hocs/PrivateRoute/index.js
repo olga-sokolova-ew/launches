@@ -1,7 +1,8 @@
 import { Route, Redirect } from "react-router-dom";
-// import { useSelector } from "react-redux";
-// import { AuthorizationStatus } from "../../utils/const";
+import { useSelector } from "react-redux";
+import { AuthorizationStatus } from "../../utils/const";
 import { useAuth } from "contexts/AuthContext";
+import Loader from "components/common/Loader/Loader";
 
 
 const PrivateRoute = ({
@@ -9,21 +10,27 @@ const PrivateRoute = ({
 	...rest
 }) => {
 	const { currentUser } = useAuth();
-	// const authorizationStatus = useSelector(state => state.auth.authorizationStatus);
+	const authorizationStatus = useSelector(state => state.auth.authorizationStatus);
+
+	const isUserLoggedOut = authorizationStatus === AuthorizationStatus.NO_AUTH && currentUser;
 
 	console.log(
 		"currentUser",
 		currentUser
 	);
 
-	const isUserLoggedIn = currentUser;
-
-	console.log(
+	/*console.log(
 		`isUserLoggedIn`,
 		isUserLoggedIn
-	);
+	);*/
 
-	if (!isUserLoggedIn) {
+	if (authorizationStatus === AuthorizationStatus.UNKNOWN) {
+		console.log("88888!");
+		return <Loader />;
+	}
+
+	if (isUserLoggedOut) {
+		console.log("Warning!!!!!");
 		return (
 			<Route
 				{...rest}
@@ -37,7 +44,6 @@ const PrivateRoute = ({
 			/>
 		);
 	}
-
 
 	return (
 		<Route

@@ -14,22 +14,26 @@ export const commonRoutes = [
 		component: Main,
 		path: AppRoute.ROOT,
 		exact: true,
+		isAuth: false
 	},
 	{
 		component: RocketPage,
 		path: AppRoute.ROCKET,
 		exact: true,
+		isAuth: false
 	},
 	{
 		component: LoginPage,
 		path: "/login",
 		exact: true,
+		isAuth: false
         //denyShowLoginPage: true,
 	},
 	{
 		component: RegisterPage,
 		path: "/register",
 		exact: true,
+		isAuth: false
         //denyShowLoginPage: true,
 	},
 	{
