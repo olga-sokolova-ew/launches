@@ -1,14 +1,15 @@
-//import { Link } from "react-router-dom";
+import * as React from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { AppRoute } from "utils/const";
 import Box from "@mui/material/Box";
-import { makeStyles } from "@mui/styles";
+import { makeStyles} from "@mui/styles";
+import { Theme } from "@material-ui/core";
 import { Typography, Link } from "@mui/material";
 import { ButtonUnstyled } from "@mui/core";
 import { ReactComponent as LogoSvg } from "assets/common/logo.svg";
 import { useAuth } from "contexts/AuthContext";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
 	footer: {
 		position: "relative",
 		display: "flex",
@@ -102,7 +103,7 @@ const useStyles = makeStyles((theme) => ({
 	}
 }));
 
-const Footer = () => {
+const Footer: React.FC = () => {
 	const classes = useStyles();
 	const date = new Date();
 	const { currentUser,

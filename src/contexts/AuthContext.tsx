@@ -14,7 +14,7 @@ import {
 	outputtingGoogleError
 } from "utils/toastHelper";
 
-const AuthContext = React.createContext();
+const AuthContext = React.createContext<null>(null);
 
 export const useAuth = () => {
 	return useContext(AuthContext);
@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }) => {
 				(user) => {
 					if (user) {
 						setCurrentUser(user.email);
-						setCurrentUserId(user.uid);
+						setCurrentUserId(+user.uid);
 						console.log("onAuthStateChanged 111");
 						dispatch(requireAuthorization(AuthorizationStatus.AUTH));
 						setIsLoading(false);
@@ -101,15 +101,15 @@ export const AuthProvider = ({ children }) => {
 		});
 	};
 
-	const resetPassword = (email) => {
+	const resetPassword = (email:string) => {
 		return auth.sendPasswordResetEmail(email);
 	};
 
-	const updateEmail = (email) => {
+	const updateEmail = (email:string) => {
 		return currentUser.updateEmail(email);
 	};
 
-	const updatePassword = (password) => {
+	const updatePassword = (password:string) => {
 		return currentUser.updatePassword(password);
 	};
 
@@ -122,7 +122,7 @@ export const AuthProvider = ({ children }) => {
 			); 
 			console.log("googlePopupSignIn 111"); 
 			setCurrentUser(result.user.email);
-			setCurrentUserId(result.user.uid);
+			setCurrentUserId(+result.user.uid);
 			dispatch(requireAuthorization(AuthorizationStatus.AUTH));
 			history.push(AppRoute.DASHBOARD);
 		} catch (error) {

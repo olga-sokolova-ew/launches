@@ -1,7 +1,8 @@
+import * as React from "react";
 import { toast } from "react-toastify";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, IntlShape} from "react-intl";
 
-export const showToast = (error) => {
+export const showToast = ():void => {
 	const currentId = "errorServer";
 	toast.error(
 		<FormattedMessage
@@ -10,7 +11,7 @@ export const showToast = (error) => {
 		{ toastId: currentId }
 	);
 };
-export const showAddProductSuccessToast = () => {
+export const showAddProductSuccessToast = ():void => {
 	const currentId = "productSuccess";
 	toast.success(
 		<FormattedMessage
@@ -19,7 +20,7 @@ export const showAddProductSuccessToast = () => {
 		{ toastId: currentId }
 	);
 };
-export const showAddProductFailToast = () => {
+export const showAddProductFailToast = ():void => {
 	const currentId = "productFail";
 	toast.error(
 		<FormattedMessage
@@ -29,7 +30,7 @@ export const showAddProductFailToast = () => {
 	);
 };
 
-export const showWaitMessage = () => {
+export const showWaitMessage = ():void => {
 	const customId = "loading";
 	toast.info(
 		<FormattedMessage
@@ -39,7 +40,7 @@ export const showWaitMessage = () => {
 	);
 };
 
-export const showServerDetail = (error) => {
+export const showServerDetail = (error: string):void => {
 	const currentDetailId = "currentDetailId";
 	toast.error(
 		error,
@@ -48,8 +49,8 @@ export const showServerDetail = (error) => {
 };
 
 export const outputtingError = (
-	error, intl
-) => {
+	error: string, intl:IntlShape
+):void => {
 
 	switch (error) {
 	case "auth/user-not-found":
@@ -76,8 +77,8 @@ export const outputtingError = (
 };
 
 export const outputtingGoogleError = (
-	error, intl
-) => {
+	error: string, intl:IntlShape
+):void => {
 
 	switch (error) {
 	case "auth/user-not-found":

@@ -1,4 +1,8 @@
-const AppRoute = {
+export interface  IStringUtils {
+	[key: string]: string;
+  }
+
+const AppRoute:IStringUtils = {
 	ADDPRODUCT_PAGE: "/add_product",
 	DASHBOARD: "/dashboard",
 	EVENT: "/event/:id",
@@ -10,12 +14,12 @@ const AppRoute = {
 	PAGE_NOT_FOUND: "/404",
 };
 
-const APIRoute = {
+const APIRoute:IStringUtils = {
 	LAUNCHES: "launch/upcoming?mode=detailed",
 	EVENTS: "event/upcoming/",
 };
 
-const AuthorizationStatus = {
+const AuthorizationStatus:IStringUtils = {
 	AUTH: "AUTH",
 	NO_AUTH: "NO_AUTH",
 	UNKNOWN: "UNKNOWN",

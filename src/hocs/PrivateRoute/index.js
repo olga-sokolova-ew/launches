@@ -24,13 +24,12 @@ const PrivateRoute = ({
 		isUserLoggedIn
 	);*/
 
+	
 	if (authorizationStatus === AuthorizationStatus.UNKNOWN) {
-		console.log("88888!");
 		return <Loader />;
 	}
 
 	if (isUserLoggedOut) {
-		console.log("Warning!!!!!");
 		return (
 			<Route
 				{...rest}
