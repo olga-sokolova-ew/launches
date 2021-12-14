@@ -5,16 +5,16 @@ import AES from "crypto-js/aes";
 import CryptoJS from "crypto-js";
 import { KEY } from "./const";
 import dayjs from "dayjs";
-import jwtDecode from "jwt-decode";
+import jwtDecode, { JwtPayload } from "jwt-decode";
 import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
 dayjs.extend(isSameOrAfter);
 
 
 export const isDevelopment = () => process.env.NODE_ENV === "development";
 
-export const getTimeFormate = (endtime) => {
-	if (Date.parse(endtime) !== Date.parse(new Date())) {
-		const t = Date.parse(endtime) - Date.parse(new Date());
+export const getTimeFormate = (endtime:string) => {
+	if (Date.parse(endtime) !== Date.now()) {
+		const t = Date.parse(endtime) - Date.now();
 		const seconds = Math.floor((t / 1000) % SECONDS);
 		const minutes = Math.floor((t / 1000 / MINUTE) % MINUTE);
 		const hours = Math.floor((t / (1000 * SECONDS * MINUTE)) % HOURS);
@@ -34,14 +34,14 @@ export const getTimeFormate = (endtime) => {
 };
 
 // encrypt user info
-export const encryptUserInfo = (authData) => {
+export const encryptUserInfo = (authData:JSON) => {
 	const authDataForLocalStorage = AES.encrypt(
 		JSON.stringify(authData),
 		KEY
 	);
 	localStorage.setItem(
 		"auth",
-		authDataForLocalStorage
+		authDataForLocalStorage.toString()
 	);
 };
 
@@ -63,13 +63,13 @@ export const deryptUserInfo = () => {
 export const isAuthExpired = () => {
 	const authInfo = deryptUserInfo();
 	const refreshToken = localStorage.getItem("refreshToken");
-	const expiresAt = authInfo?.access_token ? jwtDecode(authInfo?.access_token) : null;
+	const expiresAt = authInfo?.access_token ? jwtDecode<JwtPayload>(authInfo?.access_token) : null;
 
-	if (!parseInt(refreshToken))
+	if (!refreshToken && expiresAt?.exp)
 		return dayjs().isSameOrAfter(dayjs.unix(expiresAt?.exp));
 };
 
-export const checkIfFileIsCorrectType = (file) => {
+export const checkIfFileIsCorrectType = (file:File) => {
 	let valid = true;
 	if (!SUPPORTED_FORMATS.includes(file.type)) {
 		valid = false;
@@ -77,7 +77,7 @@ export const checkIfFileIsCorrectType = (file) => {
 	return valid;
 };
 
-export const checkIfFileIsTooBig = (file) => {
+export const checkIfFileIsTooBig = (file:File) => {
 	let valid = true;
 	const size = file.size;
 	if (size > MAX_FILE_SIZE) {

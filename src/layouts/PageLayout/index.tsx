@@ -1,3 +1,4 @@
+import * as React from "react";
 import { Box } from "@material-ui/system";
 import { makeStyles } from "@mui/styles";
 import Footer from "components/common/Footer/Footer";
@@ -13,7 +14,7 @@ const useStyles = makeStyles({
 	},
 });
 
-const PageLayout = ({ children }) => {
+const PageLayout: React.FC = ({ children }) => {
 	const classes = useStyles();
 	return (
         <Box className={classes.pageWrapper}>

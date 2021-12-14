@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Link as RouterLink } from "react-router-dom";
-import { AppRoute } from "utils/const";
+import { AppRoute } from "../../../utils/const";
 import Box from "@mui/material/Box";
 import { makeStyles} from "@mui/styles";
 import { Theme } from "@material-ui/core";
@@ -9,7 +9,7 @@ import { ButtonUnstyled } from "@mui/core";
 import { ReactComponent as LogoSvg } from "assets/common/logo.svg";
 import { useAuth } from "contexts/AuthContext";
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles((theme: Theme)   => ({
 	footer: {
 		position: "relative",
 		display: "flex",

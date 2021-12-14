@@ -1,17 +1,21 @@
-import React from "react";
+import * as React from "react";
 import { Link as RouterLink } from "react-router-dom";
-import { AppRoute } from "utils/const";
+import { AppRoute } from "../../../utils/const";
 import { makeStyles } from "@mui/styles";
-//import { ClassNames } from "@emotion/react";  doesn't work
+
 import {
-	Box, Typography, Link
+	Box, Typography, Link, Theme
 } from "@mui/material";
-import { useAuth } from "contexts/AuthContext";
+import { useAuth } from "../../../contexts/AuthContext";
 import UserMenu from "./UserMenu";
 import { ReactComponent as LogoSvg } from "assets/common/logo.svg";
 import { ReactComponent as ArrowLeftSvg } from "assets/common/arrow_left.svg";
 
-const useStyles = makeStyles((theme) => ({
+type Props = {
+	isMain?: boolean;
+}
+
+const useStyles = makeStyles((theme:Theme) => ({
 	header: {
 		position: "relative",
 		display: "flex",
@@ -36,13 +40,13 @@ const useStyles = makeStyles((theme) => ({
 		display: "flex",
 		justifyContent: "space-between",
 		[theme.breakpoints.down("md")]: {
-			maaxWidth: "100%",
+			maxWidth: "100%",
 		},
 	},
 	headerBack: {
 		display: "flex",
 		alignItems: "center",
-		fontWeight: "600",
+		fontWeight: "bold",
 		color: theme.palette.primary.main,
 		textDecoration: "none",
 		textTransform: "capitalize",
@@ -89,7 +93,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const Header = ({ isMain = false }) => {
+const Header: React.FC<Props> = ({ isMain = false }) => {
 	const classes = useStyles();
 	const { currentUser } = useAuth();
 

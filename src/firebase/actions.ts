@@ -1,11 +1,19 @@
 import { ref, set } from "firebase/database";
+import { FirebaseStorage } from "@firebase/storage-types";
+import { Database } from "@firebase/database";
 import {
 	ref as storeRef, uploadBytesResumable, getDownloadURL
 } from "firebase/storage";
-import { showAddProductSuccessToast, showAddProductFailToast } from "utils/toastHelper";
+import { showAddProductSuccessToast, showAddProductFailToast } from "../utils/toastHelper";
+
+interface IProductValues {
+	id: number;
+	productName: string;
+	productQnt: number;	
+}
 
 export const setInfoToDatabase = (
-	values, currentUserId, database, fileUrl
+	values:IProductValues, currentUserId:number, database:Database, fileUrl:string
 ) => {
 	if (currentUserId === 0) {
 		return;
@@ -32,8 +40,8 @@ export const setInfoToDatabase = (
 };
 
 export const uploadFile = async (
-	file, storage
-) => {
+	file:File, storage:FirebaseStorage
+):Promise<string> => {
 	const fileRef = storeRef(
 		storage,
 		"images/" + file.name

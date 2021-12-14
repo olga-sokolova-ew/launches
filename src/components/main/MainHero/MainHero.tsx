@@ -1,18 +1,18 @@
 import Box from "@mui/material/Box";
 import { makeStyles } from "@mui/styles";
 import {
-	Button, Container, Typography
+	Button, Container, Typography, Theme
 } from "@mui/material";
 import { useIntl } from "react-intl";
 import BgImage from "assets/common/bg_hero.png";
 
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme:Theme) => ({
 	button: {
 		display: "inline-block",
 		padding: "27px 80px",
 		fontFamily: "Montserrat",
-		fontWeight: "700",
+		fontWeight: 700,
 		fontSize: "20px",
 		color: theme.palette.common.white,
 		textDecoration: "none",
@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
 		marginBottom: "50px",
 		color: theme.palette.info.main,
 		fontFamily: "Roboto",
-		fontWeight: "400",
+		fontWeight: 400,
 		fontSize: "17px",
 		lineHeight: "165%",
 	},
@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
 	heroText: {
 		fontFamily: "Montserrat",
 		marginBottom: "30px",
-		fontWeight: "800",
+		fontWeight: 800,
 		fontSize: "76px",
 		lineHeight: "121%",
 		color: theme.palette.primary.main,
@@ -88,7 +88,7 @@ const useStyles = makeStyles((theme) => ({
 		display: "inline-block",
 		padding: "27px 80px",
 		fontFamily: "Montserrat",
-		fontWeight: "700",
+		fontWeight: 700,
 		fontSize: "20px",
 		color: theme.palette.common.white,
 		textDecoration: "none",

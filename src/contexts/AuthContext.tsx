@@ -1,9 +1,16 @@
+
 import React, { useState, useContext } from "react";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { auth } from "../firebase/firebaseConfig";
+import "firebase/auth";
 import {
-	createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, signInWithPopup, GoogleAuthProvider
+	createUserWithEmailAndPassword,
+	signInWithEmailAndPassword,
+	signOut,
+	onAuthStateChanged,
+	signInWithPopup,
+	GoogleAuthProvider
 } from "firebase/auth";
 import { requireAuthorization } from "../redux/auth/sliceReducer";
 import { AppRoute, AuthorizationStatus } from "../utils/const";
@@ -12,7 +19,22 @@ import { useIntl } from "react-intl";
 import {
 	outputtingError,
 	outputtingGoogleError
-} from "utils/toastHelper";
+} from "../utils/toastHelper";
+
+
+type Props = {
+	children?: React.ReactNode;
+};
+
+type SProps = {
+	email: string,
+	password: string,
+}; 
+type FirebaseError = {
+	code: string,
+	message: string,
+	name: string,
+}; 
 
 const AuthContext = React.createContext<null>(null);
 
@@ -20,11 +42,11 @@ export const useAuth = () => {
 	return useContext(AuthContext);
 };
 
-export const AuthProvider = ({ children }) => {
+export const AuthProvider = ({ children }: Props) => {
 	const intl = useIntl();
-	const [currentUser, setCurrentUser] = useState(null);
+	const [currentUser, setCurrentUser] = useState<string | null>(null);
 	const [ isLoading, setIsLoading ] = useState(false);
-	const [currentUserId, setCurrentUserId] = useState(0);
+	const [currentUserId, setCurrentUserId] = useState<string | 0>(0);
 
 	const dispatch = useDispatch();
 	const history = useHistory();
@@ -37,12 +59,11 @@ export const AuthProvider = ({ children }) => {
 				(user) => {
 					if (user) {
 						setCurrentUser(user.email);
-						setCurrentUserId(+user.uid);
+						setCurrentUserId(user.uid);
 						console.log("onAuthStateChanged 111");
 						dispatch(requireAuthorization(AuthorizationStatus.AUTH));
 						setIsLoading(false);
 					} else {
-						console.log("onAuthStateChanged 222");
 						setCurrentUser(null);
 						setCurrentUserId(0);
 						dispatch(requireAuthorization(AuthorizationStatus.UNKNOWN));
@@ -56,25 +77,24 @@ export const AuthProvider = ({ children }) => {
 
 	const signup = async ({
 		email, password
-	}) => {
+	}: SProps) => {
 		try {
 			await createUserWithEmailAndPassword(
 				auth,
 				email,
 				password
 			);
-			console.log("signup 111");
 			history.push(AppRoute.LOGIN);
 
 		} catch (error) {
 			outputtingError(
-				error.code,
+				(error as FirebaseError).code,
 				intl
 			);
 		}
 	};
 
-	const login = async ({ email, password }) => {
+	const login = async ({ email, password }:SProps) => {
 		try {
 			const result = await signInWithEmailAndPassword(
 				auth,
@@ -89,7 +109,7 @@ export const AuthProvider = ({ children }) => {
 
 		} catch (error) {
 			outputtingError(
-				error.code,
+				(error as FirebaseError).code,
 				intl
 			);
 		}
@@ -122,10 +142,10 @@ export const AuthProvider = ({ children }) => {
 			); 
 			console.log("googlePopupSignIn 111"); 
 			setCurrentUser(result.user.email);
-			setCurrentUserId(+result.user.uid);
+			setCurrentUserId(result.user.uid);
 			dispatch(requireAuthorization(AuthorizationStatus.AUTH));
 			history.push(AppRoute.DASHBOARD);
-		} catch (error) {
+		} catch (error:Error) {
 			outputtingGoogleError(
 				error.code,
 				intl

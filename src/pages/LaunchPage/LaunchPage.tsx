@@ -3,14 +3,15 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
-import { Container, Typography } from "@mui/material";
+import {Container, Typography} from "@mui/material";
+import { Theme } from "@material-ui/core";
 import PageLayout from "layouts/PageLayout";
 import Loader from "components/common/Loader/Loader";
 import LaunchHero from "components/launch/LaunchHero/LaunchHero";
 import LaunchPageContent from "components/launch/LaunchPageContent/LaunchPageContent";
 import { fetchCurrentLaunch } from "redux/launchData/fetches";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme:Theme) => ({
 	pageContent: {
 		position: "relative",
 		padding: "100px 130px 100px",

@@ -1,10 +1,14 @@
+import * as React from "react";
 import { Link as RouterLink } from "react-router-dom";
-import { AppRoute } from "utils/const";
+import { AppRoute } from "../../../utils/const";
 import { makeStyles } from "@mui/styles";
+import { Theme } from "@material-ui/core";
 import {Box, Link} from "@mui/material";
 
-
-const useStyles = makeStyles((theme) => ({
+type Props = {
+	isMain: boolean;
+  }
+const useStyles = makeStyles((theme: Theme)  => ({
 	menuWrap: {
 		maxWidth: "1180px",
 		padding: "20px 0",
@@ -26,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const UserMenu = ({ isMain = false }) => {
+const UserMenu:React.FC<Props>  = ({ isMain = false }) => {
 	const classes = useStyles();
 
 	return (

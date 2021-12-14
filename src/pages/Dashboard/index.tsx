@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+import * as React from "react";
 import { useMemo } from "react";
 import {
 	Box,
@@ -11,7 +12,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import PageLayout from "layouts/PageLayout";
-import { Typography } from "@mui/material";
+import { Theme, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { database } from "firebase/firebaseConfig";
 import { useIntl } from "react-intl";
@@ -21,7 +22,7 @@ import useProducts from "hook/useProducts";
 import MainTable from "components/common/MainTable";
 
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme:Theme) => ({
 	tableImg: {
 		position: "relative",
 		maxWidth: "250px",
@@ -41,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const Dashboard = () => {
+const Dashboard: React.FC = () => {
 	const intl = useIntl();
 	const classes = useStyles();
 

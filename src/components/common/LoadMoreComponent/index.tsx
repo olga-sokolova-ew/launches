@@ -1,9 +1,14 @@
+import * as React from "react";
 import Box from "@mui/material/Box";
 import { makeStyles } from "@mui/styles";
 import { useIntl } from "react-intl";
-import TextButton from "../../common/button/TextButton";
+import TextButton from "../button/TextButton";
 import Loader from "../Loader/Loader";
 
+
+type Props = {
+	onBtnClick: () =>  void;
+}
 
 const useStyles = makeStyles({
 	loaderWrapper: {
@@ -15,7 +20,7 @@ const useStyles = makeStyles({
 });
 
 
-const LoadMoreComponent = (onBtnClick) => {
+const LoadMoreComponent: React.FC<Props> = ({onBtnClick}) => {
 	const classes = useStyles();
 	const intl = useIntl();
 

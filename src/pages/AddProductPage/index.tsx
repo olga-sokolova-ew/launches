@@ -1,3 +1,4 @@
+import * as React from "react";
 import { useState } from "react";
 import {
 	Box,
@@ -12,12 +13,12 @@ import { setInfoToDatabase, uploadFile } from "firebase/actions";
 import { useAuth } from "contexts/AuthContext";
 
 
-const AddProductPage = () => {
+const AddProductPage: React.FC = () => {
 	const [fileUrl, setFileUrl] = useState(null);
 	const initialValuesAddProduct = { productName: "", file: "", productQnt: 0 };
 	const { currentUserId } = useAuth();
 
-	const onInputChange = async (files) => {
+	const onInputChange = async (files:File[]) => {
 		if (files.length === 0) {
 			console.log("no files");
 			return;
