@@ -8,7 +8,7 @@ import Loader from "../Loader/Loader";
 
 type Props = {
 	onBtnClick: () =>  void;
-}
+};
 
 const useStyles = makeStyles({
 	loaderWrapper: {

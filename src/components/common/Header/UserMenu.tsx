@@ -7,7 +7,7 @@ import {Box, Link} from "@mui/material";
 
 type Props = {
 	isMain: boolean;
-  }
+};
 const useStyles = makeStyles((theme: Theme)  => ({
 	menuWrap: {
 		maxWidth: "1180px",

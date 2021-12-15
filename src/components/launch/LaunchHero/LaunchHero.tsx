@@ -3,17 +3,19 @@ import {
 } from "react";
 import Box from "@mui/material/Box";
 import { makeStyles } from "@mui/styles";
-import { Container, Typography } from "@mui/material";
+import {
+	Container, Theme, Typography 
+} from "@mui/material";
 import { getTimeFormate } from "utils/helper";
 
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme:Theme) => ({
 	heroAbout: {
 		maxWidth: "595px",
 		marginBottom: "50px",
 		color: theme.palette.info.main,
 		fontFamily: "Roboto",
-		fontWeight: "400",
+		fontWeight: 400,
 		fontSize: "17px",
 		lineHeight: "165%",
 	},
@@ -41,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
 	heroText: {
 		fontFamily: "Montserrat",
 		marginBottom: "30px",
-		fontWeight: "800",
+		fontWeight: 800,
 		fontSize: "76px",
 		lineHeight: "121%",
 		color: theme.palette.primary.main,
@@ -82,7 +84,7 @@ const useStyles = makeStyles((theme) => ({
 		color: theme.palette.primary.main,
 	},
 }));
-
+  
 
 const LaunchHero = ({ launch }) => {
 	const classes = useStyles();

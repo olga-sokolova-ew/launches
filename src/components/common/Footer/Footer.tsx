@@ -8,6 +8,7 @@ import { Typography, Link } from "@mui/material";
 import { ButtonUnstyled } from "@mui/core";
 import { ReactComponent as LogoSvg } from "assets/common/logo.svg";
 import { useAuth } from "contexts/AuthContext";
+import { IValue } from "contexts/AuthContext.types";
 
 const useStyles = makeStyles((theme: Theme)   => ({
 	footer: {
@@ -103,11 +104,15 @@ const useStyles = makeStyles((theme: Theme)   => ({
 	}
 }));
 
+type IAuth = Pick<IValue, "currentUser" | "logout">;
+
 const Footer: React.FC = () => {
 	const classes = useStyles();
 	const date = new Date();
+
+
 	const { currentUser,
-		logout, } = useAuth();
+		logout } = useAuth() as IAuth;
 
 	const onLogoutClick = () => logout();
 

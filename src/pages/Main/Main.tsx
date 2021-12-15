@@ -2,7 +2,9 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { makeStyles } from "@mui/styles";
-import { Container, Box } from "@mui/material";
+import { 
+	Container, Box, Theme 
+} from "@mui/material";
 import Header from "components/common/Header/Header";
 import Footer from "components/common/Footer/Footer";
 import Loader from "components/common/Loader/Loader";
@@ -17,10 +19,10 @@ import { useAuth } from "contexts/AuthContext";
 import { useIntl } from "react-intl";
 
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme:Theme) => ({
 	pageWrapper: {
 		position: "relative",
-		padding: "0",
+		padding: 0,
 		display: "flex",
 		flexDirection: "column",
 		minHeight: "100vh",
@@ -47,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
 		fontSize: 0,
 		color: "rgba(0,0,0,0)",
 		opacity: 0,
-		visibility: 0
+		visibility: "hidden"
 
 	}
 }));

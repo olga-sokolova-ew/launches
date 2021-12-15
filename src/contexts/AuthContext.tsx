@@ -20,23 +20,21 @@ import {
 	outputtingError,
 	outputtingGoogleError
 } from "../utils/toastHelper";
+import {
+	Props, SProps, FirebaseError, IValue
+} from "./AuthContext.types";
 
 
-type Props = {
-	children?: React.ReactNode;
-};
+/*export interface IValue {
+	currentUser: string | null;
+	currentUserId: string | 0;
+	login: () => Promise<void> | unknown;
+	signup: () => Promise<void> | unknown;
+	logout: () => Promise<void> | unknown;
+	googlePopupSignIn: () => Promise<void> | unknown;
+}*/
 
-type SProps = {
-	email: string,
-	password: string,
-}; 
-type FirebaseError = {
-	code: string,
-	message: string,
-	name: string,
-}; 
-
-const AuthContext = React.createContext<null>(null);
+const AuthContext = React.createContext<IValue | null>(null);
 
 export const useAuth = () => {
 	return useContext(AuthContext);
@@ -101,7 +99,6 @@ export const AuthProvider = ({ children }: Props) => {
 				email,
 				password
 			);
-			console.log("login 111");
 			setCurrentUser(result.user.email);
 			setCurrentUserId(result.user.uid);
 			dispatch(requireAuthorization(AuthorizationStatus.AUTH));
@@ -115,22 +112,10 @@ export const AuthProvider = ({ children }: Props) => {
 		}
 	};
 
-	const logout = () => {
+	const logout = async () => {
 		return signOut(auth).then(() => {
 			dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH));
 		});
-	};
-
-	const resetPassword = (email:string) => {
-		return auth.sendPasswordResetEmail(email);
-	};
-
-	const updateEmail = (email:string) => {
-		return currentUser.updateEmail(email);
-	};
-
-	const updatePassword = (password:string) => {
-		return currentUser.updatePassword(password);
 	};
 
 	const googlePopupSignIn = async () => {
@@ -145,9 +130,9 @@ export const AuthProvider = ({ children }: Props) => {
 			setCurrentUserId(result.user.uid);
 			dispatch(requireAuthorization(AuthorizationStatus.AUTH));
 			history.push(AppRoute.DASHBOARD);
-		} catch (error:Error) {
+		} catch (error) {
 			outputtingGoogleError(
-				error.code,
+				(error as FirebaseError).code,
 				intl
 			);
 		}
@@ -159,14 +144,8 @@ export const AuthProvider = ({ children }: Props) => {
 		login,
 		signup,
 		logout,
-		resetPassword,
-		updateEmail,
-		updatePassword,
 		googlePopupSignIn
 	};
-
-	console.log("isLoading AuthContext  " + isLoading);
-	console.log("isLoading AuthContext currentUser " + currentUser);
 
 	return (
 		<AuthContext.Provider value={value}>

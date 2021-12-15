@@ -27,14 +27,14 @@ export const commonRoutes = [
 		path: "/login",
 		exact: true,
 		isAuth: false
-        //denyShowLoginPage: true,
+		//denyShowLoginPage: true,
 	},
 	{
 		component: RegisterPage,
 		path: "/register",
 		exact: true,
 		isAuth: false
-        //denyShowLoginPage: true,
+		//denyShowLoginPage: true,
 	},
 	{
 		component: NotFound,

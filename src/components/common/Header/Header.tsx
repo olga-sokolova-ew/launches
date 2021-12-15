@@ -13,7 +13,7 @@ import { ReactComponent as ArrowLeftSvg } from "assets/common/arrow_left.svg";
 
 type Props = {
 	isMain?: boolean;
-}
+};
 
 const useStyles = makeStyles((theme:Theme) => ({
 	header: {
