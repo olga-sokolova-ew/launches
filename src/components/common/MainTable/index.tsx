@@ -1,3 +1,4 @@
+import {FC} from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -5,12 +6,14 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { makeStyles } from "@mui/styles";
-import { useSortBy, useTable } from "react-table";
+import { Theme } from "@material-ui/core";
+import {
+	Column, Hooks, useSortBy, useTable
+} from "react-table";
 import { Button } from "@mui/material";
 
 
-
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
 	tableBody: {
 		width: "100%",
 		//display: "block",
@@ -66,11 +69,22 @@ const useStyles = makeStyles((theme) => ({
 	}
 }));
 
+const 
 
-const MainTable = ({ columns, data }) => {
+type Props  = {
+    //columns: Column[],
+    //data: (string | number | null)[],
+	//data: TableOptions<object>
+	//data: Array<any>
+
+	columns: Array<Column<object>>;
+    data: Array<object>;
+};
+
+const MainTable: FC<Props> = ({ columns, data }) => {
 	const classes = useStyles();
 
-	const tableHooks = (hooks) => {
+	const tableHooks = (hooks: Hooks) => {
 		hooks.visibleColumns.push((columns) => [
 			...columns,
 			{
@@ -91,13 +105,13 @@ const MainTable = ({ columns, data }) => {
 	const { getTableProps, headerGroups, rows, prepareRow } = useTable(
 		{
 			columns,
-			data,
+			data
 		},
 		tableHooks,
 		useSortBy
 	);
 
-	const isEven = (idx) => idx % 2 === 0;
+	const isEven = (idx:number) => idx % 2 === 0;
 
 	return (
 		<TableContainer>
@@ -147,7 +161,7 @@ const MainTable = ({ columns, data }) => {
 									return (
 										<TableCell
 											className={classes.tableCell}
-											key={Math.random(9999)}
+											key={Math.random(999)}
 											{...cell.getCellProps()}
 										>
 											{cell.render("Cell")}

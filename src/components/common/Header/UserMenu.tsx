@@ -6,7 +6,7 @@ import { Theme } from "@material-ui/core";
 import {Box, Link} from "@mui/material";
 
 type Props = {
-	isMain: boolean;
+	isMain?: boolean;
 };
 const useStyles = makeStyles((theme: Theme)  => ({
 	menuWrap: {

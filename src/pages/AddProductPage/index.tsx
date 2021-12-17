@@ -1,4 +1,4 @@
-import * as React from "react";
+import { FC } from "react";
 import { useState } from "react";
 import {
 	Box,
@@ -13,7 +13,7 @@ import { setInfoToDatabase, uploadFile } from "firebase/actions";
 import { useAuth } from "contexts/AuthContext";
 
 
-const AddProductPage: React.FC = () => {
+const AddProductPage: FC = () => {
 	const [fileUrl, setFileUrl] = useState(null);
 	const initialValuesAddProduct = { productName: "", file: "", productQnt: 0 };
 	const { currentUserId } = useAuth();
@@ -58,11 +58,14 @@ const AddProductPage: React.FC = () => {
 
 	return (
 		<PageLayout>
-			<Box
-				display={"flex"}
-				flexDirection={"column"}
+			<Box sx = {{
+				display="flex"
+				flexDirection="column"
 				justifyContent="center"
 				flexGrow="1"
+	}
+			}
+				
 			>
 				<Container maxWidth="sm" >
 					<NewProductForm

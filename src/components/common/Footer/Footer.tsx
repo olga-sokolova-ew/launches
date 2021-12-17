@@ -78,7 +78,7 @@ const useStyles = makeStyles((theme: Theme)   => ({
 		},
 	},
 	footerLoginLink: {
-		color: theme.palette.primary.text,
+		color: theme.palette.info.main,
 		fontSize: "18px",
 		textTransform: "none",
 		transition: "0.3s ease",
@@ -95,7 +95,7 @@ const useStyles = makeStyles((theme: Theme)   => ({
 		padding: "3px 7px",
 		background: "rgba(0,0,0,0)",
 		border: "none",
-		color: theme.palette.primary.text,
+		color: theme.palette.info.main,
 		fontSize: "18px",
 		transition: "0.3s ease",
 		"&:hover": {

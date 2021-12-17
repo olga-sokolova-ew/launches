@@ -10,6 +10,7 @@ import { useAuth } from "../../../contexts/AuthContext";
 import UserMenu from "./UserMenu";
 import { ReactComponent as LogoSvg } from "assets/common/logo.svg";
 import { ReactComponent as ArrowLeftSvg } from "assets/common/arrow_left.svg";
+import { IValue } from "contexts/AuthContext.types";
 
 type Props = {
 	isMain?: boolean;
@@ -92,10 +93,12 @@ const useStyles = makeStyles((theme:Theme) => ({
 	},
 }));
 
+type IAuth = Pick<IValue, "currentUser">;
+
 
 const Header: React.FC<Props> = ({ isMain = false }) => {
 	const classes = useStyles();
-	const { currentUser } = useAuth();
+	const { currentUser } = useAuth() as IAuth;
 
 	return (
 		<Box

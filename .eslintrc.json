@@ -146,9 +146,6 @@
             "rules": {
                 "no-unused-vars": "off",
                 "no-explicit-any": "off",
-                "@typescript-eslint/no-unused-vars": [
-                    "warn"
-                ],
                 "semi": "off",
                 "quotes": [
                     "error",
@@ -157,9 +154,6 @@
                         "avoidEscape": true,
                         "allowTemplateLiterals": true
                     }
-                ],
-                "@typescript-eslint/semi": [
-                    "warn"
                 ],
                 "react-hooks/exhaustive-deps": "off",
                 "no-mixed-spaces-and-tabs": [
@@ -196,18 +190,6 @@
                     "line-aligned"
                 ],
                 "react/jsx-no-useless-fragment": "off",
-                "@typescript-eslint/indent": [
-                    "error",
-                    "tab",
-                    {
-                        "ignoredNodes": [
-                            "JSXElement *",
-                            "JSXElement",
-                            "JSXSpreadAttribute",
-                            "JSXAttribute"
-                        ]
-                    }
-                ],
                 "indent": [
                     "error",
                     "tab",
@@ -275,7 +257,6 @@
                     }
                 ],
                 "no-use-before-define": "off",
-                "@typescript-eslint/no-use-before-define": "off",
                 "formatjs/no-offset": "error"
             }
         }

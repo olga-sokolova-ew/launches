@@ -55,64 +55,64 @@ const useStyles = makeStyles((theme:Theme) => ({
 }));
 
 function Main() {
-	const classes = useStyles();
-	const { currentUser } = useAuth();
-	const intl = useIntl();
+		const classes = useStyles();
+		const { currentUser } = useAuth();
+		const intl = useIntl();
 
-	const dispatch = useDispatch();
+		const dispatch = useDispatch();
 
-	const events = useSelector(state => state.event.events);
-	const launches = useSelector(state => state.launch.launches);
-	const isEventsLoaded = useSelector(state => state.event.isEventsLoaded);
-	const isLaunchesLoaded = useSelector(state => state.launch.isLaunchesLoaded);
+		const events = useSelector(state => state.event.events);
+		const launches = useSelector(state => state.launch.launches);
+		const isEventsLoaded = useSelector(state => state.event.isEventsLoaded);
+		const isLaunchesLoaded = useSelector(state => state.launch.isLaunchesLoaded);
 
-	const [showenLaunchesQnt, setShowenLaunchesQnt] = useState(launchQnt);
+		const [showenLaunchesQnt, setShowenLaunchesQnt] = useState(launchQnt);
 
-	useEffect(
-		() => {
-			dispatch(fetchEventList());
-			dispatch(fetchLaunchList(intl));
-			if (currentUser) {
-				dispatch(requireAuthorization(AuthorizationStatus.AUTH));
-			}
-		},
-		[currentUser]
-	);
-
-	const onShowAllClick = () => {
-		setShowenLaunchesQnt(isLaunchesLoaded ? launches.lenght : 0);
-	};
-	const onShowMoreClick = () => {
-		setShowenLaunchesQnt(showenLaunchesQnt + launchQnt);
-	};
-
-	return (
-		<div className={classes.pageWrapper}>
-			<Header isMain />
-			<MainHero onShowAllClick={onShowAllClick} />
-
-			<Container maxWidth="lg">
-				{(isEventsLoaded && isLaunchesLoaded) ?
-					<section className={classes.pageContent}>
-
-						<EventsSwiper events={events} />
-
-						{isLaunchesLoaded &&
-							<LaunchesBlock
-								launches={launches}
-								onShowMore={onShowMoreClick}
-								showenLaunchesQnt={showenLaunchesQnt}
-							/>}
-					</section>
-					:
-					<Box className={classes.errorsBlock}>
-						<Loader />
-					</Box>
+		useEffect(
+			() => {
+				dispatch(fetchEventList());
+				dispatch(fetchLaunchList(intl));
+				if (currentUser) {
+					dispatch(requireAuthorization(AuthorizationStatus.AUTH));
 				}
-			</Container>
-			<Footer />
-		</div>
-	);
+			},
+			[currentUser]
+		);
+
+		const onShowAllClick = () => {
+			setShowenLaunchesQnt(isLaunchesLoaded ? launches.lenght : 0);
+		};
+		const onShowMoreClick = () => {
+			setShowenLaunchesQnt(showenLaunchesQnt + launchQnt);
+		};
+
+		return (
+			<div className={classes.pageWrapper}>
+				<Header isMain />
+				<MainHero onShowAllClick={onShowAllClick} />
+
+				<Container maxWidth="lg">
+					{(isEventsLoaded && isLaunchesLoaded) ?
+						<section className={classes.pageContent}>
+
+							<EventsSwiper events={events} />
+
+							{isLaunchesLoaded &&
+								<LaunchesBlock
+									launches={launches}
+									onShowMore={onShowMoreClick}
+									showenLaunchesQnt={showenLaunchesQnt}
+								/>}
+						</section>
+						:
+						<Box className={classes.errorsBlock}>
+							<Loader />
+						</Box>
+					}
+				</Container>
+				<Footer />
+			</div>
+		);
 }
 
 
